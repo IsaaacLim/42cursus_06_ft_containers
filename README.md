@@ -27,3 +27,9 @@ int main() {
 	func(b);
 }
 ```
+
+#### std::allocator
+Usage examples (here)[https://www.geeksforgeeks.org/stdallocator-in-cpp-with-examples/]
+
+#### Iterator usage for vector
+- To prevent invalidation (how to reassign)[https://thispointer.com//stdvector-and-iterator-invalidation/]
