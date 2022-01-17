@@ -15,7 +15,7 @@
 #include <iostream>
 #include <stack>
 
-int main()
+void stack_int()
 {
 	std::stack<int> stack;
 
@@ -41,4 +41,26 @@ int main()
 	stack.pop();
 
 	std::cout << stack.top() << '\n'; // Gives seg fault (no exception given)
+}
+
+void stack_str()
+{
+	std::stack<std::string> stack;
+
+	stack.push("Hello");
+	stack.push("Stack");
+	stack.push("2");
+
+	while (!stack.empty())
+	{
+		std::cout << stack.top() << ' ';
+		stack.pop();
+	}
+	stack.pop(); // Gives seg fault
+}
+
+int main()
+{
+	// stack_int();
+	stack_str();
 }
