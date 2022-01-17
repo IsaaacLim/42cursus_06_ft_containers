@@ -12,7 +12,6 @@
 **	- swap
 */
 
-
 #include <iostream>
 #include <stack>
 
@@ -31,7 +30,15 @@ int main()
 
 	while (!stack.empty())
 	{
-		std::cout <<  stack.top() << ' ';
+		std::cout << stack.top() << ' ';
 		stack.pop();
 	}
+
+	stack.pop();
+	stack.pop();
+	stack.pop();
+	stack.pop();
+	stack.pop();
+
+	std::cout << stack.top() << '\n'; // Gives seg fault (no exception given)
 }
