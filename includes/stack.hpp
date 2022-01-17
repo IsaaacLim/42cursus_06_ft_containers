@@ -22,7 +22,7 @@ namespace ft
 		~stack();
 		// Stack(Stack &other); //copy constructor?
 
-		void push(const T &x);
+		void push(const T &input);
 		void pop(void);
 		T top(void);
 		int size(void);
@@ -53,12 +53,12 @@ ft::stack<T>::~stack()
 }
 
 template <class T>
-void ft::stack<T>::push(const T &x)
+void ft::stack<T>::push(const T &input)
 {
 	std::allocator<t_list> alloc;
 
 	t_list *list = alloc.allocate(1);
-	list->data = x;
+	list->data = input;
 	list->next = NULL;
 	if (!this->_lst_last) // Empty stack
 	{
