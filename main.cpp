@@ -1,4 +1,5 @@
 #include <stack.hpp>
+#include <vector.hpp>
 #include <iostream>
 
 void stack_int()
@@ -57,11 +58,33 @@ void stack_str()
 	stack2.pop();
 }
 
+void vector_int()
+{
+	ft::vector<int> vector1;
+
+	vector1.push_back(10);
+	vector1.push_back(20);
+	vector1.push_back(30, 1);
+	vector1.push_back(40);
+
+	vector1.print();
+
+	if (vector1.empty())
+		std::cout << "IS EMPTY\n";
+	else
+		std::cout << "NOT EMPTY\n";
+
+	std::cout << "Size\t: " << vector1.size() << '\n';
+	std::cout << "Capacity: " << vector1.capacity() << '\n';
+}
+
 int main()
 {
 	// std::cout << "Hello" << std::endl;
 	// std::cout << ft::value() << std::endl;
 
 	// stack_int();
-	stack_str(); // works but got leaks
+	// stack_str(); // works but got leaks
+
+	vector_int();
 }
