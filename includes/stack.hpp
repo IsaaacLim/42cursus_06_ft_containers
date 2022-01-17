@@ -1,84 +1,141 @@
 #ifndef STACK_HPP
-# define STACK_HPP
+#define STACK_HPP
 
-# include <iostream>
-
-# define MAX 1000
+#include <iostream>
 
 namespace ft
 {
-	int value () {return 5;}
-
-	// template <class T>
+	template <class T>
 	class stack
 	{
-		private:
-			int data;
-			stack *next;
-			// int a[MAX];
-			int sizer;
+	private:
+		typedef struct s_list
+		{
+			T data;
+			struct s_list *next;
+		} t_list;
+		t_list *_lst_start;
+		t_list *_lst_last;
 
-		public:
-			stack();
-			~stack();
-			// Stack(Stack &other); //copy constructor?
+	public:
+		stack();
+		~stack();
+		// Stack(Stack &other); //copy constructor?
 
-			bool push(int x);
-			int pop();
-			int top();
-			bool empty();
-			int size();
+		void push(const T &x);
+		void pop(void);
+		T top(void);
+		int size(void);
+		bool empty(void);
+
+		// Temp
+		void print();
 	};
+
+	int value() { return 5; } // temp
 }
 
-ft::stack::stack()
+template <class T>
+ft::stack<T>::stack() : _lst_start(NULL), _lst_last(NULL) {}
+
+template <class T>
+ft::stack<T>::~stack()
 {
-	this->sizer = 0;
-	this->next = NULL;
-	// this->idx = -1;
-	std::cout << "Constructor" << std::endl;
+	std::allocator<t_list> alloc;
+	t_list *temp;
+
+	while (this->_lst_start)
+	{
+		temp = this->_lst_start->next;
+		alloc.deallocate(this->_lst_start, 1);
+		this->_lst_start = temp;
+	}
 }
 
-ft::stack::~stack()
+template <class T>
+void ft::stack<T>::push(const T &x)
 {
-	std::cout << "Destructor" << std::endl;
-}
+	std::allocator<t_list> alloc;
 
-bool ft::stack::push(int x)
-{
-	stack *list = new stack();
+	t_list *list = alloc.allocate(1);
 	list->data = x;
 	list->next = NULL;
-	this->sizer++;
-	if (this->sizer == 1)
+	if (!this->_lst_last) // Empty stack
 	{
-		this->next = list;
-		std::cout << "First added" << '\n';
+		this->_lst_start = list;
+		this->_lst_last = this->_lst_start;
 	}
-	else
+	else // Non-empty stack
 	{
-		stack *list_copy = this->next;
-		while (list_copy)
-		{
-			if (!list_copy->next)
-				break;
-			list_copy = list_copy->next;
-		}
-		// stack *last ;
-		list_copy->next = list;
-		std::cout << "Added more" << '\n';
+		this->_lst_last->next = list;
+		_lst_last = list;
 	}
-	// if (idx >= (MAX - 1))
-	// {
-	// 	std::cout << "Stack Overflow";
-	// 	return false;
-	// }
-	// else
-	// {
-	// 	this->a[++idx] = x;
-	// 	std::cout << x << " pushed into stack\n";
-		return true;
-	// }
+}
+
+template <class T>
+void ft::stack<T>::pop(void)
+{
+	std::allocator<t_list> alloc;
+	t_list *lst_copy;
+
+	if (!this->_lst_start) // Empty stack
+		return;
+	else if (this->_lst_start == this->_lst_last) // Stack with only 1 node
+	{
+		alloc.deallocate(this->_lst_start, 1);
+		this->_lst_start = NULL;
+		this->_lst_last = NULL;
+		return;
+	}
+	else // Stack with multiple nodes
+	{
+		lst_copy = this->_lst_start;
+		while (lst_copy && lst_copy->next != this->_lst_last)
+			lst_copy = lst_copy->next;
+		alloc.deallocate(this->_lst_last, 1);
+		this->_lst_last = lst_copy;
+		this->_lst_last->next = NULL;
+	}
+}
+
+// Lib function will just seg fault without freeing memory if stack is empty
+template <class T>
+T ft::stack<T>::top(void)
+{
+	return (this->_lst_last->data);
+}
+
+template <class T>
+int ft::stack<T>::size(void)
+{
+	t_list *lst_copy;
+	int i;
+
+	lst_copy = this->_lst_start;
+	for (i = 0; lst_copy; i++)
+		lst_copy = lst_copy->next;
+	return (i);
+}
+
+template <class T>
+bool ft::stack<T>::empty(void)
+{
+	return (!this->_lst_start);
+}
+
+// Temp
+template <class T>
+void ft::stack<T>::print()
+{
+	t_list *lst_copy;
+
+	lst_copy = this->_lst_start;
+	while (lst_copy)
+	{
+		std::cout << lst_copy->data << ' ';
+		lst_copy = lst_copy->next;
+	}
+	std::cout << '\n';
 }
 
 #endif
