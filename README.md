@@ -1,8 +1,30 @@
 # ft_containers
 
+### To Do
+
+1. Stack
+   - `free` memory for `ft::stack<std::string>` instances
+   - create arithmetic operators
+   - test with other data types
+   - `<int> stacks` won't have seg fault when `pop()` empty stack, but `<std::string> stacks` will seg fault
+   - include `member types`
+
 ### Resources
 
+#### Stack structure reference
+
+[GeeksforGeeks](https://www.geeksforgeeks.org/stack-data-structure-introduction-program/)
+
+#### Vector structure reference
+
+[GeeksforGeeks](https://www.geeksforgeeks.org/how-to-implement-our-own-vector-class-in-c/)
+
+#### Sample vector source code
+
+[Miguel GitHub](https://github.com/Miguel-Deniz/Vector-Implementation/blob/master/Vector%20Implementation/Vector.h)
+
 #### friend function
+
 ```
 #include <iostream>
 
@@ -29,7 +51,9 @@ int main() {
 ```
 
 #### std::allocator
+
 Usage examples (here)[https://www.geeksforgeeks.org/stdallocator-in-cpp-with-examples/]
 
 #### Iterator usage for vector
+
 - To prevent invalidation (how to reassign)[https://thispointer.com//stdvector-and-iterator-invalidation/]
