@@ -44,7 +44,7 @@ template <class T>
 class ft::vector<T>::iterator
 {
 private:
-	_it;
+	T *_it;
 
 public:
 	iterator(T *p) : _it(p) {}

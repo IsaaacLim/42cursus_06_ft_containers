@@ -1,5 +1,5 @@
-#include <stack.hpp>
-#include <vector.hpp>
+#include <Stack.hpp>
+#include <Vector.hpp>
 #include <iostream>
 
 void stack_int()
