@@ -1,5 +1,6 @@
 #include <Stack.hpp>
 #include <Vector.hpp>
+#include <VectorIterator.hpp>
 #include <iostream>
 
 void stack_int()
@@ -78,6 +79,43 @@ void vector_int()
 	std::cout << "Capacity: " << vector1.capacity() << '\n';
 }
 
+void vector_iterator()
+{
+	int arr[5] = {10, 20, 30, 40, 50};
+	ft::VectorIterator<int> i;
+
+	std::cout << "Arr: ";
+	for (int i = 0; i < 5; i++)
+		std::cout << arr[i] << ' ';
+	std::cout << '\n';
+
+	i = arr;
+	std::cout << *i << '\n';
+	std::cout << *(i + 2) << '\n';
+	std::cout << *i << '\n';
+
+	i++;
+	std::cout << *i << '\n';
+	std::cout << *i << '\n';
+
+	i += 1;
+	std::cout << *i << '\n';
+	std::cout << *i << '\n';
+
+	i += -2;
+	std::cout << *i << '\n';
+	std::cout << *i << '\n';
+
+	i -= -2;
+	std::cout << *i << '\n';
+	std::cout << *i << '\n';
+
+	i -= 2;
+	std::cout << *i << '\n';
+	std::cout << *i << '\n';
+}
+
+
 int main()
 {
 	// std::cout << "Hello" << std::endl;
@@ -86,5 +124,7 @@ int main()
 	// stack_int();
 	// stack_str(); // works but got leaks
 
-	vector_int();
+	// vector_int();
+
+	vector_iterator();
 }

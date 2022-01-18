@@ -4,7 +4,7 @@ SRCS		=	main.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 
 HDRS_DIR	=	./includes/
-HDRS_LST	=	Stack.hpp	Vector.hpp
+HDRS_LST	=	Stack.hpp	Vector.hpp VectorIterator.hpp
 HDRS		=	$(addprefix $(HDRS_DIR), $(HDRS_LST))
 
 INCLUDES	=	-I $(HDRS_DIR)
