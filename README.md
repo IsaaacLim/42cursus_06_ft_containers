@@ -23,6 +23,19 @@
 
 [Miguel GitHub](https://github.com/Miguel-Deniz/Vector-Implementation/blob/master/Vector%20Implementation/Vector.h)
 
+#### const position and its meaining
+
+- `int *` - pointer to int
+- `int const *` - pointer to const int
+- `int * const` - const pointer to int
+- `int const * const` - const poinVter to const int
+
+And the first `const can be on either side of the type
+
+- `const int *` == `int const *`
+- `const int * const` == `int const * const`
+
+[source](https://stackoverflow.com/questions/1143262/what-is-the-difference-between-const-int-const-int-const-and-int-const)
 #### friend function
 
 ```
