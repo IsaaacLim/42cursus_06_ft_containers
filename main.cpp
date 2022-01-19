@@ -86,6 +86,8 @@ void vector_int()
 	// ft::vector<int>::iterator const const_it = vector1.begin() + 2;
 
 	// std::cout << *const_it << '\n'; //handle this
+
+	// Capacity Functions
 	{
 		std::cout << "---------- CAPACITY ----------\n";
 		ft::vector<int> vec;

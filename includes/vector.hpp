@@ -12,6 +12,7 @@ namespace ft
 	class vector
 	{
 	public:
+		// MEMBER TYPES ------------------------------------------------not done
 		typedef T value_type;
 		typedef size_t size_type;
 		typedef T* pointer;
@@ -21,8 +22,9 @@ namespace ft
 		size_type _capacity; // capacity of the vector
 		size_type _current;  // num of elements currently in the vector
 	public:
-		vector(/* args */);
-		~vector();
+		// MEMBER FUNCTIONS --------------------------------------------not done
+		vector(void);
+		~vector(void);
 
 		// ITERATORS -----------------------------------------------------------
 		iterator begin(void);
@@ -31,7 +33,7 @@ namespace ft
 		// iterator rend(void);
 		// const iterator begin() const;
 
-		// CAPACITY ------------------------------------------------------------
+		// CAPACITY --------------------------------------------------------done
 		bool empty(void);
 		size_type size(void);
 		size_type max_size();
@@ -53,7 +55,7 @@ namespace ft
 template <typename T>
 // template <typename T, typename A = std::allocator<T> >
 // template <class T, class Alloc>
-ft::vector<T>::vector(/* args */)
+ft::vector<T>::vector(void)
 {
 	std::allocator<T> alloc;
 	_arr = alloc.allocate(1); // initial capacity of 1 element
@@ -62,7 +64,7 @@ ft::vector<T>::vector(/* args */)
 }
 
 template <typename T>
-ft::vector<T>::~vector()
+ft::vector<T>::~vector(void)
 {
 	std::allocator<T> alloc;
 
