@@ -6,6 +6,7 @@ int main(void)
 	std::vector<int> arr;
 	std::vector<int>::iterator i;
 	std::vector<int>::iterator j;
+	std::vector<int>::reverse_iterator m;
 
 	arr.push_back(100);
 	arr.push_back(2);
@@ -13,7 +14,7 @@ int main(void)
 	arr.push_back(4);
 	arr.push_back(5);
 
-	i = arr.begin(); //1
+	// i = arr.begin(); //1
 	// std::cout << *i << '\n';
 
 	// // i = arr[2]; // NOPE
@@ -58,13 +59,16 @@ int main(void)
 	// std::cout << *(j + 2) << '\n';
 	// std::cout << *(j -10)<< '\n';
 
-	i = arr.begin();
-	j = arr.begin();
+	// i = arr.begin();
+	// j = arr.begin();
 
-	i++;
-	if (i > j)
-		std::cout << "more than\n";
-	else
-		std::cout << "meh\n";
+	// i++;
+	// if (i > j)
+	// 	std::cout << "more than\n";
+	// else
+	// 	std::cout << "meh\n";
 
+	m = arr.rbegin();
+	std::cout << *m++ << '\n';
+	std::cout << *m << '\n';
 }

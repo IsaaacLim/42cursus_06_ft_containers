@@ -2,6 +2,7 @@
 #define VECTOR_HPP
 
 #include <iostream>
+#include "VectorIterator.hpp"
 
 namespace ft
 {
@@ -9,6 +10,8 @@ namespace ft
 	template <typename T>
 	class vector
 	{
+	public:
+		typedef ft::VectorIterator<T> iterator;
 	private:
 		T *_arr;	   // pointer to the address of the vector
 		int _capacity; // capacity of the vector
@@ -18,9 +21,12 @@ namespace ft
 		~vector();
 
 		// ITERATORS -----------------------------------------------------------
-		class iterator;
-		iterator begin();
-		const iterator begin() const;
+		// class iterator;
+		iterator begin(void);
+		iterator end(void);
+		// iterator rbegin(void);
+		// iterator rend(void);
+		// const iterator begin() const;
 
 		// CAPACITY ------------------------------------------------------------
 		bool empty(void);
@@ -40,15 +46,15 @@ namespace ft
 }
 
 // ITERATORS ===================================================================
-template <class T>
-class ft::vector<T>::iterator
-{
-private:
-	T *_it;
+// template <class T>
+// class ft::vector<T>::iterator
+// {
+// private:
+// 	T *_it;
 
-public:
-	iterator(T *p) : _it(p) {}
-};
+// public:
+// 	iterator(T *p) : _it(p) {}
+// };
 
 template <typename T>
 ft::vector<T>::vector(/* args */)
@@ -110,16 +116,25 @@ void ft::vector<T>::push_back(const T &input, int index)
 
 // ITERATORS ===================================================================
 template <class T>
-inline typename ft::vector<T>::iterator ft::vector<T>::begin()
+typename ft::vector<T>::iterator ft::vector<T>::begin()
 {
-	return ft::vector<T>::iterator(&_arr[0]);
+	std::cout << "vec iterator\n";
+	return (&_arr[0]);
 }
 
 template <class T>
-inline typename ft::vector<T>::iterator const ft::vector<T>::begin() const
+typename ft::vector<T>::iterator ft::vector<T>::end()
 {
-	return ft::vector<T>::iterator(&_arr[0]);
+	std::cout << "vec iterator\n";
+	return (&_arr[this->_current - 1]);
 }
+
+// template <class T>
+// typename ft::vector<T>::iterator const ft::vector<T>::begin() const
+// {
+// 	std::cout << "const vec iterator\n";
+// 	return (&_arr[0]);
+// }
 
 // TMP =========================================================================
 template <typename T>

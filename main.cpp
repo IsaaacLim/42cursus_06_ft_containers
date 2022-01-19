@@ -62,6 +62,7 @@ void stack_str()
 void vector_int()
 {
 	ft::vector<int> vector1;
+	ft::vector<int>::iterator it;
 
 	vector1.push_back(10);
 	vector1.push_back(20);
@@ -77,6 +78,20 @@ void vector_int()
 
 	std::cout << "Size\t: " << vector1.size() << '\n';
 	std::cout << "Capacity: " << vector1.capacity() << '\n';
+
+	std::cout << "----- ITERATOR TEST -----\n";
+	it = vector1.begin();
+	std::cout << *it++ << '\n';
+	std::cout << *it++ << '\n';
+
+	it = vector1.end();
+	std::cout << *it-- << '\n';
+	std::cout << *it-- << '\n';
+
+
+	// ft::vector<int>::iterator const const_it = vector1.begin() + 2;
+
+	// std::cout << *const_it << '\n'; //handle this
 }
 
 void vector_iterator()
@@ -152,7 +167,7 @@ int main()
 	// stack_int();
 	// stack_str(); // works but got leaks
 
-	// vector_int();
+	vector_int();
 
-	vector_iterator();
+	// vector_iterator();
 }
