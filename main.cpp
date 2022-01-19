@@ -71,13 +71,6 @@ void vector_int()
 
 	vector1.print();
 
-	if (vector1.empty())
-		std::cout << "IS EMPTY\n";
-	else
-		std::cout << "NOT EMPTY\n";
-
-	std::cout << "Size\t: " << vector1.size() << '\n';
-	std::cout << "Capacity: " << vector1.capacity() << '\n';
 
 	// std::cout << "----- ITERATOR TEST -----\n";
 	// it = vector1.begin();
@@ -88,12 +81,46 @@ void vector_int()
 	// std::cout << *it-- << '\n';
 	// std::cout << *it-- << '\n';
 
-	std::cout << vector1.max_size() << '\n';
 
 
 	// ft::vector<int>::iterator const const_it = vector1.begin() + 2;
 
 	// std::cout << *const_it << '\n'; //handle this
+	{
+		std::cout << "---------- CAPACITY ----------\n";
+		ft::vector<int> vec;
+
+		std::cout << "max_size()\t: " << vec.max_size() << '\n';
+
+		if (vec.empty())
+			std::cout << "empty()\t\t: IS EMPTY\n";
+		else
+			std::cout << "empty()\t\t: NOT EMPTY\n";
+
+		vec.push_back(10);
+		vec.push_back(20);
+		vec.push_back(30);
+		vec.push_back(40);
+		vec.push_back(50);
+
+		vec.reserve(2);
+
+		std::cout << "size()\t\t: " << vec.size() << '\n';
+		std::cout << "capacity()\t: " << vec.capacity() << '\n';
+
+		vec.reserve(10);
+
+		std::cout << "size()\t\t: " << vec.size() << '\n';
+		std::cout << "capacity()\t: " << vec.capacity() << '\n';
+
+		if (vec.empty())
+			std::cout << "empty()\t\t: IS EMPTY\n";
+		else
+			std::cout << "empty()\t\t: NOT EMPTY\n";
+
+		std::cout << "Final arr\t: ";
+		vec.print();
+	}
 }
 
 void vector_iterator()

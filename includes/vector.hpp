@@ -18,8 +18,8 @@ namespace ft
 		typedef ft::VectorIterator<T> iterator;
 	private:
 		pointer _arr;	   // pointer to the address of the vector
-		int _capacity; // capacity of the vector
-		int _current;  // num of elements currently in the vector
+		size_type _capacity; // capacity of the vector
+		size_type _current;  // num of elements currently in the vector
 	public:
 		vector(/* args */);
 		~vector();
@@ -33,14 +33,14 @@ namespace ft
 
 		// CAPACITY ------------------------------------------------------------
 		bool empty(void);
-		int size(void);
+		size_type size(void);
 		size_type max_size();
 		void reserve(size_type new_cap);
-		int capacity(void);
+		size_type capacity(void);
 
 		// MODIFIERS -----------------------------------------------------------
 		void push_back(const value_type &input);
-		void push_back(const value_type &input, int index);
+		void push_back(const value_type &input, size_type index);
 		void pop_back(void);
 
 		// TMP -----------------------------------------------------------------
@@ -74,7 +74,7 @@ template <typename T>
 bool ft::vector<T>::empty(void) { return (!_current); }
 
 template <typename T>
-int ft::vector<T>::size(void) { return (_current); }
+typename ft::vector<T>::size_type ft::vector<T>::size(void) { return (_current); }
 
 template <typename T>
 typename ft::vector<T>::size_type ft::vector<T>::max_size(void)
@@ -91,9 +91,8 @@ void ft::vector<T>::reserve(size_type new_cap)
 
 	if (new_cap > _capacity)
 	{
-		size_type = 0;
 		tmp = alloc.allocate(new_cap);
-		i = 0;
+		i = -1;
 		while (++i < _current)
 			tmp[i] = _arr[i];
 		alloc.deallocate(_arr, _capacity);
@@ -102,9 +101,8 @@ void ft::vector<T>::reserve(size_type new_cap)
 	}
 }
 
-
 template <typename T>
-int ft::vector<T>::capacity(void) { return (_capacity); }
+typename ft::vector<T>::size_type ft::vector<T>::capacity(void) { return (_capacity); }
 
 // MODIFIERS ===================================================================
 template <typename T>
@@ -116,7 +114,7 @@ void ft::vector<T>::push_back(const value_type &input)
 	if (_current == _capacity)
 	{
 		tmp = alloc.allocate(2 * _capacity); // double capacity
-		for (int i = 0; i < _capacity; i++)	 // copy data to new array
+		for (size_type i = 0; i < _capacity; i++)	 // copy data to new array
 			tmp[i] = _arr[i];
 		alloc.deallocate(_arr, _capacity); // delete prev array
 		_capacity *= 2;
@@ -127,7 +125,7 @@ void ft::vector<T>::push_back(const value_type &input)
 }
 
 template <typename T>
-void ft::vector<T>::push_back(const value_type &input, int index)
+void ft::vector<T>::push_back(const value_type &input, size_type index)
 {
 	if (index > _capacity)
 		std::cout << "TOO MUCH\n";
@@ -161,7 +159,7 @@ typename ft::vector<T>::iterator ft::vector<T>::end()
 template <typename T>
 void ft::vector<T>::print(void)
 {
-	for (int i = 0; i < _current; i++)
+	for (size_type i = 0; i < _current; i++)
 		std::cout << _arr[i] << ' ';
 	std::cout << std::endl;
 }
