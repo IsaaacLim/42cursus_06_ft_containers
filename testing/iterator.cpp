@@ -1,18 +1,27 @@
 #include <vector>
+#include <limits>
 
 #include <iostream>
 int main(void)
 {
-	std::vector<int> arr;
-	std::vector<int>::iterator i;
-	std::vector<int>::iterator j;
-	std::vector<int>::reverse_iterator m;
+	std::vector<long> arr;
+	std::vector<long>::iterator i;
+	std::vector<long>::iterator j;
+	std::vector<long>::reverse_iterator m;
+
+	std::cout << arr.max_size() << '\n';
 
 	arr.push_back(100);
 	arr.push_back(2);
 	arr.push_back(3);
 	arr.push_back(4);
 	arr.push_back(5);
+
+	size_t max = std::numeric_limits<size_t>::max();
+	size_t max_size = max / sizeof(long);
+	std::cout << max_size << '\n';
+
+
 
 	// i = arr.begin(); //1
 	// std::cout << *i << '\n';

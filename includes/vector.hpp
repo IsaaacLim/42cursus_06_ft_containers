@@ -2,6 +2,7 @@
 #define VECTOR_HPP
 
 #include <iostream>
+#include <limits>
 #include "VectorIterator.hpp"
 
 namespace ft
@@ -11,9 +12,12 @@ namespace ft
 	class vector
 	{
 	public:
+		typedef T value_type;
+		typedef size_t size_type;
+		typedef T* pointer;
 		typedef ft::VectorIterator<T> iterator;
 	private:
-		T *_arr;	   // pointer to the address of the vector
+		pointer _arr;	   // pointer to the address of the vector
 		int _capacity; // capacity of the vector
 		int _current;  // num of elements currently in the vector
 	public:
@@ -21,7 +25,6 @@ namespace ft
 		~vector();
 
 		// ITERATORS -----------------------------------------------------------
-		// class iterator;
 		iterator begin(void);
 		iterator end(void);
 		// iterator rbegin(void);
@@ -31,13 +34,13 @@ namespace ft
 		// CAPACITY ------------------------------------------------------------
 		bool empty(void);
 		int size(void);
-		// int max_size();
-		// void reserve();
+		size_type max_size();
+		void reserve(size_type new_cap);
 		int capacity(void);
 
 		// MODIFIERS -----------------------------------------------------------
-		void push_back(const T &input);
-		void push_back(const T &input, int index);
+		void push_back(const value_type &input);
+		void push_back(const value_type &input, int index);
 		void pop_back(void);
 
 		// TMP -----------------------------------------------------------------
@@ -45,18 +48,11 @@ namespace ft
 	};
 }
 
-// ITERATORS ===================================================================
-// template <class T>
-// class ft::vector<T>::iterator
-// {
-// private:
-// 	T *_it;
-
-// public:
-// 	iterator(T *p) : _it(p) {}
-// };
+/*******************************DEFINITIONS************************************/
 
 template <typename T>
+// template <typename T, typename A = std::allocator<T> >
+// template <class T, class Alloc>
 ft::vector<T>::vector(/* args */)
 {
 	std::allocator<T> alloc;
@@ -81,14 +77,41 @@ template <typename T>
 int ft::vector<T>::size(void) { return (_current); }
 
 template <typename T>
+typename ft::vector<T>::size_type ft::vector<T>::max_size(void)
+{
+	return (std::numeric_limits<size_type>::max() / sizeof(value_type));
+}
+
+template <typename T>
+void ft::vector<T>::reserve(size_type new_cap)
+{
+	std::allocator<T> alloc;
+	pointer tmp;
+	size_type i;
+
+	if (new_cap > _capacity)
+	{
+		size_type = 0;
+		tmp = alloc.allocate(new_cap);
+		i = 0;
+		while (++i < _current)
+			tmp[i] = _arr[i];
+		alloc.deallocate(_arr, _capacity);
+		_arr = tmp;
+		_capacity = new_cap;
+	}
+}
+
+
+template <typename T>
 int ft::vector<T>::capacity(void) { return (_capacity); }
 
 // MODIFIERS ===================================================================
 template <typename T>
-void ft::vector<T>::push_back(const T &input)
+void ft::vector<T>::push_back(const value_type &input)
 {
 	std::allocator<T> alloc;
-	T *tmp;
+	value_type *tmp;
 
 	if (_current == _capacity)
 	{
@@ -104,7 +127,7 @@ void ft::vector<T>::push_back(const T &input)
 }
 
 template <typename T>
-void ft::vector<T>::push_back(const T &input, int index)
+void ft::vector<T>::push_back(const value_type &input, int index)
 {
 	if (index > _capacity)
 		std::cout << "TOO MUCH\n";
@@ -118,14 +141,12 @@ void ft::vector<T>::push_back(const T &input, int index)
 template <class T>
 typename ft::vector<T>::iterator ft::vector<T>::begin()
 {
-	std::cout << "vec iterator\n";
 	return (&_arr[0]);
 }
 
 template <class T>
 typename ft::vector<T>::iterator ft::vector<T>::end()
 {
-	std::cout << "vec iterator\n";
 	return (&_arr[this->_current - 1]);
 }
 
