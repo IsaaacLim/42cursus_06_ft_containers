@@ -111,11 +111,27 @@ typename ft::vector<T>::size_type ft::vector<T>::capacity(void) { return (_capac
 
 // MODIFIERS ===================================================================
 template <typename T>
-typename ft::vector<T>::iterator ft::vector<T>::erase (iterator first, iterator last)
+typename ft::vector<T>::iterator ft::vector<T>::erase (iterator pos)
 {
-
+	iterator tmp;
+	//WORKING HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	tmp = pos;
+	while (tmp + 1 != end())
+	{
+		*tmp = *(tmp + 1);
+		tmp++;
+	}
+	_current--;
+	return (pos);
 }
 
+template <typename T>
+typename ft::vector<T>::iterator ft::vector<T>::erase (iterator first, iterator last)
+{
+	//WORKING HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+	iterator
+}
 
 template <typename T>
 void ft::vector<T>::push_back(const value_type &input)
@@ -149,13 +165,13 @@ void ft::vector<T>::push_back(const value_type &input, size_type index)
 
 // ITERATORS ===================================================================
 template <class T>
-typename ft::vector<T>::iterator ft::vector<T>::begin()
+typename ft::vector<T>::iterator ft::vector<T>::begin(void)
 {
 	return (&_arr[0]);
 }
 
 template <class T>
-typename ft::vector<T>::iterator ft::vector<T>::end()
+typename ft::vector<T>::iterator ft::vector<T>::end(void)
 {
 	return (&_arr[this->_current - 1]);
 }
