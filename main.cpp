@@ -123,6 +123,20 @@ void vector_int()
 		std::cout << "Final arr\t: ";
 		vec.print();
 	}
+
+	// Modifiers Functions
+	{
+		std::cout << "---------- MODIFIERS ----------\n";
+		ft::vector<int> vec;
+
+		vec.push_back(10);
+		vec.push_back(20);
+		vec.push_back(30);
+		vec.push_back(40);
+		vec.push_back(50);
+
+
+	}
 }
 
 void vector_iterator()

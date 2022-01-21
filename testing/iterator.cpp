@@ -21,10 +21,13 @@ int main(void)
 	size_t max_size = max / sizeof(long);
 	std::cout << max_size << '\n';
 
+	i = arr.begin(); //1
+	std::cout << *i << '\n';
 
+	arr.erase(i);
 
-	// i = arr.begin(); //1
-	// std::cout << *i << '\n';
+	std::cout << *i << '\n';
+
 
 	// // i = arr[2]; // NOPE
 

@@ -41,9 +41,12 @@ namespace ft
 		size_type capacity(void);
 
 		// MODIFIERS -----------------------------------------------------------
+		iterator erase (iterator pos);
+		iterator erase (iterator first, iterator last);
 		void push_back(const value_type &input);
 		void push_back(const value_type &input, size_type index);
-		void pop_back(void);
+		void pop_back(void); // not done
+
 
 		// TMP -----------------------------------------------------------------
 		void print();
@@ -107,6 +110,13 @@ template <typename T>
 typename ft::vector<T>::size_type ft::vector<T>::capacity(void) { return (_capacity); }
 
 // MODIFIERS ===================================================================
+template <typename T>
+typename ft::vector<T>::iterator ft::vector<T>::erase (iterator first, iterator last)
+{
+
+}
+
+
 template <typename T>
 void ft::vector<T>::push_back(const value_type &input)
 {
