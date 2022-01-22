@@ -139,9 +139,9 @@ template <typename T>
 typename ft::vector<T>::iterator ft::vector<T>::erase(iterator pos)
 {
 	iterator tmp;
-	//WORKING HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 	tmp = pos;
-	while (tmp + 1 != end())
+	while (tmp != end())
 	{
 		*tmp = *(tmp + 1);
 		tmp++;
@@ -153,9 +153,12 @@ typename ft::vector<T>::iterator ft::vector<T>::erase(iterator pos)
 template <typename T>
 typename ft::vector<T>::iterator ft::vector<T>::erase(iterator first, iterator last)
 {
-	//WORKING HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-	// iterator
+	while (first != last)
+	{
+		erase(first);
+		last--;
+	}
+	return (first);
 }
 
 template <typename T>

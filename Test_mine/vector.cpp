@@ -99,7 +99,24 @@ void vector_int()
 	print_title("Vector (int)");
 	ft::vector<int> vec;
 
+	vec.push_back(10);
+	vec.push_back(20);
+	vec.push_back(30);
+	vec.push_back(40);
+	vec.push_back(50);
+
+	cout << "Arr: ";
+	vec.print();
+
 	print_subtitle("Modifiers");
+	{
+		vec.push_back(60);
+		vec.print();
+		vec.erase(vec.begin());
+		vec.print();
+		vec.erase(vec.begin() + 1, vec.begin() + 4);
+		vec.print();
+	}
 
 	print_subtitle("Iterator (simple)");
 }
