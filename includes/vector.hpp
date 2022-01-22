@@ -68,7 +68,8 @@ namespace ft
 		iterator erase(iterator first, iterator last);
 		void push_back(const value_type &input);
 		void pop_back(void);
-		// void resize(size_type n, value_type val);
+		void resize(size_type count);
+		void resize(size_type count, value_type val);
 		// swap
 
 		// Non-member functions ------------------------------------------------
@@ -187,6 +188,16 @@ void ft::vector<T>::pop_back(void)
 		_arr[_current--] = 0;
 }
 
+template <typename T>
+void ft::vector<T>::resize(size_type count)
+{
+	//WORKING HERE
+}
+
+template <typename T>
+void ft::vector<T>::resize(size_type count, value_type value)
+{
+}
 // ITERATORS ===================================================================
 template <class T>
 typename ft::vector<T>::iterator ft::vector<T>::begin(void)
