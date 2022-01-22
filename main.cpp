@@ -66,11 +66,10 @@ void vector_int()
 
 	vector1.push_back(10);
 	vector1.push_back(20);
-	vector1.push_back(30, 1);
+	vector1.push_back(30);
 	vector1.push_back(40);
 
 	vector1.print();
-
 
 	// std::cout << "----- ITERATOR TEST -----\n";
 	// it = vector1.begin();
@@ -80,8 +79,6 @@ void vector_int()
 	// it = vector1.end();
 	// std::cout << *it-- << '\n';
 	// std::cout << *it-- << '\n';
-
-
 
 	// ft::vector<int>::iterator const const_it = vector1.begin() + 2;
 
@@ -134,11 +131,8 @@ void vector_int()
 		vec.push_back(30);
 		vec.push_back(40);
 		vec.push_back(50);
-
-
 	}
 }
-
 
 int main()
 {
@@ -149,5 +143,4 @@ int main()
 	// stack_str(); // works but got leaks
 
 	vector_int();
-
 }

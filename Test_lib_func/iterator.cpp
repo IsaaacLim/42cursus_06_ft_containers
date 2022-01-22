@@ -28,7 +28,6 @@ int main(void)
 
 	std::cout << *i << '\n';
 
-
 	// // i = arr[2]; // NOPE
 
 	// i++;
@@ -58,7 +57,6 @@ int main(void)
 	// std::cout << i[-2] << '\n';
 	// std::cout << i[-20] << '\n';
 	// std::cout << *i << '\n';
-
 
 	// std::cout << "OTHER\n";
 	// i = arr.begin();

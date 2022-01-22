@@ -7,33 +7,54 @@
 
 namespace ft
 {
-	// template <typename T, typename A = std::allocator<T> >
+	// template <typename T, typename Allocator = std::allocator<T> >
 	template <typename T>
 	class vector
 	{
 	public:
 		// MEMBER TYPES ------------------------------------------------not done
 		typedef T value_type;
+		// typedef Allocator allocator_type;
 		typedef size_t size_type;
-		typedef T* pointer;
-		typedef ft::VectorIterator<T> iterator;
+		// typedef std::ptrdiff_t difference_type;
+		typedef value_type &reference;
+		typedef const value_type &const_reference;
+		typedef T *pointer;
+		// typedef const T *const_pointer;
+		typedef ft::VectorIterator<value_type> iterator;
+		typedef ft::VectorIterator<value_type const> const_iterator;
+		// typedef ft::reverse_VectorIterator<T> reverse_iterator;
+		// typedef const ft::reverse_VectorIterator<T> const_reverse_iterator;
+
 	private:
-		pointer _arr;	   // pointer to the address of the vector
+		pointer _arr;		 // pointer to the address of the vector
 		size_type _capacity; // capacity of the vector
-		size_type _current;  // num of elements currently in the vector
+		size_type _current;	 // num of elements currently in the vector
+
 	public:
 		// MEMBER FUNCTIONS --------------------------------------------not done
 		vector(void);
+		// vector(size_type n, const_reference val);
+		// vector(with iterator);
 		~vector(void);
+		// assign
+		// operator=
+		// get_allocator
+
+		// ELEMENT ACCESS ----------------------------------------------not done
+		// at
+		// operator[]
+		// front
+		// back
+		// data
 
 		// ITERATORS -----------------------------------------------------------
 		iterator begin(void);
 		iterator end(void);
 		// iterator rbegin(void);
 		// iterator rend(void);
-		// const iterator begin() const;
 
-		// CAPACITY --------------------------------------------------------done
+		// CAPACITY ------------------------------------------------------- done
 		bool empty(void);
 		size_type size(void);
 		size_type max_size();
@@ -41,12 +62,16 @@ namespace ft
 		size_type capacity(void);
 
 		// MODIFIERS -----------------------------------------------------------
-		iterator erase (iterator pos);
-		iterator erase (iterator first, iterator last);
+		// clear
+		// insert
+		iterator erase(iterator pos);
+		iterator erase(iterator first, iterator last);
 		void push_back(const value_type &input);
-		void push_back(const value_type &input, size_type index);
 		void pop_back(void); // not done
+		// void resize(size_type n, value_type val);
+		// swap
 
+		// Non-member functions ------------------------------------------------
 
 		// TMP -----------------------------------------------------------------
 		void print();
@@ -111,7 +136,7 @@ typename ft::vector<T>::size_type ft::vector<T>::capacity(void) { return (_capac
 
 // MODIFIERS ===================================================================
 template <typename T>
-typename ft::vector<T>::iterator ft::vector<T>::erase (iterator pos)
+typename ft::vector<T>::iterator ft::vector<T>::erase(iterator pos)
 {
 	iterator tmp;
 	//WORKING HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -126,7 +151,7 @@ typename ft::vector<T>::iterator ft::vector<T>::erase (iterator pos)
 }
 
 template <typename T>
-typename ft::vector<T>::iterator ft::vector<T>::erase (iterator first, iterator last)
+typename ft::vector<T>::iterator ft::vector<T>::erase(iterator first, iterator last)
 {
 	//WORKING HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -141,8 +166,8 @@ void ft::vector<T>::push_back(const value_type &input)
 
 	if (_current == _capacity)
 	{
-		tmp = alloc.allocate(2 * _capacity); // double capacity
-		for (size_type i = 0; i < _capacity; i++)	 // copy data to new array
+		tmp = alloc.allocate(2 * _capacity);	  // double capacity
+		for (size_type i = 0; i < _capacity; i++) // copy data to new array
 			tmp[i] = _arr[i];
 		alloc.deallocate(_arr, _capacity); // delete prev array
 		_capacity *= 2;
@@ -150,17 +175,6 @@ void ft::vector<T>::push_back(const value_type &input)
 	}
 	_arr[_current] = input;
 	_current++;
-}
-
-template <typename T>
-void ft::vector<T>::push_back(const value_type &input, size_type index)
-{
-	if (index > _capacity)
-		std::cout << "TOO MUCH\n";
-	if (index == _capacity)
-		push_back(input);
-	else
-		_arr[index] = input;
 }
 
 // ITERATORS ===================================================================
