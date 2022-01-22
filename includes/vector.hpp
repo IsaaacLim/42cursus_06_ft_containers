@@ -67,7 +67,7 @@ namespace ft
 		iterator erase(iterator pos);
 		iterator erase(iterator first, iterator last);
 		void push_back(const value_type &input);
-		void pop_back(void); // not done
+		void pop_back(void);
 		// void resize(size_type n, value_type val);
 		// swap
 
@@ -178,6 +178,13 @@ void ft::vector<T>::push_back(const value_type &input)
 	}
 	_arr[_current] = input;
 	_current++;
+}
+
+template <typename T>
+void ft::vector<T>::pop_back(void)
+{
+	if (_current > 0)
+		_arr[_current--] = 0;
 }
 
 // ITERATORS ===================================================================

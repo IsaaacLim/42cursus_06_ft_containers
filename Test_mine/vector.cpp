@@ -116,6 +116,8 @@ void vector_int()
 		vec.print();
 		vec.erase(vec.begin() + 1, vec.begin() + 4);
 		vec.print();
+		vec.pop_back();
+		vec.print();
 	}
 
 	print_subtitle("Iterator (simple)");
