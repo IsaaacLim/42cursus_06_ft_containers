@@ -1,5 +1,5 @@
 #ifndef VECTORITERATOR_HPP
-# define VECTORITERATOR_HPP
+#define VECTORITERATOR_HPP
 
 namespace ft
 {
@@ -9,7 +9,7 @@ namespace ft
 	public:
 		typedef T value_type;
 		typedef T &reference; // ??
-		typedef T *pointer; // ??
+		typedef T *pointer;	  // ??
 
 	protected:
 		pointer _ptr;
@@ -24,17 +24,17 @@ namespace ft
 		//value_type *operator->(void); //vector->it ??
 		value_type &operator*(void); // *it ??
 
-		VectorIterator operator+(int const n);	//it + 2
-		VectorIterator operator-(int const n);	//it - 2
+		VectorIterator operator+(int const n); //it + 2
+		VectorIterator operator-(int const n); //it - 2
 
-		VectorIterator operator++(value_type);	// it++
-		VectorIterator operator--(value_type);	// it--
-		VectorIterator &operator++(void); 		// ++it
-		VectorIterator &operator--(void); 		// --it
+		VectorIterator operator++(value_type); // it++
+		VectorIterator operator--(value_type); // it--
+		VectorIterator &operator++(void);	   // ++it
+		VectorIterator &operator--(void);	   // --it
 
 		VectorIterator &operator+=(int const n);
 		VectorIterator &operator-=(int const n);
-		value_type &operator[](int n);		// it[n]
+		value_type &operator[](int n); // it[n]
 
 		bool operator==(VectorIterator const &other) const;
 		bool operator!=(VectorIterator const &other) const;
@@ -47,10 +47,16 @@ namespace ft
 }
 
 template <class T>
-ft::VectorIterator<T>::VectorIterator(void) { std::cout << "void constructor\n";}
+ft::VectorIterator<T>::VectorIterator(void)
+{
+	// std::cout << "void constructor\n";
+}
 
 template <class T>
-ft::VectorIterator<T>::VectorIterator(pointer ptr) : _ptr(ptr) { std::cout << "another constructor\n"; }
+ft::VectorIterator<T>::VectorIterator(pointer ptr) : _ptr(ptr)
+{
+	// std::cout << "another constructor\n";
+}
 
 template <class T>
 ft::VectorIterator<T>::~VectorIterator(void) {}
@@ -64,7 +70,7 @@ ft::VectorIterator<T>::VectorIterator(const VectorIterator &other)
 template <class T>
 ft::VectorIterator<T> &ft::VectorIterator<T>::operator=(VectorIterator const &other)
 {
-	std::cout << "'operator='\n";
+	// std::cout << "'operator='\n";
 	this->_ptr = other._ptr;
 	return (*this);
 }
@@ -79,7 +85,7 @@ T &ft::VectorIterator<T>::operator*(void)
 template <class T>
 ft::VectorIterator<T> ft::VectorIterator<T>::operator+(int const n)
 {
-	std::cout << "'operator+'\n";
+	// std::cout << "'operator+'\n";
 	int i;
 
 	i = n;
@@ -94,7 +100,7 @@ ft::VectorIterator<T> ft::VectorIterator<T>::operator+(int const n)
 template <class T>
 ft::VectorIterator<T> ft::VectorIterator<T>::operator-(int const n)
 {
-	std::cout << "'operator-'\n";
+	// std::cout << "'operator-'\n";
 	int i;
 
 	i = n;
@@ -109,7 +115,7 @@ ft::VectorIterator<T> ft::VectorIterator<T>::operator-(int const n)
 template <class T>
 ft::VectorIterator<T> ft::VectorIterator<T>::operator++(T)
 {
-	std::cout << "'operator++'\n";
+	// std::cout << "'operator++'\n";
 	VectorIterator tmp(*this);
 	this->_ptr++;
 	return (tmp);
@@ -118,7 +124,7 @@ ft::VectorIterator<T> ft::VectorIterator<T>::operator++(T)
 template <class T>
 ft::VectorIterator<T> ft::VectorIterator<T>::operator--(T)
 {
-	std::cout << "'operator--'\n";
+	// std::cout << "'operator--'\n";
 	VectorIterator tmp(*this);
 	this->_ptr--;
 	return (tmp);
@@ -127,7 +133,7 @@ ft::VectorIterator<T> ft::VectorIterator<T>::operator--(T)
 template <class T>
 ft::VectorIterator<T> &ft::VectorIterator<T>::operator++(void)
 {
-	std::cout << "'++operator'\n";
+	// std::cout << "'++operator'\n";
 	this->_ptr++;
 	return (*this);
 }
@@ -135,7 +141,7 @@ ft::VectorIterator<T> &ft::VectorIterator<T>::operator++(void)
 template <class T>
 ft::VectorIterator<T> &ft::VectorIterator<T>::operator--(void)
 {
-	std::cout << "'--operator'\n";
+	// std::cout << "'--operator'\n";
 	this->_ptr--;
 	return (*this);
 }
@@ -143,7 +149,7 @@ ft::VectorIterator<T> &ft::VectorIterator<T>::operator--(void)
 template <class T>
 ft::VectorIterator<T> &ft::VectorIterator<T>::operator+=(int const n)
 {
-	std::cout << "'operator+='\n";
+	// std::cout << "'operator+='\n";
 	int i;
 
 	i = n;
@@ -157,7 +163,7 @@ ft::VectorIterator<T> &ft::VectorIterator<T>::operator+=(int const n)
 template <class T>
 ft::VectorIterator<T> &ft::VectorIterator<T>::operator-=(int const n)
 {
-	std::cout << "'operator-='\n";
+	// std::cout << "'operator-='\n";
 	int i;
 
 	i = n;
@@ -171,7 +177,7 @@ ft::VectorIterator<T> &ft::VectorIterator<T>::operator-=(int const n)
 template <class T>
 T &ft::VectorIterator<T>::operator[](int n)
 {
-	std::cout << "'operator[]\n";
+	// std::cout << "'operator[]\n";
 	int i;
 
 	i = n;

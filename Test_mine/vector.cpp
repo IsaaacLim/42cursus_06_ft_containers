@@ -11,12 +11,13 @@ void vector_iterator()
 	std::cout << "Arr: ";
 	for (int i = 0; i < 5; i++)
 		std::cout << arr[i] << ' ';
-	std::cout << '\n';
+	std::cout << "\n\n";
 
 	i = arr;
-	// std::cout << *i << '\n';
-	// std::cout << *(i + 2) << '\n';
-	// std::cout << *i << '\n';
+	std::cout << "i = arr\n";
+	std::cout << "  *i\t\t: " << *i << '\n';
+	std::cout << "  *(i + 2)\t: " << *(i + 2) << '\n';
+	std::cout << "  *i\t\t: " << *i << '\n';
 
 	// i++;
 	// std::cout << *i << '\n';
@@ -63,7 +64,6 @@ void vector_iterator()
 		std::cout << "Less than\n";
 	else
 		std::cout << "opposite\n";
-
 }
 
 int main()
