@@ -1,4 +1,5 @@
 a.out
 ft_container
+test_vector
 *.o
 .vscode
