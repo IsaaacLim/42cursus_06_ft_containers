@@ -17,13 +17,14 @@ $(NAME) : $(SRCS)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@
 
 test_vector : Test_mine/vector.cpp 
-	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@ && ./$@
 
 clean :
-	rm -f $(OBJS)
+	@echo no object files to clean
 
-fclean : clean
+fclean :
 	rm -f $(NAME)
+	rm -f test_vector
 
 re : fclean all
 
