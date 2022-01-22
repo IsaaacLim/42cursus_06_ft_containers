@@ -13,57 +13,62 @@ void vector_iterator()
 		std::cout << arr[i] << ' ';
 	std::cout << "\n\n";
 
-	i = arr;
-	std::cout << "i = arr\n";
-	std::cout << "  *i\t\t: " << *i << '\n';
-	std::cout << "  *(i + 2)\t: " << *(i + 2) << '\n';
-	std::cout << "  *i\t\t: " << *i << '\n';
+	i = arr + 2;
+	std::cout << "i = arr + 2\n";
+	std::cout << "*i\t\t: " << *i << '\n';
+	std::cout << "*(i + 2)\t: " << *(i + 2) << '\n';
+	std::cout << "*(i + -2)\t: " << *(i + -2) << '\n';
+	std::cout << "*(i - 1)\t: " << *(i - 1) << '\n';
+	std::cout << "*(i - -1)\t: " << *(i - -1) << '\n';
+	std::cout << "*i\t\t: " << *i << "\n\n";
 
-	// i++;
-	// std::cout << *i << '\n';
-	// std::cout << *(i + -1) << '\n';
-	// std::cout << *i << '\n';
+	std::cout << "*i++\t\t: " << *i++ << '\n';
+	std::cout << "*i--\t\t: " << *i-- << '\n';
+	std::cout << "*i\t\t: " << *i << '\n';
+	std::cout << "*++i\t\t: " << *++i << '\n';
+	std::cout << "*--i\t\t: " << *--i << "\n\n";
 
-	// i += 1;
-	// std::cout << *i << '\n';
-	// std::cout << *i << '\n';
+	i += 1;
+	std::cout << "i += 1,\t *i\t: " << *i << '\n';
+	i += -1;
+	std::cout << "i += -1, *i\t: " << *i << '\n';
+	i -= 2;
+	std::cout << "i -= -2, *i\t: " << *i << '\n';
+	i -= -2;
+	std::cout << "i -= 2,\t *i\t: " << *i << "\n\n";
 
-	// i += -2;
-	// std::cout << *i << '\n';
-	// std::cout << *i << '\n';
+	std::cout << "i[2]\t\t: " << i[2] << '\n';
+	std::cout << "i[-1]\t\t: " << i[-1] << "\n\n";
 
-	// i -= -2;
-	// std::cout << *i << '\n';
-	// std::cout << *(i - 2) << '\n';
-	// std::cout << *i << '\n';
+	j = i;
+	std::cout << "j = i\n";
+	std::cout << "i == j ?\t: ";
+	i == j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i != j ?\t: ";
+	i != j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i > j ? \t: ";
+	i > j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i >= j ?\t: ";
+	i >= j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i < j ? \t: ";
+	i < j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i <= j ?\t: ";
+	i <= j ? std::cout << "True\n" : std::cout << "False\n";
 
-	// i -= 2;
-	// std::cout << *i << '\n';
-	// std::cout << *(i - -3) << '\n';
-	// std::cout << *i << '\n';
-
-	// i += 4;
-	// std::cout << *i-- << '\n';
-	// std::cout << *i << '\n';
-
-	// std::cout << *++i << '\n';
-	// std::cout << *--i << '\n';
-
-	// i = arr;
-	// std::cout << *i << '\n';
-	// std::cout << i[2] << '\n';
-	// i += 3;
-	// std::cout << *i << '\n';
-	// std::cout << i[-2] << '\n';
-
-	i = arr;
-	j = arr;
-
-	// ++j;
-	if (++i <= j)
-		std::cout << "Less than\n";
-	else
-		std::cout << "opposite\n";
+	j++;
+	std::cout << "j++\n";
+	std::cout << "i == j ?\t: ";
+	i == j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i != j ?\t: ";
+	i != j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i > j ? \t: ";
+	i > j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i >= j ?\t: ";
+	i >= j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i < j ? \t: ";
+	i < j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i <= j ?\t: ";
+	i <= j ? std::cout << "True\n" : std::cout << "False\n";
 }
 
 int main()
