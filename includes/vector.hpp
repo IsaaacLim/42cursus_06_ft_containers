@@ -7,8 +7,9 @@
 
 namespace ft
 {
-	// template <typename T, typename Allocator = std::allocator<T> >
-	template <typename T>
+	template <typename T, typename Allocator = std::allocator<T>>
+	// template <typename T>
+	// template < template < typename, typename > class Container, typename T>
 	class vector
 	{
 	public:
@@ -81,10 +82,10 @@ namespace ft
 
 /*******************************DEFINITIONS************************************/
 
-template <typename T>
-// template <typename T, typename A = std::allocator<T> >
-// template <class T, class Alloc>
-ft::vector<T>::vector(void)
+// template <typename T>
+template <typename T, typename Allocator>
+// template <class T>
+ft::vector<T, Allocator>::vector(void)
 {
 	std::allocator<T> alloc;
 	_arr = alloc.allocate(1); // initial capacity of 1 element
@@ -92,8 +93,9 @@ ft::vector<T>::vector(void)
 	_current = 0;
 }
 
-template <typename T>
-ft::vector<T>::~vector(void)
+// template <typename T>
+template <typename T, typename Allocator>
+ft::vector<T, Allocator>::~vector(void)
 {
 	std::allocator<T> alloc;
 
@@ -101,20 +103,20 @@ ft::vector<T>::~vector(void)
 }
 
 // CAPACITY ====================================================================
-template <typename T>
-bool ft::vector<T>::empty(void) { return (!_current); }
+template <typename T, typename Allocator>
+bool ft::vector<T, Allocator>::empty(void) { return (!_current); }
 
-template <typename T>
-typename ft::vector<T>::size_type ft::vector<T>::size(void) { return (_current); }
+template <typename T, typename Allocator>
+typename ft::vector<T, Allocator>::size_type ft::vector<T, Allocator>::size(void) { return (_current); }
 
-template <typename T>
-typename ft::vector<T>::size_type ft::vector<T>::max_size(void)
+template <typename T, typename Allocator>
+typename ft::vector<T, Allocator>::size_type ft::vector<T, Allocator>::max_size(void)
 {
 	return (std::numeric_limits<size_type>::max() / sizeof(value_type));
 }
 
-template <typename T>
-void ft::vector<T>::reserve(size_type new_cap)
+template <typename T, typename Allocator>
+void ft::vector<T, Allocator>::reserve(size_type new_cap)
 {
 	std::allocator<T> alloc;
 	pointer tmp;
@@ -132,12 +134,12 @@ void ft::vector<T>::reserve(size_type new_cap)
 	}
 }
 
-template <typename T>
-typename ft::vector<T>::size_type ft::vector<T>::capacity(void) { return (_capacity); }
+template <typename T, typename Allocator>
+typename ft::vector<T, Allocator>::size_type ft::vector<T, Allocator>::capacity(void) { return (_capacity); }
 
 // MODIFIERS ===================================================================
-template <typename T>
-typename ft::vector<T>::iterator ft::vector<T>::erase(iterator pos)
+template <typename T, typename Allocator>
+typename ft::vector<T, Allocator>::iterator ft::vector<T, Allocator>::erase(iterator pos)
 {
 	iterator tmp;
 
@@ -151,8 +153,8 @@ typename ft::vector<T>::iterator ft::vector<T>::erase(iterator pos)
 	return (pos);
 }
 
-template <typename T>
-typename ft::vector<T>::iterator ft::vector<T>::erase(iterator first, iterator last)
+template <typename T, typename Allocator>
+typename ft::vector<T, Allocator>::iterator ft::vector<T, Allocator>::erase(iterator first, iterator last)
 {
 	while (first != last)
 	{
@@ -162,8 +164,8 @@ typename ft::vector<T>::iterator ft::vector<T>::erase(iterator first, iterator l
 	return (first);
 }
 
-template <typename T>
-void ft::vector<T>::push_back(const value_type &input)
+template <typename T, typename Allocator>
+void ft::vector<T, Allocator>::push_back(const value_type &input)
 {
 	std::allocator<T> alloc;
 	value_type *tmp;
@@ -181,15 +183,15 @@ void ft::vector<T>::push_back(const value_type &input)
 	_current++;
 }
 
-template <typename T>
-void ft::vector<T>::pop_back(void)
+template <typename T, typename Allocator>
+void ft::vector<T, Allocator>::pop_back(void)
 {
 	if (_current > 0)
 		_arr[_current--] = 0;
 }
 
-template <typename T>
-void ft::vector<T>::resize(size_type count)
+template <typename T, typename Allocator>
+void ft::vector<T, Allocator>::resize(size_type count)
 {
 	while (count < _current)
 		pop_back();
@@ -197,37 +199,38 @@ void ft::vector<T>::resize(size_type count)
 		push_back(0);
 }
 
-template <typename T>
-void ft::vector<T>::resize(size_type count, value_type value)
+template <typename T, typename Allocator>
+void ft::vector<T, Allocator>::resize(size_type count, value_type value)
 {
 	while (count < _current)
 		pop_back();
 	while (count > _current)
 		push_back(value);
 }
+
 // ITERATORS ===================================================================
-template <class T>
-typename ft::vector<T>::iterator ft::vector<T>::begin(void)
+template <class T, class Allocator>
+typename ft::vector<T, Allocator>::iterator ft::vector<T, Allocator>::begin(void)
 {
 	return (&_arr[0]);
 }
 
-template <class T>
-typename ft::vector<T>::iterator ft::vector<T>::end(void)
+template <class T, class Allocator>
+typename ft::vector<T, Allocator>::iterator ft::vector<T, Allocator>::end(void)
 {
 	return (&_arr[this->_current - 1]);
 }
 
 // template <class T>
-// typename ft::vector<T>::iterator const ft::vector<T>::begin() const
+// typename ft::vector<T, Allocator>::iterator const ft::vector<T, Allocator>::begin() const
 // {
 // 	std::cout << "const vec iterator\n";
 // 	return (&_arr[0]);
 // }
 
 // TMP =========================================================================
-template <typename T>
-void ft::vector<T>::print(void)
+template <typename T, typename Allocator>
+void ft::vector<T, Allocator>::print(void)
 {
 	for (size_type i = 0; i < _current; i++)
 		std::cout << _arr[i] << ' ';

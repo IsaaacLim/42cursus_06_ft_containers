@@ -4,7 +4,7 @@
 #include <iostream>
 int main(void)
 {
-	std::vector<long> arr;
+	std::vector<long, std::allocator<long>> arr;
 	std::vector<long>::iterator i;
 	std::vector<long>::iterator j;
 	std::vector<long>::reverse_iterator m;
