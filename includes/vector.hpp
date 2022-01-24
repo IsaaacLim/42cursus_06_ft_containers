@@ -191,12 +191,19 @@ void ft::vector<T>::pop_back(void)
 template <typename T>
 void ft::vector<T>::resize(size_type count)
 {
-	//WORKING HERE
+	while (count < _current)
+		pop_back();
+	while (count > _current)
+		push_back(0);
 }
 
 template <typename T>
 void ft::vector<T>::resize(size_type count, value_type value)
 {
+	while (count < _current)
+		pop_back();
+	while (count > _current)
+		push_back(value);
 }
 // ITERATORS ===================================================================
 template <class T>

@@ -118,6 +118,19 @@ void vector_int()
 		vec.print();
 		vec.pop_back();
 		vec.print();
+		vec.push_back(10);
+		vec.push_back(20);
+		vec.push_back(30);
+		vec.push_back(40);
+		vec.print();
+		vec.resize(3);
+		vec.print();
+		vec.resize(5);
+		vec.print();
+		vec.resize(8, 100);
+		vec.print();
+		vec.resize(8, 1000);
+		vec.print();
 	}
 
 	print_subtitle("Iterator (simple)");
