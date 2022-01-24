@@ -98,6 +98,7 @@ void vector_int()
 {
 	print_title("Vector (int)");
 	ft::vector<int> vec;
+	// ft::vector<int> vec99 {1,2,3}; //make this work
 	ft::vector<int>::iterator it;
 
 	vec.push_back(10);
@@ -138,15 +139,15 @@ void vector_int()
 		it = vec.insert(vec.begin() + 9, 200); //insert at the end is OK too
 		vec.print();
 		std::cout << *it << '\n';
-		// vec.insert(vec.begin() + 11, 2, -1); //over limit, lib will seg fault, mine just returns
-		// vec.print();
+		vec.insert(vec.begin() + 11, 2, -1); //over limit, lib will seg fault, mine just returns
+		vec.print();
 		vec.insert(vec.begin() + 10, 2, -1);
 		vec.print();
 		ft::vector<int> vec2;
 		vec2.push_back(1);
 		vec2.push_back(2);
 		vec2.push_back(3);
-		vec.insert(vec.begin() + 11, vec2.begin(), vec2.end());
+		// vec.insert(vec.begin() + 11, vec2.begin(), vec2.end()); //works, no problem
 		vec.print();
 		vec.clear();
 		vec.print();

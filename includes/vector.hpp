@@ -66,8 +66,8 @@ namespace ft
 		void clear(void);
 		iterator insert(iterator pos, const T &value);
 		void insert(iterator pos, size_type count, const T &value);
-		template <class InputIt>
-		void insert(iterator pos, InputIt first, InputIt last);
+		// template <class InputIt>
+		// void insert(iterator pos, InputIt first, InputIt last); //issue with the prev type
 		iterator erase(iterator pos);
 		iterator erase(iterator first, iterator last);
 		void push_back(const value_type &input);
@@ -85,7 +85,6 @@ namespace ft
 
 /*******************************DEFINITIONS************************************/
 
-// template <typename T>
 template <typename T, typename A>
 ft::vector<T, A>::vector(void)
 {
@@ -96,7 +95,6 @@ ft::vector<T, A>::vector(void)
 	_current = 0;
 }
 
-// template <typename T>
 template <typename T, typename A>
 ft::vector<T, A>::~vector(void)
 {
@@ -180,18 +178,18 @@ void ft::vector<T, A>::insert(iterator pos, size_type count, const_reference val
 	}
 }
 
-template <typename T, typename A>
-template <class InputIt>
-void ft::vector<T, A>::insert(iterator pos, InputIt first, InputIt last)
-{
-	if (pos > end())
-		return;
-	while (first != last)
-	{
-		pos = insert(pos, *first) + 1;
-		first++;
-	}
-}
+// template <typename T, typename A>
+// template <class InputIt>
+// void ft::vector<T, A>::insert(iterator pos, InputIt first, InputIt last)
+// {
+// 	if (pos > end())
+// 		return;
+// 	while (first != last)
+// 	{
+// 		pos = insert(pos, *first) + 1;
+// 		first++;
+// 	}
+// }
 
 template <typename T, typename A>
 typename ft::vector<T, A>::iterator ft::vector<T, A>::erase(iterator pos)
