@@ -64,7 +64,8 @@ namespace ft
 
 		// MODIFIERS -----------------------------------------------------------
 		void clear(void);
-		// insert
+		iterator insert(iterator pos, const T &value);
+		void insert(iterator pos, size_type count, const T &value);
 		iterator erase(iterator pos);
 		iterator erase(iterator first, iterator last);
 		void push_back(const value_type &input);
@@ -147,6 +148,11 @@ void ft::vector<T, Allocator>::clear(void)
 }
 
 template <typename T, typename Allocator>
+typename ft::vector<T, Allocator>::iterator ft::vector<T, Allocator>::insert(iterator pos, const_reference value)
+{
+}
+
+template <typename T, typename Allocator>
 typename ft::vector<T, Allocator>::iterator ft::vector<T, Allocator>::erase(iterator pos)
 {
 	iterator tmp;
@@ -173,7 +179,7 @@ typename ft::vector<T, Allocator>::iterator ft::vector<T, Allocator>::erase(iter
 }
 
 template <typename T, typename Allocator>
-void ft::vector<T, Allocator>::push_back(const value_type &input)
+void ft::vector<T, Allocator>::push_back(const_reference input)
 {
 	allocator_type alloc;
 	value_type *tmp;
