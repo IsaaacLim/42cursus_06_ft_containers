@@ -17,18 +17,20 @@ int main(void)
 	arr.push_back(4);
 	arr.push_back(5);
 
+	std::cout << "end: " << *(arr.end()) << '\n';
 	// size_t max = std::numeric_limits<size_t>::max();
 	// size_t max_size = max / sizeof(long);
 	// std::cout << max_size << '\n';
 
-	arr.resize(2);
-	arr.resize(3);
+	std::vector<long> arr2 = arr;
+	arr.insert(arr.begin() + 5, arr2.begin() + 2, arr2.end());
 	i = arr.begin(); //1
 	while (i != arr.end())
 	{
 		std::cout << *i << '\n';
 		i++;
 	}
+	// std::cout << *j << '\n';
 
 	// arr.erase(i);
 
