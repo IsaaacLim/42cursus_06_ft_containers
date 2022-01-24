@@ -15,7 +15,7 @@ namespace ft
 	public:
 		// MEMBER TYPES ------------------------------------------------not done
 		typedef T value_type;
-		// typedef Allocator allocator_type;
+		typedef Allocator allocator_type;
 		typedef size_t size_type;
 		// typedef std::ptrdiff_t difference_type;
 		typedef value_type &reference;
@@ -63,7 +63,7 @@ namespace ft
 		size_type capacity(void);
 
 		// MODIFIERS -----------------------------------------------------------
-		// clear
+		void clear(void);
 		// insert
 		iterator erase(iterator pos);
 		iterator erase(iterator first, iterator last);
@@ -87,7 +87,8 @@ template <typename T, typename Allocator>
 // template <class T>
 ft::vector<T, Allocator>::vector(void)
 {
-	std::allocator<T> alloc;
+	allocator_type alloc;
+
 	_arr = alloc.allocate(1); // initial capacity of 1 element
 	_capacity = 1;
 	_current = 0;
@@ -97,7 +98,7 @@ ft::vector<T, Allocator>::vector(void)
 template <typename T, typename Allocator>
 ft::vector<T, Allocator>::~vector(void)
 {
-	std::allocator<T> alloc;
+	allocator_type alloc;
 
 	alloc.deallocate(_arr, _capacity);
 }
@@ -118,7 +119,7 @@ typename ft::vector<T, Allocator>::size_type ft::vector<T, Allocator>::max_size(
 template <typename T, typename Allocator>
 void ft::vector<T, Allocator>::reserve(size_type new_cap)
 {
-	std::allocator<T> alloc;
+	allocator_type alloc;
 	pointer tmp;
 	size_type i;
 
@@ -138,6 +139,13 @@ template <typename T, typename Allocator>
 typename ft::vector<T, Allocator>::size_type ft::vector<T, Allocator>::capacity(void) { return (_capacity); }
 
 // MODIFIERS ===================================================================
+template <typename T, typename Allocator>
+void ft::vector<T, Allocator>::clear(void)
+{
+	while (_current > 0)
+		_arr[_current--] = 0;
+}
+
 template <typename T, typename Allocator>
 typename ft::vector<T, Allocator>::iterator ft::vector<T, Allocator>::erase(iterator pos)
 {
@@ -167,7 +175,7 @@ typename ft::vector<T, Allocator>::iterator ft::vector<T, Allocator>::erase(iter
 template <typename T, typename Allocator>
 void ft::vector<T, Allocator>::push_back(const value_type &input)
 {
-	std::allocator<T> alloc;
+	allocator_type alloc;
 	value_type *tmp;
 
 	if (_current == _capacity)
