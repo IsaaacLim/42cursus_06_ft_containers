@@ -128,6 +128,24 @@ void vector_int()
 	cout << "Arr: ";
 	print_vector(vec, "");
 
+	// Member Functions
+	{
+		print_subtitle("Member Functions");
+
+		ft::vector<int> vec2;
+		int *ptr = NULL;
+		vec2.assign(8, 'a');
+		print_vector(vec2, "assign(8, 'a')\t\t\t\t: ");
+		vec2.assign(3, 'A');
+		print_vector(vec2, "assign(3, 'A')\t\t\t\t: ");
+		vec2.assign(vec.begin(), vec.end());
+		print_vector(vec2, "assign(a.begin(), a.end())\t\t: ");
+		cout << "ptr address\t\t\t\t: " << (size_t *)ptr << '\n';
+		ptr = vec2.get_allocator().allocate(10);
+		cout << "ptr address\t\t\t\t: " << (size_t *)ptr << '\n';
+		vec2.get_allocator().deallocate(ptr, 10);
+	}
+
 	// Element Access
 	{
 		print_subtitle("Element Access");
@@ -141,8 +159,8 @@ void vector_int()
 			std::cerr << e.what() << '\n';
 		}
 		cout << "vector[0]\t\t\t\t: " << vec[0] << '\n';
-		cout << "vector[5]\t\t\t\t: " << vec[5] << '\n';
-		cout << "vector[-1]\t\t\t\t: " << vec[-1] << '\n';
+		// cout << "vector[5]\t\t\t\t: " << vec[5] << '\n';   //OK but conditional jumps/ use of uninitialised values
+		// cout << "vector[-1]\t\t\t\t: " << vec[-1] << '\n'; //OK but conditional jumps/ use of uninitialised values
 		cout << "front()\t\t\t\t\t: " << vec.front() << '\n';
 		cout << "back()\t\t\t\t\t: " << vec.back() << '\n';
 		int *arr = vec.data();

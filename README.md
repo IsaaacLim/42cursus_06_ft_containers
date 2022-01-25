@@ -13,6 +13,7 @@
    - unused member types
      - typedef std::ptrdiff_t difference_type;
      - typedef const T \*const_pointer;
+4. Let VectorIterator work with <char>, eg: `ft::vector<char>::iterator it;`
 
 ### Resources
 

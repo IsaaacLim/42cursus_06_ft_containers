@@ -36,9 +36,11 @@ namespace ft
 		// vector(size_type n, const_reference val);
 		// vector(with iterator);
 		~vector(void);
-		// assign
 		vector &operator=(vector &other);
-		// get_allocator
+		void assign(size_type count, const T &value);
+		template <class InputIt>
+		void assign(InputIt first, InputIt last);
+		allocator_type get_allocator() const;
 
 		// ELEMENT ACCESS ------------------------------------------------- done
 		reference at(size_type pos);
@@ -126,6 +128,28 @@ ft::vector<T, A> &ft::vector<T, A>::operator=(vector &other)
 	return (*this);
 }
 
+template <typename T, typename A>
+void ft::vector<T, A>::assign(size_type count, const_reference value)
+{
+	clear();
+	resize(count, value);
+}
+
+template <typename T, typename A>
+template <typename InputIt>
+void ft::vector<T, A>::assign(InputIt first, InputIt last)
+{
+	clear();
+	insert(begin(), first, last);
+}
+
+template <typename T, typename A>
+typename ft::vector<T, A>::allocator_type ft::vector<T, A>::get_allocator() const
+{
+	A alloc;
+	return alloc;
+}
+
 // ELEMENT ACCESS ==============================================================
 template <typename T, typename A>
 typename ft::vector<T, A>::reference ft::vector<T, A>::at(size_type pos)
@@ -206,6 +230,8 @@ typename ft::vector<T, A>::size_type ft::vector<T, A>::capacity(void) { return (
 template <typename T, typename A>
 void ft::vector<T, A>::clear(void)
 {
+	if (_current <= 0)
+		return;
 	while (--_current > 0)
 		_arr[_current] = 0;
 	_arr[_current] = 0;
