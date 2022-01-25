@@ -13,7 +13,7 @@
    - unused member types
      - typedef std::ptrdiff_t difference_type;
      - typedef const T \*const_pointer;
-4. Let VectorIterator work with <char>, eg: `ft::vector<char>::iterator it;`
+4. Let VectorIterator work with <char> & <long>, eg: `ft::vector<char>::iterator it;`
 
 ### Resources
 
@@ -81,3 +81,4 @@ Usage examples (here)[https://www.geeksforgeeks.org/stdallocator-in-cpp-with-exa
 ### Notes
 
 - `ft::vector<T>::insert(iterator pos, size_type count, const T &value)` had to be modified to `ft::vector<T>::insert(iterator pos, T count, const T &value)` to avoid function call being caught by `ft::vector<T>::insert(iterator pos, InputIt first, InputIt last)`
+  - also, `explicit vector(T count, const T &value = T(), const Allocator &alloc = Allocator());`, which is supposed to be `size_type count`

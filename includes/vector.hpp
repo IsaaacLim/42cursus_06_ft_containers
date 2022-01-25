@@ -32,13 +32,13 @@ namespace ft
 		allocator_type _alloc; // stores the given allocator type during instantiation
 
 	public:
-		// MEMBER FUNCTIONS --------------------------------------------not done
-		vector(void);																				  // (1)
-		explicit vector(const Allocator &alloc);													  // (2)
-		explicit vector(size_type count, const T &value = T(), const Allocator &alloc = Allocator()); // (3) & (4)
-		// template <class InputIt>
-		// vector(InputIt first, InputIt last, const Allocator &alloc = Allocator()); // 5
-		// vector(const vector &other); // 6
+		// MEMBER FUNCTIONS ----------------------------------------------- done
+		vector(void);																		  // (1)
+		explicit vector(const Allocator &alloc);											  // (2)
+		explicit vector(T count, const T &value = T(), const Allocator &alloc = Allocator()); // (3) & (4)
+		template <class InputIt>															  //
+		vector(InputIt first, InputIt last, const Allocator &alloc = Allocator());			  // (5)
+		vector(vector &other);																  // (6)
 		~vector(void);
 		vector &operator=(vector &other);
 		void assign(size_type count, const T &value);
@@ -103,26 +103,30 @@ ft::vector<T, A>::vector(void)
 template <typename T, typename A>
 ft::vector<T, A>::vector(const allocator_type &alloc) : _alloc(alloc)
 {
-	std::cout << "FROM HERE\n";
 	_arr = _alloc.allocate(1);
 	_capacity = 1;
 	_current = 0;
 }
 
 template <typename T, typename A>
-ft::vector<T, A>::vector(size_type count, const_reference value, const allocator_type &alloc) : _current(0), _alloc(alloc)
+ft::vector<T, A>::vector(T count, const_reference value, const allocator_type &alloc) : _current(0), _alloc(alloc)
 {
 	_arr = _alloc.allocate(count);
-	while (_current < count)
+	while (_current < (size_type)count)
 		_arr[_current++] = value;
 	_capacity = count;
 }
 
-// template <typename T, typename A>
-// ft::vector<T, A>::vector(size_type count)
-// {
-// 	std::cout << "Here\n";
-// }
+template <typename T, typename A>
+template <typename InputIt>
+ft::vector<T, A>::vector(InputIt first, InputIt last, const allocator_type &alloc) : _capacity(0), _current(0), _alloc(alloc)
+{
+	_arr = _alloc.allocate(0);
+	assign(first, last);
+}
+
+template <typename T, typename A>
+ft::vector<T, A>::vector(vector &other) : _capacity(0) { *this = other; }
 
 template <typename T, typename A>
 ft::vector<T, A>::~vector(void) { _alloc.deallocate(_arr, _capacity); }
@@ -133,7 +137,7 @@ ft::vector<T, A> &ft::vector<T, A>::operator=(vector &other)
 	iterator thisIt;
 	iterator otherIt;
 
-	if (_arr != 0)
+	if (_capacity != 0)
 		_alloc.deallocate(_arr, _capacity);
 	_arr = _alloc.allocate(1);
 	_capacity = 1;
