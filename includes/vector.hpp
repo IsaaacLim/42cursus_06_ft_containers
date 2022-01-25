@@ -165,8 +165,9 @@ typename ft::vector<T, A>::size_type ft::vector<T, A>::capacity(void) { return (
 template <typename T, typename A>
 void ft::vector<T, A>::clear(void)
 {
-	while (_current > 0)
-		_arr[_current--] = 0; //fix for valgrind
+	while (--_current > 0)
+		_arr[_current] = 0;
+	_arr[_current] = 0;
 }
 
 template <typename T, typename A>

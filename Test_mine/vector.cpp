@@ -107,7 +107,7 @@ void vector_int()
 	vec.push_back(40);
 	vec.push_back(50);
 
-	cout << "end: " << *(vec.end()) << '\n';
+	// cout << "end: " << *(vec.end()) << '\n';
 	cout << "Arr: ";
 	vec.print();
 
