@@ -60,12 +60,12 @@ namespace ft
 		void reserve(size_type new_cap);
 		size_type capacity(void);
 
-		// MODIFIERS --------------------------------------- fix insert overload
+		// MODIFIERS ------------------------------------------------------ done
 		void clear(void);
 		iterator insert(iterator pos, const T &value);
 		void insert(iterator pos, T count, const T &value);
 		template <typename InputIt>
-		void insert(iterator pos, InputIt first, InputIt last); //issue with the prev type
+		void insert(iterator pos, InputIt first, InputIt last);
 		iterator erase(iterator pos);
 		iterator erase(iterator first, iterator last);
 		void push_back(const value_type &input);

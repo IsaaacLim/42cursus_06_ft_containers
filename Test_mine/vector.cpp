@@ -114,7 +114,6 @@ void vector_int()
 	ft::vector<int> vec;
 	// ft::vector<int> vec99 {1,2,3}; //make this work
 	ft::vector<int>::iterator it;
-	ft::vector<int>::iterator it2;
 
 	vec.push_back(10);
 	vec.push_back(20);
@@ -126,6 +125,7 @@ void vector_int()
 	cout << "Arr: ";
 	print_vector(vec);
 
+	// Modifiers
 	print_subtitle("Modifiers");
 	{
 		vec.push_back(60);
@@ -164,8 +164,6 @@ void vector_int()
 		vec2.push_back(3);
 		vec.insert(vec.begin() + 12, vec2.begin(), vec2.end()); //works, no problem
 		print_vector(vec);
-		it = vec.begin();
-		it2 = vec2.begin();
 		vec.swap(vec2);
 		print_vector(vec);
 		print_vector(vec2);
@@ -178,6 +176,6 @@ void vector_int()
 
 int main()
 {
-	// vector_iterator(); //done
-	vector_int();
+	vector_iterator(); //done
+					   // vector_int();
 }
