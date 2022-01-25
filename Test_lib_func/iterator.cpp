@@ -4,10 +4,11 @@
 #include <iostream>
 int main(void)
 {
-	std::vector<long, std::allocator<long>> arr;
+	std::vector<long> arr;
 	std::vector<long>::iterator i;
 	std::vector<long>::iterator j;
 	std::vector<long>::reverse_iterator m;
+	std::vector<float> arr_test;
 
 	// std::cout << arr.max_size() << '\n';
 
@@ -17,19 +18,22 @@ int main(void)
 	arr.push_back(4);
 	arr.push_back(5);
 
-	std::cout << "end: " << *(arr.end()) << '\n';
-	// size_t max = std::numeric_limits<size_t>::max();
-	// size_t max_size = max / sizeof(long);
-	// std::cout << max_size << '\n';
+	// std::cout << "end: " << *(arr.end()) << '\n';
 
-	std::vector<long> arr2 = arr;
-	arr.insert(arr.begin() + 5, arr2.begin() + 2, arr2.end());
-	i = arr.begin(); //1
-	while (i != arr.end())
-	{
-		std::cout << *i << '\n';
-		i++;
-	}
+	size_t max = std::numeric_limits<size_t>::max();
+	size_t max_size = max / sizeof(float) / 2;
+	std::cout << max_size << '\n';
+
+	std::cout << "std: " << arr_test.max_size() << '\n';
+
+	// std::vector<long> arr2 = arr;
+	// arr.insert(arr.begin() + 5, arr2.begin() + 2, arr2.end());
+	// i = arr.begin(); //1
+	// while (i != arr.end())
+	// {
+	// 	std::cout << *i << '\n';
+	// 	i++;
+	// }
 	// std::cout << *j << '\n';
 
 	// arr.erase(i);

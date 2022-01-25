@@ -1,6 +1,7 @@
 #include "vector.hpp"
 #include "VectorIterator.hpp"
 #include <iostream>
+#include <vector>
 
 #define YELLOW "\033[0;33m"
 #define PURPLE "\033[0;35m"
@@ -10,14 +11,14 @@ using namespace std;
 void print_title(string str)
 {
 	cout << YELLOW;
-	cout << "=============== " << str << " ===============" << endl;
+	cout << "========================= " << str << " =========================" << endl;
 	cout << RESET;
 }
 
 void print_subtitle(string str)
 {
 	cout << PURPLE;
-	cout << "--------------- " << str << " ---------------" << endl;
+	cout << "------------------------- " << str << " -------------------------" << endl;
 	cout << RESET;
 }
 
@@ -127,9 +128,34 @@ void vector_int()
 	cout << "Arr: ";
 	print_vector(vec, "");
 
-	// Modifiers
-	print_subtitle("Modifiers");
+	// Capacity
 	{
+		ft::vector<int> vec2;
+		std::vector<int> stdVec;
+
+		print_subtitle("Capacity");
+
+		if (vec.empty())
+			cout << "a.empty()?\t\t\t\t: Yes\n";
+		else
+			cout << "a.empty()?\t\t\t\t: No\n";
+		if (vec2.empty())
+			cout << "b.empty()?\t\t\t\t: Yes\n";
+		else
+			cout << "b.empty()?\t\t\t\t: No\n";
+		cout << "a.size()\t\t\t\t: " << vec.size() << '\n';
+		cout << "b.max_size()\t\t\t\t: " << vec2.max_size() << '\n';
+		cout << "ref.max_size()\t\t\t\t: " << stdVec.max_size() << '\n';
+		cout << "b.capacity()\t\t\t\t: " << vec2.capacity() << '\n';
+		vec2.reserve(10);
+		cout << "b.reserve(10)\n";
+		cout << "b.capacity()\t\t\t\t: " << vec2.capacity() << '\n';
+	}
+
+	// Modifiers
+	{
+		print_subtitle("Modifiers");
+
 		ft::vector<int> vec2;
 		vec2.push_back(-1);
 		vec2.push_back(-2);

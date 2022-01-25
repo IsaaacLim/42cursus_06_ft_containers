@@ -131,7 +131,7 @@ typename ft::vector<T, A>::size_type ft::vector<T, A>::size(void) { return (_cur
 template <typename T, typename A>
 typename ft::vector<T, A>::size_type ft::vector<T, A>::max_size(void)
 {
-	return (std::numeric_limits<size_type>::max() / sizeof(value_type));
+	return (std::numeric_limits<size_type>::max() / sizeof(value_type) / 2);
 }
 
 template <typename T, typename A>
