@@ -135,6 +135,8 @@ void vector_int()
 		ft::vector<int> vec2;
 		ft::vector<int> vec3(5, 10);
 		ft::vector<int> vec4(5);
+		std::allocator<int> alloc;
+		ft::vector<int> vec5(alloc);
 		int *ptr = NULL;
 
 		vec2.assign(8, 'a');
