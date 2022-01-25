@@ -22,10 +22,12 @@ void print_subtitle(string str)
 }
 
 template <typename T, typename Allocator = std::allocator<T>>
-void print_vector(ft::vector<T, Allocator> &vec) //make for const &vec
+void print_vector(ft::vector<T, Allocator> &vec, string str) //make for const &vec
 {
 	typename ft::vector<T, Allocator>::iterator it;
 
+	if (!str.empty())
+		cout << str;
 	it = vec.begin();
 	while (it != vec.end())
 	{
@@ -123,52 +125,44 @@ void vector_int()
 
 	// cout << "end: " << *(vec.end()) << '\n'; //fix for valgrind
 	cout << "Arr: ";
-	print_vector(vec);
+	print_vector(vec, "");
 
 	// Modifiers
 	print_subtitle("Modifiers");
 	{
-		vec.push_back(60);
-		print_vector(vec);
-		vec.erase(vec.begin());
-		print_vector(vec);
-		vec.erase(vec.begin() + 1, vec.begin() + 4);
-		print_vector(vec);
-		vec.pop_back();
-		print_vector(vec);
-		vec.push_back(10);
-		vec.push_back(20);
-		vec.push_back(30);
-		vec.push_back(40);
-		print_vector(vec);
-		vec.resize(3);
-		print_vector(vec);
-		vec.resize(5);
-		print_vector(vec);
-		vec.resize(8, 100);
-		print_vector(vec);
-		vec.resize(8, 1000);
-		print_vector(vec);
-		vec.insert(vec.begin() + 2, 200);
-		print_vector(vec);
-		it = vec.insert(vec.begin() + 9, 200); //insert at the end is OK too
-		print_vector(vec);
-		std::cout << *it << '\n';
-		vec.insert(vec.begin() + 11, 2, -1); //over limit, lib will seg fault, mine just returns
-		print_vector(vec);
-		vec.insert(vec.begin() + 10, 2, -1);
-		print_vector(vec);
 		ft::vector<int> vec2;
-		vec2.push_back(1);
-		vec2.push_back(2);
-		vec2.push_back(3);
-		vec.insert(vec.begin() + 12, vec2.begin(), vec2.end()); //works, no problem
-		print_vector(vec);
-		vec.swap(vec2);
-		print_vector(vec);
-		print_vector(vec2);
+		vec2.push_back(-1);
+		vec2.push_back(-2);
+		vec2.push_back(-3);
+
+		vec.push_back(60);
+		print_vector(vec, "push_back(60)\t\t\t\t: ");
+		vec.erase(vec.begin());
+		print_vector(vec, "erase(.begin())\t\t\t\t: ");
+		vec.erase(vec.begin() + 1, vec.begin() + 4);
+		print_vector(vec, "erase(.begin() + 1, begin() + 4)\t: ");
+		vec.pop_back();
+		print_vector(vec, "pop_back()\t\t\t\t: ");
+		vec.insert(vec.begin(), 100);
+		print_vector(vec, "insert(.begin(), 100)\t\t\t: ");
+		it = vec.insert(vec.begin() + 2, 200); //insert at the end is OK too
+		print_vector(vec, "insert(.begin() + 2, 200)\t\t: ");
+		std::cout << "*it returned from insert()\t\t: " << *it << '\n';
+		vec.insert(vec.begin() + 4, 2, 300); //over limit, lib will seg fault, mine just returns
+		print_vector(vec, "insert(.begin() + 4, 2, 300)\t\t: ");
+		vec.insert(vec.begin() + 3, 2, 300);
+		print_vector(vec, "insert(.begin() + 3, 2, 300)\t\t: ");
+		vec.insert(vec.begin() + 4, vec2.begin(), vec2.end());
+		print_vector(vec, "insert(.begin() + 4, b.begin(), b.end()): ");
+		vec.resize(3);
+		print_vector(vec, "resize(3)\t\t\t\t: ");
+		vec.resize(6);
+		print_vector(vec, "resize(6)\t\t\t\t: ");
 		vec.clear();
-		print_vector(vec);
+		print_vector(vec, "clear()\t\t\t\t\t: ");
+		vec.swap(vec2);
+		print_vector(vec, "a.swap(b) - a\t\t\t\t: ");
+		print_vector(vec2, "a.swap(b) - b\t\t\t\t:");
 	}
 
 	print_subtitle("Iterator (simple)");
@@ -176,6 +170,6 @@ void vector_int()
 
 int main()
 {
-	vector_iterator(); //done
-					   // vector_int();
+	// vector_iterator(); //done
+	vector_int();
 }
