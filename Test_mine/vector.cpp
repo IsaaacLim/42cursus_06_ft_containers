@@ -132,7 +132,6 @@ void vector_int()
 	{
 		ft::vector<int> vec2;
 		std::vector<int> stdVec;
-
 		print_subtitle("Capacity");
 
 		if (vec.empty())
@@ -194,8 +193,23 @@ void vector_int()
 	print_subtitle("Iterator (simple)");
 }
 
+// #include <stdexcept>
 int main()
 {
 	// vector_iterator(); //done
-	vector_int();
+	// vector_int();
+
+	try
+	{
+		int i = 0;
+
+		if (2 > i)
+			throw std::runtime_error("this is out of range");
+		else
+			cout << "alright\n";
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 }

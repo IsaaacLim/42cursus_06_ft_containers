@@ -41,7 +41,8 @@ namespace ft
 		// get_allocator
 
 		// ELEMENT ACCESS ----------------------------------------------not done
-		// at
+		// reference at(size_type pos);
+		// const_reference at(size_type pos);
 		// operator[]
 		// front
 		// back
