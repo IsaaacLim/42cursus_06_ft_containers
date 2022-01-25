@@ -21,10 +21,10 @@ void print_subtitle(std::string str)
 	std::cout << RESET;
 }
 
-template <typename T, typename Allocator = std::allocator<T>>
-void print_vector(ft::vector<T, Allocator> &vec, std::string str) //make for const &vec
+template <typename T>
+void print_vector(ft::vector<T> &vec, std::string str) //make for const &vec
 {
-	typename ft::vector<T, Allocator>::iterator it;
+	typename ft::vector<T>::iterator it;
 
 	if (!str.empty())
 		std::cout << str;
@@ -122,8 +122,7 @@ void vector_int()
 	vec.push_back(40);
 	vec.push_back(50);
 
-	std::cout << "Arr: ";
-	print_vector(vec, "");
+	print_vector(vec, "Arr: ");
 
 	// Member Functions
 	{
@@ -243,11 +242,70 @@ void vector_int()
 		print_vector(vec2, "a.swap(b) - b\t\t\t\t:");
 	}
 
+	// Non-member functions
+	{
+		print_subtitle("Non-member Functions");
+
+		ft::vector<int> vec2;
+		ft::vector<int> vec3;
+		ft::vector<int> vec4;
+
+		vec2.push_back(-1);
+		vec2.push_back(-2);
+		vec2.push_back(-3);
+		vec3 = vec2;
+		vec4 = vec2;
+		vec3[2] = -4;
+		vec4.push_back(0);
+
+		print_vector(vec, "vec1: ");
+		print_vector(vec2, "vec2: ");
+		print_vector(vec3, "vec3: ");
+		print_vector(vec4, "vec4: ");
+		std::cout << '\n';
+
+		std::cout << std::boolalpha;
+		std::cout << "vec1 == vec2\t\t\t\t: " << (vec == vec2) << '\n';
+		std::cout << "vec1 != vec2\t\t\t\t: " << (vec != vec2) << '\n';
+		std::cout << "vec1 <  vec2\t\t\t\t: " << (vec < vec2) << '\n';
+		std::cout << "vec1 <= vec2\t\t\t\t: " << (vec <= vec2) << '\n';
+		std::cout << "vec1 >  vec2\t\t\t\t: " << (vec > vec2) << '\n';
+		std::cout << "vec1 >= vec2\t\t\t\t: " << (vec >= vec2) << '\n';
+		std::cout << '\n';
+		std::cout << "vec1 == vec3\t\t\t\t: " << (vec == vec3) << '\n';
+		std::cout << "vec1 != vec3\t\t\t\t: " << (vec != vec3) << '\n';
+		std::cout << "vec1 <  vec3\t\t\t\t: " << (vec < vec3) << '\n';
+		std::cout << "vec1 <= vec3\t\t\t\t: " << (vec <= vec3) << '\n';
+		std::cout << "vec1 >  vec3\t\t\t\t: " << (vec > vec3) << '\n';
+		std::cout << "vec1 >= vec3\t\t\t\t: " << (vec >= vec3) << '\n';
+		std::cout << '\n';
+		std::cout << "vec1 == vec4\t\t\t\t: " << (vec == vec4) << '\n';
+		std::cout << "vec1 != vec4\t\t\t\t: " << (vec != vec4) << '\n';
+		std::cout << "vec1 <  vec4\t\t\t\t: " << (vec < vec4) << '\n';
+		std::cout << "vec1 <= vec4\t\t\t\t: " << (vec <= vec4) << '\n';
+		std::cout << "vec1 >  vec4\t\t\t\t: " << (vec > vec4) << '\n';
+		std::cout << "vec1 >= vec4\t\t\t\t: " << (vec >= vec4) << '\n';
+		std::cout << std::noboolalpha;
+
+		ft::swap(vec2, vec4);
+		std::cout << "\nft::swap(vec2, vec4)\n";
+		print_vector(vec, "vec1: ");
+		print_vector(vec2, "vec2: ");
+		print_vector(vec3, "vec3: ");
+		print_vector(vec4, "vec4: ");
+	}
+
 	print_subtitle("Iterator (simple)");
+	std::cout << "NOT DONE!!!!\n";
 }
 
 int main()
 {
 	// vector_iterator(); //done
 	vector_int();
+
+	// std::vector<int> arr1{1, 2, 3, 4, 5};
+	// std::vector<int> arr2{-10, -20, -30, -40, -50};
+
+	// std::swap(arr1, arr2); // tbc
 }

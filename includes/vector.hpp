@@ -63,10 +63,12 @@ namespace ft
 		iterator end(void);
 		// iterator rbegin(void);
 		// iterator rend(void);
+		const_iterator begin(void) const;
+		const_iterator end(void) const;
 
 		// CAPACITY ------------------------------------------------------- done
 		bool empty(void);
-		size_type size(void);
+		size_type size(void) const;
 		size_type max_size(void);
 		void reserve(size_type new_cap);
 		size_type capacity(void);
@@ -84,12 +86,95 @@ namespace ft
 		void resize(size_type count);
 		void resize(size_type count, value_type val);
 		void swap(vector &other);
-
-		// Non-member functions ------------------------------------------------
 	};
+
+	/**************************NON-MEMBER FUNCTIONS****************************/
+	template <class T, class Alloc>
+	bool operator==(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs)
+	{
+		size_t i;
+
+		i = 0;
+		while (i < lhs.size() && i < rhs.size())
+		{
+			if (lhs[i] != rhs[i])
+				break;
+			i++;
+		}
+		if (i != lhs.size() || i != rhs.size())
+			return (false);
+		else
+			return (true);
+	}
+
+	template <class T, class Alloc>
+	bool operator!=(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs)
+	{
+		return (!(lhs == rhs));
+	}
+
+	template <class T, class Alloc>
+	bool operator<(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs)
+	{
+		size_t i;
+
+		i = 0;
+		while (i < lhs.size() && i < rhs.size())
+		{
+			if (lhs[i] != rhs[i])
+				return (lhs[i] < rhs[i]);
+			i++;
+		}
+		if (i == lhs.size() && i == rhs.size())
+			return (false);
+		else if (i == lhs.size())
+			return (true);
+		else
+			return (false);
+	}
+
+	template <class T, class Alloc>
+	bool operator<=(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs)
+	{
+		size_t i;
+
+		i = 0;
+		while (i < lhs.size() && i < rhs.size())
+		{
+			if (lhs[i] != rhs[i])
+				return (lhs[i] < rhs[i]);
+			i++;
+		}
+		if (i == lhs.size())
+			return (true);
+		else
+			return (false);
+	}
+
+	template <class T, class Alloc>
+	bool operator>(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs)
+	{
+		return (!(lhs < rhs) && lhs != rhs);
+	}
+
+	template <class T, class Alloc>
+	bool operator>=(const ft::vector<T, Alloc> &lhs, const ft::vector<T, Alloc> &rhs)
+	{
+		return (!(lhs < rhs));
+	}
+
+	template <class T, class Alloc>
+	void swap(ft::vector<T, Alloc> &lhs, ft::vector<T, Alloc> &rhs)
+	{
+		ft::vector<T> tmp;
+
+		tmp = lhs;
+		lhs = rhs;
+		rhs = tmp;
+	}
 }
 
-/*******************************DEFINITIONS************************************/
+/************************MEMBER FUNCTION DECLARATIONS**************************/
 
 // MEMBER FUNCTIONS ============================================================
 template <typename T, typename A>
@@ -219,7 +304,7 @@ template <typename T, typename A>
 bool ft::vector<T, A>::empty(void) { return (!_current); }
 
 template <typename T, typename A>
-typename ft::vector<T, A>::size_type ft::vector<T, A>::size(void) { return (_current); }
+typename ft::vector<T, A>::size_type ft::vector<T, A>::size(void) const { return (_current); }
 
 template <typename T, typename A>
 typename ft::vector<T, A>::size_type ft::vector<T, A>::max_size(void)
@@ -389,5 +474,11 @@ typename ft::vector<T, A>::iterator ft::vector<T, A>::begin(void) { return (&_ar
 
 template <class T, class A>
 typename ft::vector<T, A>::iterator ft::vector<T, A>::end(void) { return (&_arr[_current]); }
+
+template <class T, class A>
+typename ft::vector<T, A>::const_iterator ft::vector<T, A>::begin(void) const { return (&_arr[0]); }
+
+template <class T, class A>
+typename ft::vector<T, A>::const_iterator ft::vector<T, A>::end(void) const { return (&_arr[_current]); }
 
 #endif

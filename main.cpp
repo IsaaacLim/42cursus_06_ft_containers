@@ -69,8 +69,6 @@ void vector_int()
 	vector1.push_back(30);
 	vector1.push_back(40);
 
-	vector1.print();
-
 	// std::cout << "----- ITERATOR TEST -----\n";
 	// it = vector1.begin();
 	// std::cout << *it++ << '\n';
@@ -118,9 +116,7 @@ void vector_int()
 			std::cout << "empty()\t\t: NOT EMPTY\n";
 
 		std::cout << "Final arr\t: ";
-		vec.print();
 	}
-
 	// Modifiers Functions
 	{
 		std::cout << "---------- MODIFIERS ----------\n";
