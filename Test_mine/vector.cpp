@@ -21,6 +21,20 @@ void print_subtitle(string str)
 	cout << RESET;
 }
 
+template <typename T, typename Allocator = std::allocator<T>>
+void print_vector(ft::vector<T, Allocator> &vec) //make for const &vec
+{
+	typename ft::vector<T, Allocator>::iterator it;
+
+	it = vec.begin();
+	while (it != vec.end())
+	{
+		std::cout << *it << ' ';
+		it++;
+	}
+	std::cout << '\n';
+}
+
 void vector_iterator()
 {
 	print_title("Vector Iterator");
@@ -109,50 +123,50 @@ void vector_int()
 
 	// cout << "end: " << *(vec.end()) << '\n'; //fix for valgrind
 	cout << "Arr: ";
-	vec.print();
+	print_vector(vec);
 
 	print_subtitle("Modifiers");
 	{
 		vec.push_back(60);
-		vec.print();
+		print_vector(vec);
 		vec.erase(vec.begin());
-		vec.print();
+		print_vector(vec);
 		vec.erase(vec.begin() + 1, vec.begin() + 4);
-		vec.print();
+		print_vector(vec);
 		vec.pop_back();
-		vec.print();
+		print_vector(vec);
 		vec.push_back(10);
 		vec.push_back(20);
 		vec.push_back(30);
 		vec.push_back(40);
-		vec.print();
+		print_vector(vec);
 		vec.resize(3);
-		vec.print();
+		print_vector(vec);
 		vec.resize(5);
-		vec.print();
+		print_vector(vec);
 		vec.resize(8, 100);
-		vec.print();
+		print_vector(vec);
 		vec.resize(8, 1000);
-		vec.print();
+		print_vector(vec);
 		vec.insert(vec.begin() + 2, 200);
-		vec.print();
+		print_vector(vec);
 		it = vec.insert(vec.begin() + 9, 200); //insert at the end is OK too
-		vec.print();
+		print_vector(vec);
 		std::cout << *it << '\n';
 		vec.insert(vec.begin() + 11, 2, -1); //over limit, lib will seg fault, mine just returns
-		vec.print();
+		print_vector(vec);
 		vec.insert(vec.begin() + 10, 2, -1);
-		vec.print();
+		print_vector(vec);
 		ft::vector<int> vec2;
 		vec2.push_back(1);
 		vec2.push_back(2);
 		vec2.push_back(3);
 		// vec.insert(vec.begin() + 11, vec2.begin(), vec2.end()); //works, no problem
 		vec.swap(vec2);
-		vec.print();
-		vec2.print();
+		print_vector(vec);
+		print_vector(vec2);
 		vec.clear();
-		vec.print();
+		print_vector(vec);
 	}
 
 	print_subtitle("Iterator (simple)");

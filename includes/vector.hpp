@@ -77,9 +77,6 @@ namespace ft
 		void swap(vector &other);
 
 		// Non-member functions ------------------------------------------------
-
-		// TMP -----------------------------------------------------------------
-		void print();
 	};
 }
 
@@ -306,15 +303,6 @@ template <class T, class A>
 typename ft::vector<T, A>::iterator ft::vector<T, A>::end(void)
 {
 	return (&_arr[this->_current]);
-}
-
-// TMP =========================================================================
-template <typename T, typename A>
-void ft::vector<T, A>::print(void)
-{
-	for (size_type i = 0; i < _current; i++)
-		std::cout << _arr[i] << ' ';
-	std::cout << std::endl;
 }
 
 #endif
