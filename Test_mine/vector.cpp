@@ -128,10 +128,35 @@ void vector_int()
 	cout << "Arr: ";
 	print_vector(vec, "");
 
+	// Element Access
+	{
+		print_subtitle("Element Access");
+		cout << "at(4)\t\t\t\t\t: " << vec.at(4) << '\n';
+		try
+		{
+			cout << "at(5)\t\t\t\t\t: " << vec.at(5) << '\n';
+		}
+		catch (const std::exception &e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		cout << "vector[0]\t\t\t\t: " << vec[0] << '\n';
+		cout << "vector[5]\t\t\t\t: " << vec[5] << '\n';
+		cout << "vector[-1]\t\t\t\t: " << vec[-1] << '\n';
+		cout << "front()\t\t\t\t\t: " << vec.front() << '\n';
+		cout << "back()\t\t\t\t\t: " << vec.back() << '\n';
+		int *arr = vec.data();
+		cout << "int *arr = .data(), arr[i]\t\t: ";
+		for (int i = 0; i < 5; i++)
+			cout << arr[i] << ' ';
+		cout << '\n';
+	}
+
 	// Capacity
 	{
 		ft::vector<int> vec2;
 		std::vector<int> stdVec;
+
 		print_subtitle("Capacity");
 
 		if (vec.empty())
@@ -197,19 +222,19 @@ void vector_int()
 int main()
 {
 	// vector_iterator(); //done
-	// vector_int();
+	vector_int();
 
-	try
-	{
-		int i = 0;
+	// try
+	// {
+	// 	int i = 0;
 
-		if (2 > i)
-			throw std::runtime_error("this is out of range");
-		else
-			cout << "alright\n";
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	// 	if (2 > i)
+	// 		throw std::runtime_error("this is out of range");
+	// 	else
+	// 		cout << "alright\n";
+	// }
+	// catch (const std::exception &e)
+	// {
+	// 	std::cerr << e.what() << '\n';
+	// }
 }

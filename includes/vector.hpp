@@ -40,13 +40,17 @@ namespace ft
 		vector &operator=(vector &other);
 		// get_allocator
 
-		// ELEMENT ACCESS ----------------------------------------------not done
-		// reference at(size_type pos);
-		// const_reference at(size_type pos);
-		// operator[]
-		// front
-		// back
-		// data
+		// ELEMENT ACCESS ------------------------------------------------- done
+		reference at(size_type pos);
+		const_reference at(size_type pos) const;
+		reference operator[](size_type pos);
+		const_reference operator[](size_type pos) const;
+		reference front(void);
+		const_reference front(void) const;
+		reference back(void);
+		const_reference back(void) const;
+		T *data(void);
+		const T *data(void) const;
 
 		// ITERATORS -----------------------------------------------------------
 		iterator begin(void);
@@ -57,7 +61,7 @@ namespace ft
 		// CAPACITY ------------------------------------------------------- done
 		bool empty(void);
 		size_type size(void);
-		size_type max_size();
+		size_type max_size(void);
 		void reserve(size_type new_cap);
 		size_type capacity(void);
 
@@ -121,6 +125,47 @@ ft::vector<T, A> &ft::vector<T, A>::operator=(vector &other)
 	}
 	return (*this);
 }
+
+// ELEMENT ACCESS ==============================================================
+template <typename T, typename A>
+typename ft::vector<T, A>::reference ft::vector<T, A>::at(size_type pos)
+{
+	if (pos >= _current)
+		throw std::runtime_error("this index is out of range");
+	return (_arr[pos]);
+}
+
+template <typename T, typename A>
+typename ft::vector<T, A>::const_reference ft::vector<T, A>::at(size_type pos) const
+{
+	if (pos >= _current)
+		throw std::runtime_error("this index is out of range");
+	return (_arr[pos]);
+}
+
+template <typename T, typename A>
+typename ft::vector<T, A>::reference ft::vector<T, A>::operator[](size_type pos) { return (_arr[pos]); }
+
+template <typename T, typename A>
+typename ft::vector<T, A>::const_reference ft::vector<T, A>::operator[](size_type pos) const { return (_arr[pos]); }
+
+template <typename T, typename A>
+typename ft::vector<T, A>::reference ft::vector<T, A>::front(void) { return (_arr[0]); }
+
+template <typename T, typename A>
+typename ft::vector<T, A>::const_reference ft::vector<T, A>::front(void) const { return (_arr[0]); }
+
+template <typename T, typename A>
+T &ft::vector<T, A>::back(void) { return (_arr[_current - 1]); }
+
+template <typename T, typename A>
+const T &ft::vector<T, A>::back(void) const { return (_arr[_current - 1]); }
+
+template <typename T, typename A>
+T *ft::vector<T, A>::data(void) { return _arr; }
+
+template <typename T, typename A>
+const T *ft::vector<T, A>::data(void) const { return _arr; }
 
 // CAPACITY ====================================================================
 template <typename T, typename A>
@@ -293,15 +338,9 @@ void ft::vector<T, A>::swap(vector &other)
 
 // ITERATORS ===================================================================
 template <class T, class A>
-typename ft::vector<T, A>::iterator ft::vector<T, A>::begin(void)
-{
-	return (&_arr[0]);
-}
+typename ft::vector<T, A>::iterator ft::vector<T, A>::begin(void) { return (&_arr[0]); }
 
 template <class T, class A>
-typename ft::vector<T, A>::iterator ft::vector<T, A>::end(void)
-{
-	return (&_arr[this->_current]);
-}
+typename ft::vector<T, A>::iterator ft::vector<T, A>::end(void) { return (&_arr[_current]); }
 
 #endif
