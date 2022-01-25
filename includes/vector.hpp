@@ -33,8 +33,8 @@ namespace ft
 
 	public:
 		// MEMBER FUNCTIONS --------------------------------------------not done
-		vector(void); // 1
-		// explicit vector (const Allocator &alloc); // 2
+		vector(void);																				  // (1)
+		explicit vector(const Allocator &alloc);													  // (2)
 		explicit vector(size_type count, const T &value = T(), const Allocator &alloc = Allocator()); // (3) & (4)
 		// template <class InputIt>
 		// vector(InputIt first, InputIt last, const Allocator &alloc = Allocator()); // 5
@@ -96,6 +96,15 @@ template <typename T, typename A>
 ft::vector<T, A>::vector(void)
 {
 	_arr = _alloc.allocate(1); // initial capacity of 1 element
+	_capacity = 1;
+	_current = 0;
+}
+
+template <typename T, typename A>
+ft::vector<T, A>::vector(const allocator_type &alloc) : _alloc(alloc)
+{
+	std::cout << "FROM HERE\n";
+	_arr = _alloc.allocate(1);
 	_capacity = 1;
 	_current = 0;
 }
