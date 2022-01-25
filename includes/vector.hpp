@@ -8,8 +8,6 @@
 namespace ft
 {
 	template <typename T, typename Allocator = std::allocator<T>>
-	// template <typename T>
-	// template < template < typename, typename > class Container, typename T>
 	class vector
 	{
 	public:
@@ -65,9 +63,9 @@ namespace ft
 		// MODIFIERS --------------------------------------- fix insert overload
 		void clear(void);
 		iterator insert(iterator pos, const T &value);
-		void insert(iterator pos, size_type count, const T &value);
-		// template <class InputIt>
-		// void insert(iterator pos, InputIt first, InputIt last); //issue with the prev type
+		void insert(iterator pos, T count, const T &value);
+		template <typename InputIt>
+		void insert(iterator pos, InputIt first, InputIt last); //issue with the prev type
 		iterator erase(iterator pos);
 		iterator erase(iterator first, iterator last);
 		void push_back(const value_type &input);
@@ -188,7 +186,7 @@ typename ft::vector<T, A>::iterator ft::vector<T, A>::insert(iterator pos, const
 }
 
 template <typename T, typename A>
-void ft::vector<T, A>::insert(iterator pos, size_type count, const_reference value)
+void ft::vector<T, A>::insert(iterator pos, T count, const_reference value)
 {
 	if (pos > end())
 		return;
@@ -199,18 +197,18 @@ void ft::vector<T, A>::insert(iterator pos, size_type count, const_reference val
 	}
 }
 
-// template <typename T, typename A>
-// template <class InputIt>
-// void ft::vector<T, A>::insert(iterator pos, InputIt first, InputIt last)
-// {
-// 	if (pos > end())
-// 		return;
-// 	while (first != last)
-// 	{
-// 		pos = insert(pos, *first) + 1;
-// 		first++;
-// 	}
-// }
+template <typename T, typename A>
+template <typename InputIt>
+void ft::vector<T, A>::insert(iterator pos, InputIt first, InputIt last)
+{
+	if (pos > end())
+		return;
+	while (first != last)
+	{
+		pos = insert(pos, *first) + 1;
+		first++;
+	}
+}
 
 template <typename T, typename A>
 typename ft::vector<T, A>::iterator ft::vector<T, A>::erase(iterator pos)

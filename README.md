@@ -36,6 +36,7 @@ And the first `const can be on either side of the type
 - `const int * const` == `int const * const`
 
 [source](https://stackoverflow.com/questions/1143262/what-is-the-difference-between-const-int-const-int-const-and-int-const)
+
 #### friend function
 
 ```
@@ -70,3 +71,7 @@ Usage examples (here)[https://www.geeksforgeeks.org/stdallocator-in-cpp-with-exa
 #### Iterator usage for vector
 
 - To prevent invalidation (how to reassign)[https://thispointer.com//stdvector-and-iterator-invalidation/]
+
+### Notes
+
+- `ft::vector<T>::insert(iterator pos, size_type count, const T &value)` had to be modified to `ft::vector<T>::insert(iterator pos, T count, const T &value)` to avoid function call being caught by `ft::vector<T>::insert(iterator pos, InputIt first, InputIt last)`
