@@ -8,6 +8,11 @@
    - test with other data types
    - `<int> stacks` won't have seg fault when `pop()` empty stack, but `<std::string> stacks` will seg fault
    - include `member types`
+2. Class naming method: `ft::vector` or `ft::Vector`?
+3. Vector
+   - unused member types
+     - typedef std::ptrdiff_t difference_type;
+     - typedef const T \*const_pointer;
 
 ### Resources
 
