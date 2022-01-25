@@ -264,7 +264,7 @@ template <typename T, typename A>
 void ft::vector<T, A>::pop_back(void)
 {
 	if (_current > 0)
-		_arr[_current--] = 0; //test
+		_arr[--_current] = 0;
 }
 
 template <typename T, typename A>
