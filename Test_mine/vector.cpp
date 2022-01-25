@@ -1,34 +1,33 @@
 #include "vector.hpp"
 #include "VectorIterator.hpp"
 #include <iostream>
-#include <vector>
+#include <vector> // to compare my ft::vector with std::vector
 
 #define YELLOW "\033[0;33m"
 #define PURPLE "\033[0;35m"
 #define RESET "\033[0m"
 
-using namespace std;
-void print_title(string str)
+void print_title(std::string str)
 {
-	cout << YELLOW;
-	cout << "========================= " << str << " =========================" << endl;
-	cout << RESET;
+	std::cout << YELLOW;
+	std::cout << "========================= " << str << " =========================" << std::endl;
+	std::cout << RESET;
 }
 
-void print_subtitle(string str)
+void print_subtitle(std::string str)
 {
-	cout << PURPLE;
-	cout << "------------------------- " << str << " -------------------------" << endl;
-	cout << RESET;
+	std::cout << PURPLE;
+	std::cout << "------------------------- " << str << " -------------------------" << std::endl;
+	std::cout << RESET;
 }
 
 template <typename T, typename Allocator = std::allocator<T>>
-void print_vector(ft::vector<T, Allocator> &vec, string str) //make for const &vec
+void print_vector(ft::vector<T, Allocator> &vec, std::string str) //make for const &vec
 {
 	typename ft::vector<T, Allocator>::iterator it;
 
 	if (!str.empty())
-		cout << str;
+		std::cout << str;
 	it = vec.begin();
 	while (it != vec.end())
 	{
@@ -46,76 +45,75 @@ void vector_iterator()
 	ft::VectorIterator<int> i;
 	ft::VectorIterator<int> j;
 
-	cout << "Arr: ";
+	std::cout << "Arr: ";
 	for (int i = 0; i < 5; i++)
-		cout << arr[i] << ' ';
-	cout << "\n\n";
+		std::cout << arr[i] << ' ';
+	std::cout << "\n\n";
 
 	i = arr + 2;
-	cout << "i = arr + 2\n";
-	cout << "*i\t\t: " << *i << '\n';
-	cout << "*(i + 2)\t: " << *(i + 2) << '\n';
-	cout << "*(i + -2)\t: " << *(i + -2) << '\n';
-	cout << "*(i - 1)\t: " << *(i - 1) << '\n';
-	cout << "*(i - -1)\t: " << *(i - -1) << '\n';
-	cout << "*i\t\t: " << *i << "\n\n";
+	std::cout << "i = arr + 2\n";
+	std::cout << "*i\t\t: " << *i << '\n';
+	std::cout << "*(i + 2)\t: " << *(i + 2) << '\n';
+	std::cout << "*(i + -2)\t: " << *(i + -2) << '\n';
+	std::cout << "*(i - 1)\t: " << *(i - 1) << '\n';
+	std::cout << "*(i - -1)\t: " << *(i - -1) << '\n';
+	std::cout << "*i\t\t: " << *i << "\n\n";
 
-	cout << "*i++\t\t: " << *i++ << '\n';
-	cout << "*i--\t\t: " << *i-- << '\n';
-	cout << "*i\t\t: " << *i << '\n';
-	cout << "*++i\t\t: " << *++i << '\n';
-	cout << "*--i\t\t: " << *--i << "\n\n";
+	std::cout << "*i++\t\t: " << *i++ << '\n';
+	std::cout << "*i--\t\t: " << *i-- << '\n';
+	std::cout << "*i\t\t: " << *i << '\n';
+	std::cout << "*++i\t\t: " << *++i << '\n';
+	std::cout << "*--i\t\t: " << *--i << "\n\n";
 
 	i += 1;
-	cout << "i += 1,\t *i\t: " << *i << '\n';
+	std::cout << "i += 1,\t *i\t: " << *i << '\n';
 	i += -1;
-	cout << "i += -1, *i\t: " << *i << '\n';
+	std::cout << "i += -1, *i\t: " << *i << '\n';
 	i -= 2;
-	cout << "i -= -2, *i\t: " << *i << '\n';
+	std::cout << "i -= -2, *i\t: " << *i << '\n';
 	i -= -2;
-	cout << "i -= 2,\t *i\t: " << *i << "\n\n";
+	std::cout << "i -= 2,\t *i\t: " << *i << "\n\n";
 
-	cout << "i[2]\t\t: " << i[2] << '\n';
-	cout << "i[-1]\t\t: " << i[-1] << "\n\n";
+	std::cout << "i[2]\t\t: " << i[2] << '\n';
+	std::cout << "i[-1]\t\t: " << i[-1] << "\n\n";
 
 	j = i;
-	cout << "j = i\n";
-	cout << "i == j ?\t: ";
-	i == j ? cout << "True\n" : cout << "False\n";
-	cout << "i != j ?\t: ";
-	i != j ? cout << "True\n" : cout << "False\n";
-	cout << "i > j ? \t: ";
-	i > j ? cout << "True\n" : cout << "False\n";
-	cout << "i >= j ?\t: ";
-	i >= j ? cout << "True\n" : cout << "False\n";
-	cout << "i < j ? \t: ";
-	i < j ? cout << "True\n" : cout << "False\n";
-	cout << "i <= j ?\t: ";
-	i <= j ? cout << "True\n" : cout << "False\n";
+	std::cout << "j = i\n";
+	std::cout << "i == j ?\t: ";
+	i == j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i != j ?\t: ";
+	i != j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i > j ? \t: ";
+	i > j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i >= j ?\t: ";
+	i >= j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i < j ? \t: ";
+	i < j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i <= j ?\t: ";
+	i <= j ? std::cout << "True\n" : std::cout << "False\n";
 
 	j++;
-	cout << "j++\n";
-	cout << "i == j ?\t: ";
-	i == j ? cout << "True\n" : cout << "False\n";
-	cout << "i != j ?\t: ";
-	i != j ? cout << "True\n" : cout << "False\n";
-	cout << "i > j ? \t: ";
-	i > j ? cout << "True\n" : cout << "False\n";
-	cout << "i >= j ?\t: ";
-	i >= j ? cout << "True\n" : cout << "False\n";
-	cout << "i < j ? \t: ";
-	i < j ? cout << "True\n" : cout << "False\n";
-	cout << "i <= j ?\t: ";
-	i <= j ? cout << "True\n" : cout << "False\n";
+	std::cout << "j++\n";
+	std::cout << "i == j ?\t: ";
+	i == j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i != j ?\t: ";
+	i != j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i > j ? \t: ";
+	i > j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i >= j ?\t: ";
+	i >= j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i < j ? \t: ";
+	i < j ? std::cout << "True\n" : std::cout << "False\n";
+	std::cout << "i <= j ?\t: ";
+	i <= j ? std::cout << "True\n" : std::cout << "False\n";
 
-	cout << '\n';
+	std::cout << '\n';
 }
 
 void vector_int()
 {
 	print_title("Vector (int)");
 	ft::vector<int> vec;
-	// ft::vector<int> vec99 {1,2,3}; //make this work
 	ft::vector<int>::iterator it;
 
 	vec.push_back(10);
@@ -124,8 +122,7 @@ void vector_int()
 	vec.push_back(40);
 	vec.push_back(50);
 
-	// cout << "end: " << *(vec.end()) << '\n'; //fix for valgrind
-	cout << "Arr: ";
+	std::cout << "Arr: ";
 	print_vector(vec, "");
 
 	// Member Functions
@@ -153,41 +150,34 @@ void vector_int()
 		print_vector(vec2, "assign(3, 'A')\t\t\t\t: ");
 		vec2.assign(vec.begin(), vec.end());
 		print_vector(vec2, "assign(a.begin(), a.end())\t\t: ");
-		cout << "ptr address\t\t\t\t: " << (size_t *)ptr << '\n';
+		std::cout << "ptr address\t\t\t\t: " << (size_t *)ptr << '\n';
 		ptr = vec2.get_allocator().allocate(10);
-		cout << "ptr address\t\t\t\t: " << (size_t *)ptr << '\n';
+		std::cout << "ptr address\t\t\t\t: " << (size_t *)ptr << '\n';
 		vec2.get_allocator().deallocate(ptr, 10);
-
-		std::vector<int> tmp{1, 2, 3, 4, 5, 6}; //try with count 0
-
-		for (auto it = tmp.begin(); it != tmp.end(); it++)
-			cout << *it << ' ';
-		cout << '\n';
-		// print_vector(tmp, "test: ");
 	}
 
 	// Element Access
 	{
 		print_subtitle("Element Access");
-		cout << "at(4)\t\t\t\t\t: " << vec.at(4) << '\n';
+		std::cout << "at(4)\t\t\t\t\t: " << vec.at(4) << '\n';
 		try
 		{
-			cout << "at(5)\t\t\t\t\t: " << vec.at(5) << '\n';
+			std::cout << "at(5)\t\t\t\t\t: " << vec.at(5) << '\n';
 		}
 		catch (const std::exception &e)
 		{
 			std::cerr << e.what() << '\n';
 		}
-		cout << "vector[0]\t\t\t\t: " << vec[0] << '\n';
-		// cout << "vector[5]\t\t\t\t: " << vec[5] << '\n';   //OK but conditional jumps/ use of uninitialised values
-		// cout << "vector[-1]\t\t\t\t: " << vec[-1] << '\n'; //OK but conditional jumps/ use of uninitialised values
-		cout << "front()\t\t\t\t\t: " << vec.front() << '\n';
-		cout << "back()\t\t\t\t\t: " << vec.back() << '\n';
+		std::cout << "vector[0]\t\t\t\t: " << vec[0] << '\n';
+		// std::cout << "vector[5]\t\t\t\t: " << vec[5] << '\n';   //OK but conditional jumps/ use of uninitialised values
+		// std::cout << "vector[-1]\t\t\t\t: " << vec[-1] << '\n'; //OK but conditional jumps/ use of uninitialised values
+		std::cout << "front()\t\t\t\t\t: " << vec.front() << '\n';
+		std::cout << "back()\t\t\t\t\t: " << vec.back() << '\n';
 		int *arr = vec.data();
-		cout << "int *arr = .data(), arr[i]\t\t: ";
+		std::cout << "int *arr = .data(), arr[i]\t\t: ";
 		for (int i = 0; i < 5; i++)
-			cout << arr[i] << ' ';
-		cout << '\n';
+			std::cout << arr[i] << ' ';
+		std::cout << '\n';
 	}
 
 	// Capacity
@@ -198,20 +188,20 @@ void vector_int()
 		print_subtitle("Capacity");
 
 		if (vec.empty())
-			cout << "a.empty()?\t\t\t\t: Yes\n";
+			std::cout << "a.empty()?\t\t\t\t: Yes\n";
 		else
-			cout << "a.empty()?\t\t\t\t: No\n";
+			std::cout << "a.empty()?\t\t\t\t: No\n";
 		if (vec2.empty())
-			cout << "b.empty()?\t\t\t\t: Yes\n";
+			std::cout << "b.empty()?\t\t\t\t: Yes\n";
 		else
-			cout << "b.empty()?\t\t\t\t: No\n";
-		cout << "a.size()\t\t\t\t: " << vec.size() << '\n';
-		cout << "b.max_size()\t\t\t\t: " << vec2.max_size() << '\n';
-		cout << "ref.max_size()\t\t\t\t: " << stdVec.max_size() << '\n';
-		cout << "b.capacity()\t\t\t\t: " << vec2.capacity() << '\n';
+			std::cout << "b.empty()?\t\t\t\t: No\n";
+		std::cout << "a.size()\t\t\t\t: " << vec.size() << '\n';
+		std::cout << "b.max_size()\t\t\t\t: " << vec2.max_size() << '\n';
+		std::cout << "ref.max_size()\t\t\t\t: " << stdVec.max_size() << '\n';
+		std::cout << "b.capacity()\t\t\t\t: " << vec2.capacity() << '\n';
 		vec2.reserve(10);
-		cout << "b.reserve(10)\n";
-		cout << "b.capacity()\t\t\t\t: " << vec2.capacity() << '\n';
+		std::cout << "b.reserve(10)\n";
+		std::cout << "b.capacity()\t\t\t\t: " << vec2.capacity() << '\n';
 	}
 
 	// Modifiers
@@ -256,23 +246,8 @@ void vector_int()
 	print_subtitle("Iterator (simple)");
 }
 
-// #include <stdexcept>
 int main()
 {
 	// vector_iterator(); //done
 	vector_int();
-
-	// try
-	// {
-	// 	int i = 0;
-
-	// 	if (2 > i)
-	// 		throw std::runtime_error("this is out of range");
-	// 	else
-	// 		cout << "alright\n";
-	// }
-	// catch (const std::exception &e)
-	// {
-	// 	std::cerr << e.what() << '\n';
-	// }
 }
