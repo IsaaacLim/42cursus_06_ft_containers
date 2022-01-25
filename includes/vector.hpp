@@ -39,7 +39,7 @@ namespace ft
 		// vector(with iterator);
 		~vector(void);
 		// assign
-		// operator=
+		vector &operator=(vector &other);
 		// get_allocator
 
 		// ELEMENT ACCESS ----------------------------------------------not done
@@ -62,7 +62,7 @@ namespace ft
 		void reserve(size_type new_cap);
 		size_type capacity(void);
 
-		// MODIFIERS -----------------------------------------------------------
+		// MODIFIERS --------------------------------------- fix insert overload
 		void clear(void);
 		iterator insert(iterator pos, const T &value);
 		void insert(iterator pos, size_type count, const T &value);
@@ -74,7 +74,7 @@ namespace ft
 		void pop_back(void);
 		void resize(size_type count);
 		void resize(size_type count, value_type val);
-		// swap
+		void swap(vector &other);
 
 		// Non-member functions ------------------------------------------------
 
@@ -85,6 +85,7 @@ namespace ft
 
 /*******************************DEFINITIONS************************************/
 
+// MEMBER FUNCTIONS ============================================================
 template <typename T, typename A>
 ft::vector<T, A>::vector(void)
 {
@@ -101,6 +102,28 @@ ft::vector<T, A>::~vector(void)
 	allocator_type alloc;
 
 	alloc.deallocate(_arr, _capacity);
+}
+
+template <typename T, typename A>
+ft::vector<T, A> &ft::vector<T, A>::operator=(vector &other)
+{
+	allocator_type alloc;
+	iterator thisIt;
+	iterator otherIt;
+
+	if (_arr != 0)
+		alloc.deallocate(_arr, _capacity);
+	_arr = alloc.allocate(1);
+	_capacity = 1;
+	_current = 0;
+	thisIt = this->begin();
+	otherIt = other.begin();
+	while (otherIt != other.end())
+	{
+		thisIt = insert(thisIt, *otherIt) + 1;
+		otherIt++;
+	}
+	return (*this);
 }
 
 // CAPACITY ====================================================================
@@ -143,7 +166,7 @@ template <typename T, typename A>
 void ft::vector<T, A>::clear(void)
 {
 	while (_current > 0)
-		_arr[_current--] = 0;
+		_arr[_current--] = 0; //fix for valgrind
 }
 
 template <typename T, typename A>
@@ -240,7 +263,7 @@ template <typename T, typename A>
 void ft::vector<T, A>::pop_back(void)
 {
 	if (_current > 0)
-		_arr[_current--] = 0;
+		_arr[_current--] = 0; //test
 }
 
 template <typename T, typename A>
@@ -259,6 +282,16 @@ void ft::vector<T, A>::resize(size_type count, value_type value)
 		pop_back();
 	while (count > _current)
 		push_back(value);
+}
+
+template <typename T, typename A>
+void ft::vector<T, A>::swap(vector &other)
+{
+	ft::vector<T> tmp;
+
+	tmp = *this;
+	*this = other;
+	other = tmp;
 }
 
 // ITERATORS ===================================================================

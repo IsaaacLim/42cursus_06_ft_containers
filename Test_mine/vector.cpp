@@ -148,7 +148,9 @@ void vector_int()
 		vec2.push_back(2);
 		vec2.push_back(3);
 		// vec.insert(vec.begin() + 11, vec2.begin(), vec2.end()); //works, no problem
+		vec.swap(vec2);
 		vec.print();
+		vec2.print();
 		vec.clear();
 		vec.print();
 	}
