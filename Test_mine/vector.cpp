@@ -133,7 +133,10 @@ void vector_int()
 		print_subtitle("Member Functions");
 
 		ft::vector<int> vec2;
+		ft::vector<int> vec3(5, 10);
+		ft::vector<int> vec4(5);
 		int *ptr = NULL;
+
 		vec2.assign(8, 'a');
 		print_vector(vec2, "assign(8, 'a')\t\t\t\t: ");
 		vec2.assign(3, 'A');
@@ -144,6 +147,15 @@ void vector_int()
 		ptr = vec2.get_allocator().allocate(10);
 		cout << "ptr address\t\t\t\t: " << (size_t *)ptr << '\n';
 		vec2.get_allocator().deallocate(ptr, 10);
+		print_vector(vec3, "ft::vector<int> vec3(5, 10)\t\t: ");
+		print_vector(vec4, "ft::vector<int> vec4(5)\t\t\t: ");
+
+		std::vector<int> tmp{1, 2, 3, 4, 5, 6}; //try with count 0
+
+		for (auto it = tmp.begin(); it != tmp.end(); it++)
+			cout << *it << ' ';
+		cout << '\n';
+		// print_vector(tmp, "test: ");
 	}
 
 	// Element Access

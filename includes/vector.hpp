@@ -26,15 +26,19 @@ namespace ft
 		// typedef const ft::reverse_VectorIterator<T> const_reverse_iterator;
 
 	private:
-		pointer _arr;		 // pointer to the address of the vector
-		size_type _capacity; // capacity of the vector
-		size_type _current;	 // num of elements currently in the vector
+		pointer _arr;		   // pointer to the address of the vector
+		size_type _capacity;   // capacity of the vector
+		size_type _current;	   // num of elements currently in the vector
+		allocator_type _alloc; // stores the given allocator type during instantiation
 
 	public:
 		// MEMBER FUNCTIONS --------------------------------------------not done
-		vector(void);
-		// vector(size_type n, const_reference val);
-		// vector(with iterator);
+		vector(void); // 1
+		// explicit vector (const Allocator &alloc); // 2
+		explicit vector(size_type count, const T &value = T(), const Allocator &alloc = Allocator()); // (3) & (4)
+		// template <class InputIt>
+		// vector(InputIt first, InputIt last, const Allocator &alloc = Allocator()); // 5
+		// vector(const vector &other); // 6
 		~vector(void);
 		vector &operator=(vector &other);
 		void assign(size_type count, const T &value);
@@ -91,31 +95,38 @@ namespace ft
 template <typename T, typename A>
 ft::vector<T, A>::vector(void)
 {
-	allocator_type alloc;
-
-	_arr = alloc.allocate(1); // initial capacity of 1 element
+	_arr = _alloc.allocate(1); // initial capacity of 1 element
 	_capacity = 1;
 	_current = 0;
 }
 
 template <typename T, typename A>
-ft::vector<T, A>::~vector(void)
+ft::vector<T, A>::vector(size_type count, const_reference value, const allocator_type &alloc) : _current(0), _alloc(alloc)
 {
-	allocator_type alloc;
-
-	alloc.deallocate(_arr, _capacity);
+	_arr = _alloc.allocate(count);
+	while (_current < count)
+		_arr[_current++] = value;
+	_capacity = count;
 }
+
+// template <typename T, typename A>
+// ft::vector<T, A>::vector(size_type count)
+// {
+// 	std::cout << "Here\n";
+// }
+
+template <typename T, typename A>
+ft::vector<T, A>::~vector(void) { _alloc.deallocate(_arr, _capacity); }
 
 template <typename T, typename A>
 ft::vector<T, A> &ft::vector<T, A>::operator=(vector &other)
 {
-	allocator_type alloc;
 	iterator thisIt;
 	iterator otherIt;
 
 	if (_arr != 0)
-		alloc.deallocate(_arr, _capacity);
-	_arr = alloc.allocate(1);
+		_alloc.deallocate(_arr, _capacity);
+	_arr = _alloc.allocate(1);
 	_capacity = 1;
 	_current = 0;
 	thisIt = this->begin();
@@ -146,8 +157,7 @@ void ft::vector<T, A>::assign(InputIt first, InputIt last)
 template <typename T, typename A>
 typename ft::vector<T, A>::allocator_type ft::vector<T, A>::get_allocator() const
 {
-	A alloc;
-	return alloc;
+	return _alloc;
 }
 
 // ELEMENT ACCESS ==============================================================
@@ -207,17 +217,16 @@ typename ft::vector<T, A>::size_type ft::vector<T, A>::max_size(void)
 template <typename T, typename A>
 void ft::vector<T, A>::reserve(size_type new_cap)
 {
-	allocator_type alloc;
 	pointer tmp;
 	size_type i;
 
 	if (new_cap > _capacity)
 	{
-		tmp = alloc.allocate(new_cap);
+		tmp = _alloc.allocate(new_cap);
 		i = -1;
 		while (++i < _current)
 			tmp[i] = _arr[i];
-		alloc.deallocate(_arr, _capacity);
+		_alloc.deallocate(_arr, _capacity);
 		_arr = tmp;
 		_capacity = new_cap;
 	}
@@ -311,15 +320,14 @@ typename ft::vector<T, A>::iterator ft::vector<T, A>::erase(iterator first, iter
 template <typename T, typename A>
 void ft::vector<T, A>::push_back(const_reference input)
 {
-	allocator_type alloc;
 	pointer tmp;
 
 	if (_current == _capacity)
 	{
-		tmp = alloc.allocate(2 * _capacity);	  // double capacity
+		tmp = _alloc.allocate(2 * _capacity);	  // double capacity
 		for (size_type i = 0; i < _capacity; i++) // copy data to new array
 			tmp[i] = _arr[i];
-		alloc.deallocate(_arr, _capacity); // delete prev array
+		_alloc.deallocate(_arr, _capacity); // delete prev array
 		_capacity *= 2;
 		_arr = tmp;
 	}
