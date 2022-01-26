@@ -302,10 +302,22 @@ void vector_int()
 int main()
 {
 	// vector_iterator(); //done
-	vector_int();
+	// vector_int();
 
-	// std::vector<int> arr1{1, 2, 3, 4, 5};
-	// std::vector<int> arr2{-10, -20, -30, -40, -50};
+	ft::vector<char> vec;
+	ft::vector<char>::iterator it;
 
-	// std::swap(arr1, arr2); // tbc
+	vec.push_back(97);
+	vec.push_back(98);
+	vec.push_back('c');
+	vec.push_back('d');
+	vec.push_back(101);
+
+	it = vec.begin();
+	while (it != vec.end())
+	{
+		std::cout << *it << ' ';
+		it++;
+	}
+	std::cout << '\n';
 }

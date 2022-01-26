@@ -13,7 +13,8 @@
    - unused member types
      - typedef std::ptrdiff_t difference_type;
      - typedef const T \*const_pointer;
-4. Let VectorIterator work with <char> & <long>, eg: `ft::vector<char>::iterator it;`
+4. VectorIterator
+   - how to invoke the `operator->`?
 
 ### Resources
 
