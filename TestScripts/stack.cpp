@@ -1,4 +1,5 @@
 #include <iostream>
+#include <deque>
 
 #define RED "\033[3;31m"
 #define RESET "\033[0m"
@@ -19,7 +20,7 @@ void print_disclaimer()
 }
 
 template <typename T>
-void print_list(ft::MyList<T> lst, std::string str)
+void print_list(T lst, std::string str)
 {
 	if (!str.empty())
 		std::cout << str;
@@ -68,8 +69,17 @@ void my_list(void)
 	}
 }
 
-int main()
+void stack_int()
 {
 	print_title("Stack");
-	my_list();
+	print_disclaimer();
+
+	// ft::stack<int, std::deque<int>> stack;
+	ft::stack<int> stack;
+}
+
+int main()
+{
+	// my_list();
+	stack_int();
 }

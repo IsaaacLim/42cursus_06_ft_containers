@@ -17,6 +17,7 @@ namespace ft
 		// MEMBER TYPES --------------------------------------------------------
 		typedef T value_type;
 		typedef size_t size_type;
+		typedef value_type *reference;
 		typedef const value_type &const_reference;
 
 	private:
@@ -30,7 +31,7 @@ namespace ft
 		std::allocator<t_list> _alloc;
 
 	public:
-		//MEMBER FUNCTIONS -----------------------------------------------------
+		// MEMBER FUNCTIONS ----------------------------------------------------
 		MyList(void) : _lst_start(NULL), _lst_last(NULL) {}
 
 		MyList(MyList const &other)
@@ -50,7 +51,7 @@ namespace ft
 			}
 		}
 
-		MyList &operator=(MyList const &other)
+		MyList &operator=(MyList const &other) // REQUIRES DEEP COPY
 		{
 			t_list *tmp;
 			t_list *list;
