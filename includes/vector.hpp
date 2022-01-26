@@ -67,7 +67,7 @@ namespace ft
 		const_iterator end(void) const;
 
 		// CAPACITY ------------------------------------------------------- done
-		bool empty(void);
+		bool empty(void) const;
 		size_type size(void) const;
 		size_type max_size(void);
 		void reserve(size_type new_cap);
@@ -301,7 +301,7 @@ const T *ft::vector<T, A>::data(void) const { return _arr; }
 
 // CAPACITY ====================================================================
 template <typename T, typename A>
-bool ft::vector<T, A>::empty(void) { return (!_current); }
+bool ft::vector<T, A>::empty(void) const { return (!_current); }
 
 template <typename T, typename A>
 typename ft::vector<T, A>::size_type ft::vector<T, A>::size(void) const { return (_current); }
