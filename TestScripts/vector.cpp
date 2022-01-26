@@ -195,7 +195,7 @@ void vector_int()
 	vec.push_back(40);
 	vec.push_back(50);
 
-	print_vector(vec, "Arr: ");
+	print_vector(vec, "Main Vector: ");
 
 	// Member Functions
 	{
@@ -258,14 +258,10 @@ void vector_int()
 
 		print_subtitle("Capacity");
 
-		if (vec.empty())
-			std::cout << "a.empty()?\t\t\t\t: Yes\n";
-		else
-			std::cout << "a.empty()?\t\t\t\t: No\n";
-		if (vec2.empty())
-			std::cout << "b.empty()?\t\t\t\t: Yes\n";
-		else
-			std::cout << "b.empty()?\t\t\t\t: No\n";
+		std::cout << std::boolalpha;
+		std::cout << "a.empty()?\t\t\t\t: " << vec.empty() << "\n";
+		std::cout << "b.empty()?\t\t\t\t: " << vec2.empty() << "\n";
+		std::cout << std::noboolalpha;
 		std::cout << "a.size()\t\t\t\t: " << vec.size() << '\n';
 		std::cout << "b.max_size()\t\t\t\t: " << vec2.max_size() << '\n';
 		std::cout << "b.capacity()\t\t\t\t: " << vec2.capacity() << '\n';
@@ -473,9 +469,9 @@ void vector_data_types()
 
 int main()
 {
-	vector_iterator();
+	// vector_iterator();
 	vector_int();
-	vector_data_types();
+	// vector_data_types();
 
 	/* Testing for ft::vector<std::string>
 	std::allocator<std::string> alloc;
