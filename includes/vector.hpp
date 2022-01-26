@@ -22,8 +22,8 @@ namespace ft
 		// typedef const T *const_pointer;
 		typedef ft::VectorIterator<value_type> iterator;
 		typedef ft::VectorIterator<value_type const> const_iterator;
-		// typedef ft::reverse_VectorIterator<T> reverse_iterator;
-		// typedef const ft::reverse_VectorIterator<T> const_reverse_iterator;
+		typedef ft::ReverseVectorIterator<T> reverse_iterator;
+		// typedef const ft::ReverseVectorIterator<T> const_reverse_iterator;
 
 	private:
 		pointer _arr;		   // pointer to the address of the vector
@@ -61,7 +61,7 @@ namespace ft
 		// ITERATORS -----------------------------------------------------------
 		iterator begin(void);
 		iterator end(void);
-		// iterator rbegin(void);
+		reverse_iterator rbegin(void);
 		// iterator rend(void);
 		const_iterator begin(void) const;
 		const_iterator end(void) const;
@@ -429,8 +429,7 @@ void ft::vector<T, A>::push_back(const_reference input)
 		_capacity *= 2;
 		_arr = tmp;
 	}
-	_arr[_current] = input;
-	_current++;
+	_arr[_current++] = input;
 }
 
 template <typename T, typename A>
@@ -474,6 +473,12 @@ typename ft::vector<T, A>::iterator ft::vector<T, A>::begin(void) { return (&_ar
 
 template <class T, class A>
 typename ft::vector<T, A>::iterator ft::vector<T, A>::end(void) { return (&_arr[_current]); }
+
+template <class T, class A>
+typename ft::vector<T, A>::reverse_iterator ft::vector<T, A>::rbegin()
+{
+	return (&_arr[_current - 1]);
+}
 
 template <class T, class A>
 typename ft::vector<T, A>::const_iterator ft::vector<T, A>::begin(void) const { return (&_arr[0]); }

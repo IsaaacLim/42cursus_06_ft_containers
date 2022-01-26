@@ -13,6 +13,8 @@
    - unused member types
      - typedef std::ptrdiff_t difference_type;
      - typedef const T \*const_pointer;
+   - Data types
+     - std::string gives segfault from push_back (testint at `vector_iterator_types()`)
 4. VectorIterator
    - how to invoke the `operator->`?
 
