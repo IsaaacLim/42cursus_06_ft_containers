@@ -1,6 +1,6 @@
 #include <iostream>
-#if 0			  // CREATE A REAL STL EXAMPLE
-#include <vector> // to compare my ft::vector with std::vector
+#if 0 // CREATE A REAL STL EXAMPLE
+#include <vector>
 namespace ft = std;
 #else
 #include "vector.hpp"
@@ -473,8 +473,8 @@ void vector_data_types()
 
 int main()
 {
-	// vector_iterator();
-	// vector_int();
+	vector_iterator();
+	vector_int();
 	vector_data_types();
 
 	/* Testing for ft::vector<std::string>

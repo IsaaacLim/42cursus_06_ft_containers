@@ -2,6 +2,23 @@
 
 ### To Do
 
+0. MyList
+
+   - Copy constructor doesn't free pre-existing list, but Lib's stack would. eg:
+
+   ```
+   ft::MyList<int> lst;
+   ft::MyList<int> lst2;
+   ft::MyList<int> lst3;
+
+   lst.push(bla bla bla); ...
+   lst2 = lst;
+   lst3 = lst; // Not freed
+   lst3 = lst2;
+   ```
+
+   (won't have any issues if the first copy was to a blank `MyList`)
+
 1. Stack
    - `free` memory for `ft::stack<std::string>` instances
    - create arithmetic operators
