@@ -17,11 +17,11 @@ $(NAME) : $(SRCS)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@
 	@echo "!!!!!Change =std=c++11 & typedef<<>>!!!!!"
 
-test_stack : Test_mine/stack.cpp
+test_stack : TestScripts/stack.cpp TestScripts/utils.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@ && ./$@
 	@echo "!!!!!Change =std=c++11 & typedef<<>>!!!!!"
 
-test_vector : Test_mine/vector.cpp 
+test_vector : TestScripts/vector.cpp TestScripts/utils.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@ && ./$@
 	@echo "!!!!!Change =std=c++11 & typedef<<>>!!!!!"
 
@@ -32,7 +32,8 @@ clean :
 fclean :
 	rm -f $(NAME)
 	rm -f test_vector
+	rm -f test_stack
 
 re : fclean all
 
-.PHONY : all clean fclean re test_vector
+.PHONY : all clean fclean re test_vector test_stack
