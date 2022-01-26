@@ -17,7 +17,7 @@ namespace ft
 		// MEMBER TYPES --------------------------------------------------------
 		typedef T value_type;
 		typedef size_t size_type;
-		typedef value_type *reference;
+		typedef value_type *reference; // used by ft::stack's member types
 		typedef const value_type &const_reference;
 
 	private:
