@@ -1,7 +1,10 @@
-#include "vector.hpp"
-#include "VectorIterator.hpp"
 #include <iostream>
+#if 0			  // CREATE A REAL STL EXAMPLE
 #include <vector> // to compare my ft::vector with std::vector
+namespace ft = std;
+#else
+#include "vector.hpp"
+#endif
 
 #define YELLOW "\033[0;33m"
 #define PURPLE "\033[0;35m"
@@ -39,75 +42,186 @@ void print_vector(ft::vector<T> &vec, std::string str) //make for const &vec
 
 void vector_iterator()
 {
-	print_title("Vector Iterator");
+	print_title("Iterator");
 
-	int arr[5] = {10, 20, 30, 40, 50};
-	ft::VectorIterator<int> i;
-	ft::VectorIterator<int> j;
+	// Vector Iterator
+	{
+		print_subtitle("Vector Iterator");
+		ft::vector<int> arr;
+		ft::vector<int>::iterator i;
+		ft::vector<int>::iterator j;
 
-	std::cout << "Arr: ";
-	for (int i = 0; i < 5; i++)
-		std::cout << arr[i] << ' ';
-	std::cout << "\n\n";
+		arr.push_back(10);
+		arr.push_back(20);
+		arr.push_back(30);
+		arr.push_back(40);
+		arr.push_back(50);
 
-	i = arr + 2;
-	std::cout << "i = arr + 2\n";
-	std::cout << "*i\t\t: " << *i << '\n';
-	std::cout << "*(i + 2)\t: " << *(i + 2) << '\n';
-	std::cout << "*(i + -2)\t: " << *(i + -2) << '\n';
-	std::cout << "*(i - 1)\t: " << *(i - 1) << '\n';
-	std::cout << "*(i - -1)\t: " << *(i - -1) << '\n';
-	std::cout << "*i\t\t: " << *i << "\n\n";
+		std::cout << "Arr: ";
+		for (int i = 0; i < 5; i++)
+			std::cout << arr[i] << ' ';
+		std::cout << "\n\n";
 
-	std::cout << "*i++\t\t: " << *i++ << '\n';
-	std::cout << "*i--\t\t: " << *i-- << '\n';
-	std::cout << "*i\t\t: " << *i << '\n';
-	std::cout << "*++i\t\t: " << *++i << '\n';
-	std::cout << "*--i\t\t: " << *--i << "\n\n";
+		i = (arr.begin() + 2);
+		std::cout << "i = arr.begin() + 2\n";
+		std::cout << "*i\t\t: " << *i << '\n';
+		std::cout << "*(i + 2)\t: " << *(i + 2) << '\n';
+		std::cout << "*(i + -2)\t: " << *(i + -2) << '\n';
+		std::cout << "*(i - 1)\t: " << *(i - 1) << '\n';
+		std::cout << "*(i - -1)\t: " << *(i - -1) << '\n';
+		std::cout << "*i\t\t: " << *i << "\n\n";
 
-	i += 1;
-	std::cout << "i += 1,\t *i\t: " << *i << '\n';
-	i += -1;
-	std::cout << "i += -1, *i\t: " << *i << '\n';
-	i -= 2;
-	std::cout << "i -= -2, *i\t: " << *i << '\n';
-	i -= -2;
-	std::cout << "i -= 2,\t *i\t: " << *i << "\n\n";
+		std::cout << "*i++\t\t: " << *i++ << '\n';
+		std::cout << "*i--\t\t: " << *i-- << '\n';
+		std::cout << "*i\t\t: " << *i << '\n';
+		std::cout << "*++i\t\t: " << *++i << '\n';
+		std::cout << "*--i\t\t: " << *--i << "\n\n";
 
-	std::cout << "i[2]\t\t: " << i[2] << '\n';
-	std::cout << "i[-1]\t\t: " << i[-1] << "\n\n";
+		i += 1;
+		std::cout << "i += 1,\t *i\t: " << *i << '\n';
+		i += -1;
+		std::cout << "i += -1, *i\t: " << *i << '\n';
+		i -= 2;
+		std::cout << "i -= 2,\t *i\t: " << *i << '\n';
+		i -= -2;
+		std::cout << "i -= -2, *i\t: " << *i << "\n\n";
 
-	j = i;
-	std::cout << "j = i\n";
-	std::cout << "i == j ?\t: ";
-	i == j ? std::cout << "True\n" : std::cout << "False\n";
-	std::cout << "i != j ?\t: ";
-	i != j ? std::cout << "True\n" : std::cout << "False\n";
-	std::cout << "i > j ? \t: ";
-	i > j ? std::cout << "True\n" : std::cout << "False\n";
-	std::cout << "i >= j ?\t: ";
-	i >= j ? std::cout << "True\n" : std::cout << "False\n";
-	std::cout << "i < j ? \t: ";
-	i < j ? std::cout << "True\n" : std::cout << "False\n";
-	std::cout << "i <= j ?\t: ";
-	i <= j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i[2]\t\t: " << i[2] << '\n';
+		std::cout << "i[-1]\t\t: " << i[-1] << "\n\n";
 
-	j++;
-	std::cout << "j++\n";
-	std::cout << "i == j ?\t: ";
-	i == j ? std::cout << "True\n" : std::cout << "False\n";
-	std::cout << "i != j ?\t: ";
-	i != j ? std::cout << "True\n" : std::cout << "False\n";
-	std::cout << "i > j ? \t: ";
-	i > j ? std::cout << "True\n" : std::cout << "False\n";
-	std::cout << "i >= j ?\t: ";
-	i >= j ? std::cout << "True\n" : std::cout << "False\n";
-	std::cout << "i < j ? \t: ";
-	i < j ? std::cout << "True\n" : std::cout << "False\n";
-	std::cout << "i <= j ?\t: ";
-	i <= j ? std::cout << "True\n" : std::cout << "False\n";
+		j = i;
+		std::cout << "j = i\n";
+		std::cout << "i == j\t?\t: ";
+		i == j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i != j\t?\t: ";
+		i != j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i > j\t?\t: ";
+		i > j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i >= j\t?\t: ";
+		i >= j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i < j\t?\t: ";
+		i < j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i <= j\t?\t: ";
+		i <= j ? std::cout << "True\n" : std::cout << "False\n";
 
+		j++;
+		std::cout << "j++\n";
+		std::cout << "i == j\t?\t: ";
+		i == j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i != j\t?\t: ";
+		i != j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i > j\t?\t: ";
+		i > j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i >= j\t?\t: ";
+		i >= j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i < j\t?\t: ";
+		i < j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i <= j\t?\t: ";
+		i <= j ? std::cout << "True\n" : std::cout << "False\n";
+	}
+
+	// Reverse Vector Iterator
+	{
+		print_subtitle("Reverse Vector Iterator");
+		ft::vector<int> arr;
+		ft::vector<int>::reverse_iterator i;
+		ft::vector<int>::reverse_iterator j;
+
+		arr.push_back(10);
+		arr.push_back(20);
+		arr.push_back(30);
+		arr.push_back(40);
+		arr.push_back(50);
+
+		std::cout << "Arr: ";
+		for (int i = 0; i < 5; i++)
+			std::cout << arr[i] << ' ';
+		std::cout << "\n\n";
+
+		i = (arr.rbegin() + 2);
+		std::cout << "i = arr.rbegin() + 2\n";
+		std::cout << "*i\t\t: " << *i << '\n';
+		std::cout << "*(i + 2)\t: " << *(i + 2) << '\n';
+		std::cout << "*(i + -2)\t: " << *(i + -2) << '\n';
+		std::cout << "*(i - 1)\t: " << *(i - 1) << '\n';
+		std::cout << "*(i - -1)\t: " << *(i - -1) << '\n';
+		std::cout << "*i\t\t: " << *i << "\n\n";
+
+		std::cout << "*i++\t\t: " << *i++ << '\n';
+		std::cout << "*i--\t\t: " << *i-- << '\n';
+		std::cout << "*i\t\t: " << *i << '\n';
+		std::cout << "*++i\t\t: " << *++i << '\n';
+		std::cout << "*--i\t\t: " << *--i << "\n\n";
+
+		i += 1;
+		std::cout << "i += 1,\t *i\t: " << *i << '\n';
+		i += -1;
+		std::cout << "i += -1, *i\t: " << *i << '\n';
+		i -= 2;
+		std::cout << "i -= 2,\t *i\t: " << *i << '\n';
+		i -= -2;
+		std::cout << "i -= -2, *i\t: " << *i << "\n\n";
+
+		std::cout << "i[2]\t\t: " << i[2] << '\n';
+		std::cout << "i[-1]\t\t: " << i[-1] << "\n\n";
+
+		j = i;
+		std::cout << "j = i\n";
+		std::cout << "i == j\t?\t: ";
+		i == j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i != j\t?\t: ";
+		i != j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i > j\t?\t: ";
+		i > j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i >= j\t?\t: ";
+		i >= j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i < j\t?\t: ";
+		i < j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i <= j\t?\t: ";
+		i <= j ? std::cout << "True\n" : std::cout << "False\n";
+
+		j++;
+		std::cout << "j++\n";
+		std::cout << "i == j\t?\t: ";
+		i == j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i != j\t?\t: ";
+		i != j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i > j\t?\t: ";
+		i > j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i >= j\t?\t: ";
+		i >= j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i < j\t?\t: ";
+		i < j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "i <= j\t?\t: ";
+		i <= j ? std::cout << "True\n" : std::cout << "False\n";
+	}
 	std::cout << '\n';
+}
+
+void vector_iterator_types()
+{
+	print_title("Vector Iterator Data Types");
+
+	//Char
+	{
+		print_subtitle("Char");
+		ft::vector<char> vec;
+		ft::vector<char>::iterator it;
+
+		vec.push_back(97);
+		vec.push_back(98);
+		vec.push_back('c');
+		vec.push_back('d');
+		vec.push_back(101);
+
+		it = vec.begin();
+		while (it != vec.end())
+		{
+			std::cout << *it << ' ';
+			it++;
+		}
+		std::cout << '\n';
+	}
 }
 
 void vector_int()
@@ -182,7 +296,6 @@ void vector_int()
 	// Capacity
 	{
 		ft::vector<int> vec2;
-		std::vector<int> stdVec;
 
 		print_subtitle("Capacity");
 
@@ -196,7 +309,6 @@ void vector_int()
 			std::cout << "b.empty()?\t\t\t\t: No\n";
 		std::cout << "a.size()\t\t\t\t: " << vec.size() << '\n';
 		std::cout << "b.max_size()\t\t\t\t: " << vec2.max_size() << '\n';
-		std::cout << "ref.max_size()\t\t\t\t: " << stdVec.max_size() << '\n';
 		std::cout << "b.capacity()\t\t\t\t: " << vec2.capacity() << '\n';
 		vec2.reserve(10);
 		std::cout << "b.reserve(10)\n";
@@ -301,23 +413,7 @@ void vector_int()
 
 int main()
 {
-	// vector_iterator(); //done
+	vector_iterator();
+	// vector_iterator_types();
 	// vector_int();
-
-	ft::vector<char> vec;
-	ft::vector<char>::iterator it;
-
-	vec.push_back(97);
-	vec.push_back(98);
-	vec.push_back('c');
-	vec.push_back('d');
-	vec.push_back(101);
-
-	it = vec.begin();
-	while (it != vec.end())
-	{
-		std::cout << *it << ' ';
-		it++;
-	}
-	std::cout << '\n';
 }
