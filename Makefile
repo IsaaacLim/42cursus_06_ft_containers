@@ -3,7 +3,7 @@ NAME		=	ft_container
 SRCS		=	main.cpp
 
 HDRS_DIR	=	./includes/
-HDRS_LST	=	stack.hpp	vector.hpp VectorIterator.hpp
+HDRS_LST	=	MyList.hpp stack.hpp	vector.hpp VectorIterator.hpp
 HDRS		=	$(addprefix $(HDRS_DIR), $(HDRS_LST))
 
 INCLUDES	=	-I $(HDRS_DIR)
@@ -17,9 +17,14 @@ $(NAME) : $(SRCS)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@
 	@echo "!!!!!Change =std=c++11 & typedef<<>>!!!!!"
 
+test_stack : Test_mine/stack.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@ && ./$@
+	@echo "!!!!!Change =std=c++11 & typedef<<>>!!!!!"
+
 test_vector : Test_mine/vector.cpp 
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@ && ./$@
 	@echo "!!!!!Change =std=c++11 & typedef<<>>!!!!!"
+
 
 clean :
 	@echo no object files to clean
