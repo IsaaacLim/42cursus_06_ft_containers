@@ -34,7 +34,10 @@ namespace ft
 		// Stack(Stack &other); //copy constructor?
 
 		// void push(const T &input);
-		// void pop(void);
+		void pop(void)
+		{
+			c.pop();
+		}
 		// T top(void);
 		// int size(void);
 		// bool empty(void);
