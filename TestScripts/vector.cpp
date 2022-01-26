@@ -469,9 +469,9 @@ void vector_data_types()
 
 int main()
 {
-	// vector_iterator();
+	vector_iterator();
 	vector_int();
-	// vector_data_types();
+	vector_data_types();
 
 	/* Testing for ft::vector<std::string>
 	std::allocator<std::string> alloc;

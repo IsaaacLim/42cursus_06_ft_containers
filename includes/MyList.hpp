@@ -99,7 +99,7 @@ namespace ft
 			}
 		}
 
-		void pop(void)
+		void pop_back(void)
 		{
 			t_list *lst_copy;
 
@@ -122,7 +122,7 @@ namespace ft
 			}
 		}
 
-		// Element Access ------------------------------------------------------
+		// ELEMENT ACCESS ------------------------------------------------------
 		reference back(void)
 		{
 			// Lib func will just seg fault w/o freeing memory
@@ -135,8 +135,8 @@ namespace ft
 			return (_lst_last->data);
 		}
 
-		// Capacity ------------------------------------------------------------
-		size_type size(void)
+		// CAPACITY ------------------------------------------------------------
+		size_type size(void) const
 		{
 			t_list *lst_copy;
 			size_type i;

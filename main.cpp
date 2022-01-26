@@ -51,8 +51,6 @@ void stack_str()
 	stack2.push("Stack");
 	stack2.push("2");
 
-	stack2.print();
-
 	stack2.pop();
 	stack2.pop();
 	stack2.pop();
@@ -133,7 +131,6 @@ void vector_int()
 int main()
 {
 	// std::cout << "Hello" << std::endl;
-	// std::cout << ft::value() << std::endl;
 
 	// stack_int();
 	// stack_str(); // works but got leaks
