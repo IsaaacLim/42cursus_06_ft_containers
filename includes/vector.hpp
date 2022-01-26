@@ -11,19 +11,19 @@ namespace ft
 	class vector
 	{
 	public:
-		// MEMBER TYPES ------------------------------------------------not done
+		// MEMBER TYPES ----------------------------------------------------- OK
 		typedef T value_type;
 		typedef Allocator allocator_type;
 		typedef size_t size_type;
-		// typedef std::ptrdiff_t difference_type;
+		typedef std::ptrdiff_t difference_type;
 		typedef value_type &reference;
 		typedef const value_type &const_reference;
 		typedef T *pointer;
-		// typedef const T *const_pointer;
+		typedef const T *const_pointer;
 		typedef ft::VectorIterator<value_type> iterator;
 		typedef ft::VectorIterator<value_type const> const_iterator;
 		typedef ft::ReverseVectorIterator<T> reverse_iterator;
-		// typedef const ft::ReverseVectorIterator<T> const_reverse_iterator;
+		typedef const ft::ReverseVectorIterator<T> const_reverse_iterator;
 
 	private:
 		pointer _arr;		   // pointer to the address of the vector
@@ -62,7 +62,7 @@ namespace ft
 		iterator begin(void);
 		iterator end(void);
 		reverse_iterator rbegin(void);
-		// iterator rend(void);
+		reverse_iterator rend(void);
 		const_iterator begin(void) const;
 		const_iterator end(void) const;
 
@@ -475,9 +475,15 @@ template <class T, class A>
 typename ft::vector<T, A>::iterator ft::vector<T, A>::end(void) { return (&_arr[_current]); }
 
 template <class T, class A>
-typename ft::vector<T, A>::reverse_iterator ft::vector<T, A>::rbegin()
+typename ft::vector<T, A>::reverse_iterator ft::vector<T, A>::rbegin(void)
 {
 	return (&_arr[_current - 1]);
+}
+
+template <class T, class A>
+typename ft::vector<T, A>::reverse_iterator ft::vector<T, A>::rend(void)
+{
+	return (&_arr[-1]);
 }
 
 template <class T, class A>

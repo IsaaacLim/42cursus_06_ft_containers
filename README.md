@@ -10,13 +10,19 @@
    - include `member types`
 2. Class naming method: `ft::vector` or `ft::Vector`?
 3. Vector
+
    - unused member types
-     - typedef std::ptrdiff_t difference_type;
-     - typedef const T \*const_pointer;
+
+     - `typedef std::ptrdiff_t difference_type;`
+     - `typedef const T \*const_pointer;`
+     - `typedef const ft::ReverseVectorIterator<T> const_reverse_iterator;`
+
    - Data types
      - std::string gives segfault from push_back (testint at `vector_iterator_types()`)
+
 4. VectorIterator
    - how to invoke the `operator->`?
+5. Change `Makefile` to using -std=c++98, add spacing to `<<>>`, remove `Makefile` comments
 
 ### Resources
 

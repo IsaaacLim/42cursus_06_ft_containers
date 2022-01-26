@@ -198,91 +198,6 @@ void vector_iterator()
 	std::cout << '\n';
 }
 
-void vector_iterator_types()
-{
-	print_title("Vector Iterator Data Types");
-
-	// Char
-	{
-		print_subtitle("Char");
-		ft::vector<char> vec;
-		ft::vector<char>::iterator it;
-
-		vec.push_back(97);
-		vec.push_back(98);
-		vec.push_back('c');
-		vec.push_back('d');
-		vec.push_back(101);
-
-		it = vec.begin();
-		while (it != vec.end())
-		{
-			std::cout << *it << '\n';
-			it++;
-		}
-	}
-
-	// String
-	{
-		print_subtitle("String");
-		ft::vector<std::string> vec_str;
-		ft::vector<std::string>::iterator it;
-
-		// vec_str.push_back("First"); //segfault at vector.hpp > push_back() > _arr[_current] = input;
-		// vec_str.push_back("S e c o n d");
-		// vec_str.push_back("1234567890");
-		// vec_str.push_back("!@#$%^&*()_+=");
-		// vec_str.push_back("END");
-
-		it = vec_str.begin();
-		while (it != vec_str.end())
-		{
-			std::cout << *it << '\n';
-			it++;
-		}
-	}
-
-	// Float
-	{
-		print_subtitle("Float");
-		ft::vector<float> vec;
-		ft::vector<float>::iterator it;
-
-		vec.push_back(10);
-		vec.push_back(-20.505f);
-		vec.push_back(99e10f);
-		vec.push_back(42e-3f);
-		vec.push_back(-111e-6f);
-
-		it = vec.begin();
-		while (it != vec.end())
-		{
-			std::cout << *it << '\n';
-			it++;
-		}
-	}
-
-	// Double
-	{
-		print_subtitle("Double");
-		ft::vector<double> vec;
-		ft::vector<double>::iterator it;
-
-		vec.push_back(10);
-		vec.push_back(-20.505);
-		vec.push_back(99e100);
-		vec.push_back(42e-30);
-		vec.push_back(-111e-60);
-
-		it = vec.begin();
-		while (it != vec.end())
-		{
-			std::cout << *it << '\n';
-			it++;
-		}
-	}
-}
-
 void vector_int()
 {
 	print_title("Vector (int)");
@@ -413,6 +328,25 @@ void vector_int()
 		print_vector(vec2, "a.swap(b) - b\t\t\t\t:");
 	}
 
+	// Iterators (simple version)
+	{
+		print_subtitle("Iterator (simple version)");
+
+		ft::vector<int>::iterator it;
+		ft::vector<int>::reverse_iterator rev_it;
+
+		it = vec.begin();
+		rev_it = vec.rbegin();
+
+		std::cout << "vec.begin() & vec.end()\t\t\t: ";
+		while (it != vec.end())
+			std::cout << *it++ << ' ';
+		std::cout << "\nvec.rbegin() & vec.rend()\t\t: ";
+		while (rev_it != vec.rend())
+			std::cout << *rev_it++ << ' ';
+		std::cout << '\n';
+	}
+
 	// Non-member functions
 	{
 		print_subtitle("Non-member Functions");
@@ -465,25 +399,109 @@ void vector_int()
 		print_vector(vec3, "vec3: ");
 		print_vector(vec4, "vec4: ");
 	}
+}
 
-	print_subtitle("Iterator (simple)");
-	std::cout << "NOT DONE!!!!\n";
+void vector_data_types()
+{
+	print_title("Vector, other data types (simple test)");
+
+	// Char
+	{
+		print_subtitle("Char");
+		ft::vector<char> vec;
+		ft::vector<char>::iterator it;
+
+		vec.push_back(97);
+		vec.push_back(98);
+		vec.push_back('c');
+		vec.push_back('d');
+		vec.push_back(101);
+
+		it = vec.begin();
+		while (it != vec.end())
+		{
+			std::cout << *it << '\n';
+			it++;
+		}
+	}
+
+	// String
+	{
+		print_subtitle("String");
+		ft::vector<std::string> vec_str;
+		ft::vector<std::string>::iterator it;
+
+		// vec_str.push_back("First"); //segfault at vector.hpp > push_back() > _arr[_current] = input;
+		// vec_str.push_back("S e c o n d");
+		// vec_str.push_back("1234567890");
+		// vec_str.push_back("!@#$%^&*()_+=");
+		// vec_str.push_back("END");
+
+		it = vec_str.begin();
+		while (it != vec_str.end())
+		{
+			std::cout << *it << '\n';
+			it++;
+		}
+	}
+
+	// Float
+	{
+		print_subtitle("Float");
+		ft::vector<float> vec;
+		ft::vector<float>::iterator it;
+
+		vec.push_back(10);
+		vec.push_back(-20.505f);
+		vec.push_back(99e10f);
+		vec.push_back(42e-3f);
+		vec.push_back(-111e-6f);
+
+		it = vec.begin();
+		while (it != vec.end())
+		{
+			std::cout << *it << '\n';
+			it++;
+		}
+	}
+
+	// Double
+	{
+		print_subtitle("Double");
+		ft::vector<double> vec;
+		ft::vector<double>::iterator it;
+
+		vec.push_back(10);
+		vec.push_back(-20.505);
+		vec.push_back(99e100);
+		vec.push_back(42e-30);
+		vec.push_back(-111e-60);
+
+		it = vec.begin();
+		while (it != vec.end())
+		{
+			std::cout << *it << '\n';
+			it++;
+		}
+	}
 }
 
 int main()
 {
 	// vector_iterator();
-	vector_iterator_types();
 	// vector_int();
+	vector_data_types();
 
-	// std::allocator<std::string> alloc;
-	// std::string *arr;
-	// std::string str = "random";
-	// std::string &ref = str;
+	/* Testing for ft::vector<std::string>
+	std::allocator<std::string> alloc;
+	std::string *arr;
+	std::string str = "random";
+	std::string &ref = str;
 
-	// arr = alloc.allocate(1);
-	// arr[0] = ref;
+	arr = alloc.allocate(1);
+	arr[0] = ref;
 
-	// std::cout << arr[0] << '\n';
-	// alloc.deallocate(arr, 1);
+	std::cout << arr[0] << '\n';
+	alloc.deallocate(arr, 1);
+	*/
 }
