@@ -26,7 +26,7 @@ void print_list(T lst, std::string str)
 		std::cout << str;
 	while (!lst.empty())
 	{
-		std::cout << lst.top() << ' ';
+		std::cout << lst.back() << ' ';
 		lst.pop();
 	}
 	std::cout << std::endl;
@@ -39,27 +39,25 @@ void my_list(void)
 
 	ft::MyList<int> lst;
 
-	lst.push(10);
-	lst.push(20);
-	lst.push(30);
-	lst.push(40);
-	lst.push(50);
+	lst.push_back(10);
+	lst.push_back(20);
+	lst.push_back(30);
+	lst.push_back(40);
+	lst.push_back(50);
 
 	print_list(lst, "List: ");
 
 	// Member Functions
 	{
 		print_subtitle("Member Functions");
-		int n;
 
-		lst.push(-1);
-		print_list(lst, "lst.push(-1)\t\t\t\t: ");
+		lst.push_back(-1);
+		print_list(lst, "lst.push_back(-1)\t\t\t: ");
 		lst.pop();
 		print_list(lst, "lst.pop()\t\t\t\t: ");
-		n = lst.top();
-		std::cout << "lst.top()\t\t\t\t: " << n << '\n';
-		n = (int)lst.size();
-		std::cout << "lst.size()\t\t\t\t: " << n << '\n';
+		// n = lst.back();
+		std::cout << "lst.back()\t\t\t\t: " << lst.back() << '\n';
+		std::cout << "lst.size()\t\t\t\t: " << lst.size() << '\n';
 		std::cout << std::boolalpha;
 		std::cout << "lst.empty() ?\t\t\t\t: " << lst.empty() << '\n';
 		while (!lst.empty())
@@ -76,10 +74,13 @@ void stack_int()
 
 	// ft::stack<int, std::deque<int>> stack;
 	ft::stack<int> stack;
+
+	stack.push(10);
+	// print_list(stack, "test");
 }
 
 int main()
 {
-	// my_list();
+	my_list();
 	stack_int();
 }

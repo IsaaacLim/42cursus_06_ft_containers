@@ -33,14 +33,18 @@ namespace ft
 		~stack(void) {}
 		// Stack(Stack &other); //copy constructor?
 
-		// void push(const T &input);
-		void pop(void)
+		void push(const value_type &value)
 		{
-			c.pop();
+			c.push_back(value);
 		}
-		// T top(void);
+		// void pop(void)
+		// {
+		// c.pop();
+		// }
+		reference top(void) { c.back(); }
+		const_reference top(void) const { c.back(); }
 		// int size(void);
-		// bool empty(void);
+		bool empty(void) const { c.empty(); }
 
 		// Temp
 		// void print();

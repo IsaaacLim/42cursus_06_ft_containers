@@ -17,7 +17,7 @@ namespace ft
 		// MEMBER TYPES --------------------------------------------------------
 		typedef T value_type;
 		typedef size_t size_type;
-		typedef value_type *reference; // used by ft::stack's member types
+		typedef value_type &reference; // used by ft::stack's member types
 		typedef const value_type &const_reference;
 
 	private:
@@ -80,7 +80,7 @@ namespace ft
 		}
 
 		// MODIFIERS -----------------------------------------------------------
-		void push(const_reference input)
+		void push_back(const_reference input)
 		{
 			t_list *list;
 
@@ -123,9 +123,15 @@ namespace ft
 		}
 
 		// Element Access ------------------------------------------------------
-		const_reference top(void)
+		reference back(void)
 		{
-			// Lib function will just seg fault without freeing memory
+			// Lib func will just seg fault w/o freeing memory
+			return (_lst_last->data);
+		}
+
+		const_reference back(void) const
+		{
+			// Lib func will just seg fault w/o freeing memory
 			return (_lst_last->data);
 		}
 
@@ -141,7 +147,7 @@ namespace ft
 			return (i);
 		}
 
-		bool empty(void)
+		bool empty(void) const
 		{
 			return (!_lst_start);
 		}
