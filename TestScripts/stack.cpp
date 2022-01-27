@@ -81,6 +81,26 @@ void my_list(void)
 		std::cout << "*pop_back until empty*, lst.empty() ?\t: " << lst.empty() << '\n';
 		std::cout << std::noboolalpha;
 	}
+	// Non-member Functions
+	{
+		print_subtitle("Non-member Functions");
+
+		ft::MyList<int> lst2;
+
+		lst.push_back(10);
+		lst.push_back(20);
+		lst.push_back(30);
+		lst.push_back(40);
+		lst.push_back(50);
+		lst2 = lst;
+
+		print_list(lst, "List1: ");
+		print_list(lst2, "List2: ");
+
+		std::cout << std::boolalpha;
+		std::cout << "List1 == List2\t?\t: " << (lst == lst2) << '\n';
+		print_list(lst, "List1: ");
+	}
 	std::cout << std::endl;
 }
 
@@ -164,7 +184,7 @@ void stack_other_types()
 
 int main()
 {
-	// my_list();
-	stack_int();
-	stack_other_types();
+	my_list();
+	// stack_int();
+	// stack_other_types();
 }

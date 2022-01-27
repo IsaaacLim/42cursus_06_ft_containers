@@ -154,10 +154,22 @@ namespace ft
 	};
 	/**************************NON-MEMBER FUNCTIONS****************************/
 	template <class T>
-	bool operator==(const ft::MyList<T> &lhs, const ft::MyList<T> &rhs)
+	bool operator==(ft::MyList<T> &lhs, ft::MyList<T> &rhs)
 	{
-		(void)lhs;
-		(void)rhs;
+		ft::MyList<T> tmp_lhs;
+		ft::MyList<T> tmp_rhs;
+
+		tmp_lhs = lhs;
+		tmp_rhs = rhs;
+		if (tmp_lhs.size() != tmp_rhs.size())
+			return (false);
+		while (!tmp_lhs.empty() && !tmp_rhs.empty())
+		{
+			if (tmp_lhs.back() != tmp_rhs.back())
+				return (false);
+			tmp_lhs.pop_back();
+			tmp_rhs.pop_back();
+		}
 		return (true);
 	}
 }
