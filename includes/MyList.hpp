@@ -154,23 +154,77 @@ namespace ft
 	};
 	/**************************NON-MEMBER FUNCTIONS****************************/
 	template <class T>
-	bool operator==(ft::MyList<T> &lhs, ft::MyList<T> &rhs)
+	bool operator==(ft::MyList<T> lhs, ft::MyList<T> rhs)
 	{
-		ft::MyList<T> tmp_lhs;
-		ft::MyList<T> tmp_rhs;
-
-		tmp_lhs = lhs;
-		tmp_rhs = rhs;
-		if (tmp_lhs.size() != tmp_rhs.size())
+		if (lhs.size() != rhs.size())
 			return (false);
-		while (!tmp_lhs.empty() && !tmp_rhs.empty())
+		while (!lhs.empty() && !rhs.empty())
 		{
-			if (tmp_lhs.back() != tmp_rhs.back())
+			if (lhs.back() != rhs.back())
 				return (false);
-			tmp_lhs.pop_back();
-			tmp_rhs.pop_back();
+			lhs.pop_back();
+			rhs.pop_back();
 		}
 		return (true);
+	}
+
+	template <class T>
+	bool operator!=(ft::MyList<T> lhs, ft::MyList<T> rhs)
+	{
+		return (!(lhs == rhs));
+	}
+
+	template <class T>
+	bool operator<(ft::MyList<T> lhs, ft::MyList<T> rhs)
+	{
+		T *lhs_arr;
+		T *rhs_arr;
+		int size = lhs.size();
+		int i = size;
+		bool isSmaller = false;
+
+		if (lhs.size() < rhs.size())
+			return (true);
+		else if (lhs.size() > rhs.size())
+			return (false);
+		lhs_arr = new T[lhs.size()];
+		rhs_arr = new T[rhs.size()];
+		while (--i >= 0)
+		{
+			lhs_arr[i] = lhs.back();
+			rhs_arr[i] = rhs.back();
+			lhs.pop_back();
+			rhs.pop_back();
+		}
+		while (++i < size)
+		{
+			if (lhs_arr[i] != rhs_arr[i])
+			{
+				isSmaller = (lhs_arr[i] < rhs_arr[i]);
+				break;
+			}
+		}
+		delete[] lhs_arr;
+		delete[] rhs_arr;
+		return (isSmaller);
+	}
+
+	template <class T>
+	bool operator<=(ft::MyList<T> lhs, ft::MyList<T> rhs)
+	{
+		return (lhs == rhs || lhs < rhs);
+	}
+
+	template <class T>
+	bool operator>(ft::MyList<T> lhs, ft::MyList<T> rhs)
+	{
+		return (!(lhs <= rhs));
+	}
+
+	template <class T>
+	bool operator>=(ft::MyList<T> lhs, ft::MyList<T> rhs)
+	{
+		return (!(lhs < rhs));
 	}
 }
 #endif
