@@ -151,62 +151,56 @@ namespace ft
 		{
 			return (!_lst_start);
 		}
+
+		// EXTRA (used for Non-member functions only)---------------------------
+		const_reference operator[](size_type pos) const
+		{
+			size_type i;
+			t_list *lst_copy;
+
+			lst_copy = _lst_start;
+			for (i = 0; i < pos; i++)
+				lst_copy = lst_copy->next;
+			return (lst_copy->data);
+		}
 	};
 	/**************************NON-MEMBER FUNCTIONS****************************/
 	template <class T>
-	bool operator==(ft::MyList<T> lhs, ft::MyList<T> rhs)
+	bool operator==(const ft::MyList<T> &lhs, const ft::MyList<T> &rhs)
 	{
+		size_t i;
+
 		if (lhs.size() != rhs.size())
 			return (false);
-		while (!lhs.empty() && !rhs.empty())
+		for (i = 0; i < lhs.size(); i++)
 		{
-			if (lhs.back() != rhs.back())
+			if (lhs[i] != rhs[i])
 				return (false);
-			lhs.pop_back();
-			rhs.pop_back();
 		}
 		return (true);
 	}
 
 	template <class T>
-	bool operator!=(ft::MyList<T> lhs, ft::MyList<T> rhs)
+	bool operator!=(const ft::MyList<T> &lhs, const ft::MyList<T> &rhs)
 	{
 		return (!(lhs == rhs));
 	}
 
 	template <class T>
-	bool operator<(ft::MyList<T> lhs, ft::MyList<T> rhs)
+	bool operator<(const ft::MyList<T> &lhs, const ft::MyList<T> &rhs)
 	{
-		T *lhs_arr;
-		T *rhs_arr;
-		int size = lhs.size();
-		int i = size;
-		bool isSmaller = false;
+		size_t i;
 
 		if (lhs.size() < rhs.size())
 			return (true);
 		else if (lhs.size() > rhs.size())
 			return (false);
-		lhs_arr = new T[lhs.size()];
-		rhs_arr = new T[rhs.size()];
-		while (--i >= 0)
+		for (i = 0; i < lhs.size(); i++)
 		{
-			lhs_arr[i] = lhs.back();
-			rhs_arr[i] = rhs.back();
-			lhs.pop_back();
-			rhs.pop_back();
+			if (lhs[i] != rhs[i])
+				return (lhs[i] < rhs[i]);
 		}
-		while (++i < size)
-		{
-			if (lhs_arr[i] != rhs_arr[i])
-			{
-				isSmaller = (lhs_arr[i] < rhs_arr[i]);
-				break;
-			}
-		}
-		delete[] lhs_arr;
-		delete[] rhs_arr;
-		return (isSmaller);
+		return (false);
 	}
 
 	template <class T>

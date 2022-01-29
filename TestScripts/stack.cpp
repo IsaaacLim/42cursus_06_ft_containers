@@ -186,6 +186,63 @@ void stack_int()
 		std::cout << "*pop until empty*, stack.empty() ?\t: " << stack.empty() << '\n';
 		std::cout << std::noboolalpha;
 	}
+	// Non-member Functions
+	{
+		print_subtitle("Non-member Functions");
+		print_disclaimer();
+
+		ft::stack<int> stack2;
+		ft::stack<int> stack3;
+		ft::stack<int> stack4;
+		ft::stack<int> stack5;
+
+		stack.push(10);
+		stack.push(20);
+		stack.push(30);
+		stack.push(40);
+		stack.push(50);
+
+		stack2 = stack;
+
+		stack3.push(10);
+		stack3.push(19); // smaller
+		stack3.push(30);
+		stack3.push(40);
+		stack3.push(60); // larger
+
+		stack4.push(10);
+		stack4.push(21); // larger
+		stack4.push(30);
+		stack4.push(40);
+		stack4.push(40); // smaller
+
+		stack5.push(0);
+		stack5.push(0);
+		stack5.push(0);
+		stack5.push(0);
+		stack5.push(0);
+		stack5.push(0); //extra
+
+		print_stack(stack, "Stack1: ");
+		print_stack(stack2, "Stack2: ");
+		print_stack(stack3, "Stack3: ");
+		print_stack(stack4, "Stack4: ");
+		print_stack(stack5, "Stack5: ");
+
+		// comparison_operator(stack, stack2, "Stack1", "Stack2");
+		// comparison_operator(stack, stack3, "Stack1", "Stack3");
+		// comparison_operator(stack, stack4, "Stack1", "Stack4");
+		// comparison_operator(stack, stack5, "Stack1", "Stack5");
+
+		// std::cout << "\nSwapped Stack2 with Stack3, Stack4 with Stack5\n";
+		// ft::swap(stack2, stack3);
+		// ft::swap(stack4, stack5);
+		// print_stack(stack, "Stack1: ");
+		// print_stack(stack2, "Stack2: ");
+		// print_stack(stack3, "Stack3: ");
+		// print_stack(stack4, "Stack4: ");
+		// print_stack(stack5, "Stack5: ");
+	}
 	std::cout << std::endl;
 }
 
