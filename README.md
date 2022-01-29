@@ -20,10 +20,8 @@
    (won't have any issues if the first copy was to a blank `MyList`)
 
 1. Stack
-   - Non member functions
    - `free` memory for `ft::stack<std::string>` instances
-   - create arithmetic operators
-   - test with other data types
+   - test with other data types (not container types)
    - `<int> stacks` won't have seg fault when `pop()` empty stack, but `<std::string> stacks` will seg fault
    - `stack<int, ft::vector<int>>`: no matching constructor within `ft::vector`
 2. Class naming method: `ft::vector` or `ft::Vector`?
