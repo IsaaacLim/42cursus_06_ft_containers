@@ -141,6 +141,15 @@ void my_list(void)
 		comparison_operator(lst, lst3, "List1", "List3");
 		comparison_operator(lst, lst4, "List1", "List4");
 		comparison_operator(lst, lst5, "List1", "List5");
+
+		std::cout << "\nSwapped List2 with List3, List4 with List5\n";
+		ft::swap(lst2, lst3);
+		ft::swap(lst4, lst5);
+		print_list(lst, "List1: ");
+		print_list(lst2, "List2: ");
+		print_list(lst3, "List3: ");
+		print_list(lst4, "List4: ");
+		print_list(lst5, "List5: ");
 	}
 	std::cout << std::endl;
 }

@@ -226,5 +226,19 @@ namespace ft
 	{
 		return (!(lhs < rhs));
 	}
+
+	template <class T>
+	void swap(ft::MyList<T> &lhs, ft::MyList<T> &rhs)
+	{
+		ft::MyList<T> tmp;
+
+		tmp = lhs;
+		while (!lhs.empty())
+			lhs.pop_back();
+		lhs = rhs;
+		while (!rhs.empty())
+			rhs.pop_back();
+		rhs = tmp;
+	}
 }
 #endif
