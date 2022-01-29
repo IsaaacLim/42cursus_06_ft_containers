@@ -229,19 +229,10 @@ void stack_int()
 		print_stack(stack4, "Stack4: ");
 		print_stack(stack5, "Stack5: ");
 
-		// comparison_operator(stack, stack2, "Stack1", "Stack2");
-		// comparison_operator(stack, stack3, "Stack1", "Stack3");
-		// comparison_operator(stack, stack4, "Stack1", "Stack4");
-		// comparison_operator(stack, stack5, "Stack1", "Stack5");
-
-		// std::cout << "\nSwapped Stack2 with Stack3, Stack4 with Stack5\n";
-		// ft::swap(stack2, stack3);
-		// ft::swap(stack4, stack5);
-		// print_stack(stack, "Stack1: ");
-		// print_stack(stack2, "Stack2: ");
-		// print_stack(stack3, "Stack3: ");
-		// print_stack(stack4, "Stack4: ");
-		// print_stack(stack5, "Stack5: ");
+		comparison_operator(stack, stack2, "Stk1", "Stk2");
+		comparison_operator(stack, stack3, "Stk1", "Stk3");
+		comparison_operator(stack, stack4, "Stk1", "Stk4");
+		comparison_operator(stack, stack5, "Stk1", "Stk5");
 	}
 	std::cout << std::endl;
 }
@@ -291,7 +282,7 @@ void stack_other_types()
 
 int main()
 {
-	my_list();
-	// stack_int();
+	// my_list();
+	stack_int();
 	// stack_other_types();
 }

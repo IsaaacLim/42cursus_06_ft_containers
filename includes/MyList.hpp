@@ -204,24 +204,24 @@ namespace ft
 	}
 
 	template <class T>
-	bool operator<=(ft::MyList<T> lhs, ft::MyList<T> rhs)
+	bool operator<=(const ft::MyList<T> &lhs, const ft::MyList<T> &rhs)
 	{
 		return (lhs == rhs || lhs < rhs);
 	}
 
 	template <class T>
-	bool operator>(ft::MyList<T> lhs, ft::MyList<T> rhs)
+	bool operator>(const ft::MyList<T> &lhs, const ft::MyList<T> &rhs)
 	{
 		return (!(lhs <= rhs));
 	}
 
 	template <class T>
-	bool operator>=(ft::MyList<T> lhs, ft::MyList<T> rhs)
+	bool operator>=(const ft::MyList<T> &lhs, const ft::MyList<T> &rhs)
 	{
 		return (!(lhs < rhs));
 	}
 
-	template <class T>
+	template <class T> // c++11 for std::stack
 	void swap(ft::MyList<T> &lhs, ft::MyList<T> &rhs)
 	{
 		ft::MyList<T> tmp;
