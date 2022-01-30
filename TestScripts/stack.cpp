@@ -2,7 +2,8 @@
 #include <deque>
 #include <vector>
 #include <list>
-#include <limits.h>
+#include <limits>
+#include <string>
 #include "vector.hpp"
 
 #define RED "\033[3;31m"
@@ -242,7 +243,7 @@ void stack_other_types()
 	print_title("Stack, other data types (simple test)");
 	print_disclaimer();
 
-	// stack<int, std::container<int>>
+	// Other container types
 	{
 		print_subtitle("Stack with diff containers");
 
@@ -260,29 +261,59 @@ void stack_other_types()
 		stack_vec.push(30000000);
 		print_stack(stack_vec, "stack<int, std::vector<int>>\t\t: ");
 
-		stack_list.push(INT_MIN);
+		stack_list.push(std::numeric_limits<int>::min());
 		stack_list.push(0);
-		stack_list.push(INT_MAX);
+		stack_list.push(std::numeric_limits<int>::max());
 		print_stack(stack_list, "stack<int, std::list<int>>\t\t: ");
 		std::cout << std::endl;
+
+		// // stack<int, ft::vector<int>>
+		// {
+		// 	print_subtitle("stack<int, ft::vector<int>>");
+		// 	ft::stack<int, ft::vector<int>> stack;
+
+		// 	stack.push(INT_MIN);
+		// 	stack.push(0);
+		// 	stack.push(INT_MAX);
+		// 	print_stack(stack, "");
+		// 	std::cout << std::endl;
+		// }
 	}
 
-	// // stack<int, ft::vector<int>>
-	// {
-	// 	print_subtitle("stack<int, ft::vector<int>>");
-	// 	ft::stack<int, ft::vector<int>> stack;
+	// Other data types
+	{
+		print_subtitle("Stack with diff data types");
 
-	// 	stack.push(INT_MIN);
-	// 	stack.push(0);
-	// 	stack.push(INT_MAX);
-	// 	print_stack(stack, "");
-	// 	std::cout << std::endl;
-	// }
+		ft::stack<char> stack_char;
+		ft::stack<float> stack_float;
+		ft::stack<bool> stack_bool;
+		ft::stack<std::string, ft::MyList<std::string>> stack_str;
+
+		stack_char.push('a');
+		stack_char.push(0);
+		stack_char.push(68);
+		print_stack(stack_char, "stack<char>\t\t\t\t: ");
+
+		stack_float.push(42.42f);
+		stack_float.push(std::numeric_limits<float>::max());
+		stack_float.push(std::numeric_limits<float>::infinity());
+		print_stack(stack_float, "stack<float>\t\t\t\t: ");
+
+		stack_bool.push(true);
+		stack_bool.push(0);
+		stack_bool.push('a');
+		print_stack(stack_bool, "stack<bool>\t\t\t\t: ");
+
+		stack_str.push("stringszzz");
+		stack_str.push("1234567890");
+		stack_str.push("~!@#$%^&*()_+=-}{][:/.,");
+		print_stack(stack_str, "stack<std::string>\t\t\t: ");
+	}
 }
 
 int main()
 {
 	// my_list();
-	stack_int();
-	// stack_other_types();
+	// stack_int();
+	stack_other_types();
 }
