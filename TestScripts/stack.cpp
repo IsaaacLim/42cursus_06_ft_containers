@@ -307,7 +307,7 @@ void stack_other_types()
 
 		stack_str.push("stringszzz");
 		stack_str.push("1234567890");
-		stack_str.push("~!@#$%^&*()_+=-}{][:/.,");
+		stack_str.push("~!@#$%^&*()_+=-}{][:/,."); // one more character will cause leak
 		print_stack(stack_str, "stack<std::string>\t\t\t: ");
 	}
 }
