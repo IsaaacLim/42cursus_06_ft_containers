@@ -5,6 +5,7 @@
 #include <limits>
 #include <string>
 #include "vector.hpp"
+#include <stdlib.h>
 
 #define RED "\033[3;31m"
 #define RESET "\033[0m"
@@ -316,4 +317,5 @@ int main()
 	// my_list();
 	// stack_int();
 	stack_other_types();
+	system("leaks test_stack");
 }

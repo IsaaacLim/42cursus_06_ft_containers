@@ -85,7 +85,6 @@ namespace ft
 		{
 			t_list *list;
 
-			std::cout << "\nMod: " << input << '\n';
 			list = _alloc.allocate(1);
 			list->data = input;
 			list->next = NULL;
@@ -100,10 +99,6 @@ namespace ft
 				_lst_last = list;
 			}
 		}
-
-		// void push_back(std::string str)
-		// {
-		// }
 
 		void pop_back(void)
 		{
