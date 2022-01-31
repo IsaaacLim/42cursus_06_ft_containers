@@ -20,10 +20,9 @@
    (won't have any issues if the first copy was to a blank `MyList`)
 
 1. Stack
-   - `free` memory for `ft::stack<std::string>` instances
-   - test with other data types (not container types)
    - `<int> stacks` won't have seg fault when `pop()` empty stack, but `<std::string> stacks` will seg fault
    - `stack<int, ft::vector<int>>`: no matching constructor within `ft::vector`
+   - `<std::string>` only works in Mac. But will leak if over 23 characters.
 2. Class naming method: `ft::vector` or `ft::Vector`?
 3. Vector
 

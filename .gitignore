@@ -1,5 +1,6 @@
 a.out
 ft_container
+test_map
 test_stack
 test_vector
 *.o

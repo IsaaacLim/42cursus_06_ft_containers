@@ -3,7 +3,7 @@ NAME		=	ft_container
 SRCS		=	main.cpp
 
 HDRS_DIR	=	./includes/
-HDRS_LST	=	MyList.hpp stack.hpp	vector.hpp VectorIterator.hpp
+HDRS_LST	=	map.hpp MyList.hpp stack.hpp	vector.hpp VectorIterator.hpp
 HDRS		=	$(addprefix $(HDRS_DIR), $(HDRS_LST))
 
 INCLUDES	=	-I $(HDRS_DIR)
@@ -22,6 +22,10 @@ test_stack : TestScripts/stack.cpp TestScripts/utils.cpp
 	@echo "!!!!!Change =std=c++11 & typedef<<>>!!!!!"
 
 test_vector : TestScripts/vector.cpp TestScripts/utils.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@ && ./$@
+	@echo "!!!!!Change =std=c++11 & typedef<<>>!!!!!"
+
+test_map : TestScripts/map.cpp TestScripts/utils.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@ && ./$@
 	@echo "!!!!!Change =std=c++11 & typedef<<>>!!!!!"
 
