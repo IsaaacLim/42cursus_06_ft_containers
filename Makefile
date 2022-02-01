@@ -37,6 +37,7 @@ fclean :
 	rm -f $(NAME)
 	rm -f test_vector
 	rm -f test_stack
+	rm -f test_map
 
 re : fclean all
 

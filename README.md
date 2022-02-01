@@ -38,6 +38,8 @@
 4. VectorIterator
    - how to invoke the `operator->`?
 5. Change `Makefile` to using -std=c++98, add spacing to `<<>>`, remove `Makefile` comments
+6. Map
+   - How to pass comparator function during initiation
 
 ### Resources
 
@@ -101,6 +103,11 @@ Usage examples (here)[https://www.geeksforgeeks.org/stdallocator-in-cpp-with-exa
 #### Iterator usage for vector
 
 - To prevent invalidation (how to reassign)[https://thispointer.com//stdvector-and-iterator-invalidation/]
+
+#### map comparator
+
+- default comparator is `less`
+- other ways to go about it (here)[https://linuxhint.com/map-comparator-c/]
 
 ### Notes
 
