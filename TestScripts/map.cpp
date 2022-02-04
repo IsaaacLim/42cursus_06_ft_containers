@@ -175,9 +175,9 @@ void map_int()
 		printInsertionStatus(pair1.first, pair1.second, "map.insert(std::pair<int, int>(5, n))\t: ");
 		map.insert(map2.begin(), map2.end()); // overload 7: no return value
 		std::cout << "map.insert(map2.begin(), map2.end()), no return value\n"; // doesn't override pre-existing keys
-		print_map(map, "map:\n");
+		print_map(map, "After insert, map:\n");
 
-
+		map.erase(map.begin() + 1);
 	}
 }
 
