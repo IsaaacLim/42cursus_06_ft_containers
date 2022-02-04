@@ -13,7 +13,7 @@ void print_title(std::string str);
 void print_subtitle(std::string str);
 
 template <typename T, typename U, typename V>
-void print_map(ft::map<T, U, V> map, std::string str)
+void print_map(ft::map<T, U, V> map, std::string str, bool space)
 {
 	typename ft::map<T, U, V>::iterator it;
 
@@ -21,7 +21,8 @@ void print_map(ft::map<T, U, V> map, std::string str)
 		std::cout << str;
 	for (it = map.begin(); it != map.end(); it++)
 		std::cout << std::setw(5) << it->first << " | " << it->second << '\n';
-	std::cout << std::endl;
+	if (space)
+		std::cout << '\n';
 }
 
 template <typename It>
@@ -57,12 +58,12 @@ void map_int()
 		map['a'] = -3;
 		map[2] = -4;
 
-		const std::allocator<std::pair<const int, int> > alloc;
+		const std::allocator<std::pair<const int, int>> alloc;
 		// ft::map<int, int> map2(map.begin(), map.end(), alloc); //(2, c++14)
 		ft::map<int, int> map2(map.begin(), map.end()); //(2)
-		ft::map<int, int> map3(map);						   // (3)
-		ft::map<int, int, std::less<int> > map4 = map;		   // (3)
-		ft::map<char, int, std::greater<char> > map5;		   // (1)
+		ft::map<int, int> map3(map);					// (3)
+		ft::map<int, int, std::less<int>> map4 = map;	// (3)
+		ft::map<char, int, std::greater<char>> map5;	// (1)
 		// ft::map<int, int> map6(std::greater<int>); // can compile but can't modify
 		// ft::map<int, int> map7(map.begin(), map.end(), comparator, alloc); // doesn't work
 
@@ -71,13 +72,13 @@ void map_int()
 		map5['b'] = -20;
 		map5['A'] = 100;
 
-		print_map(map, "map:\n");
-		print_map(map2, "map2:\n");
-		print_map(map3, "map3:\n");
-		print_map(map4, "map4:\n");
-		print_map(map5, "map5:\n");
+		print_map(map, "map:\n", 1);
+		print_map(map2, "map2:\n", 1);
+		print_map(map3, "map3:\n", 1);
+		print_map(map4, "map4:\n", 1);
+		print_map(map5, "map5:\n", 1);
 
-		std::allocator<std::pair<const int, int> > Allocator;
+		std::allocator<std::pair<const int, int>> Allocator;
 		std::pair<const int, int> *ptr = NULL;
 		Allocator = map.get_allocator();
 		ptr = Allocator.allocate(10);
@@ -94,7 +95,7 @@ void map_int()
 	map[2] = 20;
 	map[3] = 30;
 	map[4] = 40;
-	print_map(map, "Initial map:\n");
+	print_map(map, "Initial map:\n", 1);
 
 	// Element Access
 	{
@@ -127,6 +128,8 @@ void map_int()
 		std::cout << "\nReverse_iterator:\n";
 		for (itr = map.rbegin(); itr != map.rend(); itr++)
 			std::cout << itr->first << " => " << itr->second << '\n';
+
+		// Notes: no += or -= operator
 	}
 
 	// Capacity
@@ -153,33 +156,48 @@ void map_int()
 
 		ft::map<int, int> map2;
 		ft::map<int, int>::iterator it;
-		std::pair<ft::map<int,int>::iterator, bool> pair1;
+		std::pair<ft::map<int, int>::iterator, bool> pair1;
 
 		map2[1] = 'a';
 		map2[2] = 'b';
 		map2[3] = 'c';
+		map2[4] = 'd';
 		map2[5] = 42;
 		map2[5] = 24;
+		map2[6] = 'f';
+		map2[7] = 'g';
+		map2[8] = 'h';
 
-		print_map(map2, "map2:\n");
+		print_map(map2, "map2:\n", 1);
 
 		map.clear();
-		std::cout << "map.clear(), map.size()\t\t\t: " << map.size() << '\n';
+		std::cout << "map.clear(), map.size()\t\t\t: " << map.size() << "\n\n";
 
 		it = map2.find(3);
-		pair1 = map.insert(*it); // overload 1: insert from lvalue reference
+		pair1 = map.insert(*it); // (1): insert from lvalue reference
 		printInsertionStatus(pair1.first, pair1.second, "map.insert(*it)\t\t\t\t: ");
-		pair1 = map.insert(std::pair<int, int>(5, -99)); //overload1 maybe?
+		pair1 = map.insert(std::pair<int, int>(5, -99)); // (1) maybe?
 		printInsertionStatus(pair1.first, pair1.second, "map.insert(std::pair<int, int>(5, n))\t: ");
-		pair1 = map.insert(std::pair<int, int>(5, -999999)); //overload1 fail
+		pair1 = map.insert(std::pair<int, int>(5, -999999)); //(1) fail
 		printInsertionStatus(pair1.first, pair1.second, "map.insert(std::pair<int, int>(5, n))\t: ");
-		map.insert(map2.begin(), map2.end()); // overload 7: no return value
+		map.insert(map2.begin(), map2.end());									// (7): no return value
 		std::cout << "map.insert(map2.begin(), map2.end()), no return value\n"; // doesn't override pre-existing keys
-		print_map(map, "After insert, map:\n");
+		print_map(map, "After insert, map:\n", 1);
 
-		it = map.begin();
-		map.erase((it + 1));
-		print_map(map, "After erase, map:\n");
+		map.erase(++map.begin()); // (1)
+		print_map(map, "map.erase(++map.begin()), map:\n", 0);
+		it = --map.end();
+		it--;
+		map.erase(map.begin(), --it); // (2)
+		print_map(map, "map.erase(map.begin(), it), map:\n", 0);
+		std::cout << "map.erase(-1), n of element erased\t: " << map.erase(-1) << '\n'; // (3)
+		std::cout << "map.erase(7), n of element erased\t: " << map.erase(7) << '\n';
+		print_map(map, "map.erase(7), map:\n", 1);
+
+		map.swap(map2);
+		std::cout << "map.swap(map2)\n";
+		print_map(map, "map:\n", 0);
+		print_map(map2, "map2:\n", 1);
 	}
 }
 
