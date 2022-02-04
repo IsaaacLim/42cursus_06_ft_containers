@@ -199,6 +199,11 @@ void map_int()
 		print_map(map, "map:\n", 0);
 		print_map(map2, "map2:\n", 1);
 	}
+
+	// Lookup
+	{
+		print_subtitle("Lookup");
+	}
 }
 
 int main()
