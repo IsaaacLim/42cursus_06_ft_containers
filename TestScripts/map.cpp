@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 #if 1
 #include <map>
@@ -19,8 +20,16 @@ void print_map(ft::map<T, U, V> map, std::string str)
 	if (!str.empty())
 		std::cout << str;
 	for (it = map.begin(); it != map.end(); it++)
-		std::cout << "\t" << it->first << "\t" << it->second << '\n';
+		std::cout << std::setw(5) << it->first << " | " << it->second << '\n';
 	std::cout << std::endl;
+}
+
+template <typename It>
+void printInsertionStatus(It it, bool success, std::string str) // method from cppreference
+{
+	if (!str.empty())
+		std::cout << str;
+	std::cout << "Insertion of " << it->first << (success ? " succeeded\n" : " failed\n");
 }
 
 template <typename T, typename U> // not used
@@ -48,11 +57,12 @@ void map_int()
 		map['a'] = -3;
 		map[2] = -4;
 
-		const std::allocator<std::pair<const int, int>> alloc;
-		ft::map<int, int> map2(map.begin(), map.end(), alloc); //(2)
+		const std::allocator<std::pair<const int, int> > alloc;
+		// ft::map<int, int> map2(map.begin(), map.end(), alloc); //(2, c++14)
+		ft::map<int, int> map2(map.begin(), map.end()); //(2)
 		ft::map<int, int> map3(map);						   // (3)
-		ft::map<int, int, std::less<int>> map4 = map;		   // (3)
-		ft::map<char, int, std::greater<char>> map5;		   // (1)
+		ft::map<int, int, std::less<int> > map4 = map;		   // (3)
+		ft::map<char, int, std::greater<char> > map5;		   // (1)
 		// ft::map<int, int> map6(std::greater<int>); // can compile but can't modify
 		// ft::map<int, int> map7(map.begin(), map.end(), comparator, alloc); // doesn't work
 
@@ -67,7 +77,7 @@ void map_int()
 		print_map(map4, "map4:\n");
 		print_map(map5, "map5:\n");
 
-		std::allocator<std::pair<const int, int>> Allocator;
+		std::allocator<std::pair<const int, int> > Allocator;
 		std::pair<const int, int> *ptr = NULL;
 		Allocator = map.get_allocator();
 		ptr = Allocator.allocate(10);
@@ -75,6 +85,7 @@ void map_int()
 		Allocator.deallocate(ptr, 10);
 	}
 
+	std::cout << "\n\n";
 	print_subtitle("-----");
 	ft::map<int, int> map;
 	int num;
@@ -140,8 +151,33 @@ void map_int()
 	{
 		print_subtitle("Modifiers");
 
+		ft::map<int, int> map2;
+		ft::map<int, int>::iterator it;
+		std::pair<ft::map<int,int>::iterator, bool> pair1;
+
+		map2[1] = 'a';
+		map2[2] = 'b';
+		map2[3] = 'c';
+		map2[5] = 42;
+		map2[5] = 24;
+
+		print_map(map2, "map2:\n");
+
 		map.clear();
 		std::cout << "map.clear(), map.size()\t\t\t: " << map.size() << '\n';
+
+		it = map2.find(3);
+		pair1 = map.insert(*it); // overload 1: insert from lvalue reference
+		printInsertionStatus(pair1.first, pair1.second, "map.insert(*it)\t\t\t\t: ");
+		pair1 = map.insert(std::pair<int, int>(5, -99)); //overload1 maybe?
+		printInsertionStatus(pair1.first, pair1.second, "map.insert(std::pair<int, int>(5, n))\t: ");
+		pair1 = map.insert(std::pair<int, int>(5, -999999)); //overload1 fail
+		printInsertionStatus(pair1.first, pair1.second, "map.insert(std::pair<int, int>(5, n))\t: ");
+		map.insert(map2.begin(), map2.end()); // overload 7: no return value
+		std::cout << "map.insert(map2.begin(), map2.end()), no return value\n"; // doesn't override pre-existing keys
+		print_map(map, "map:\n");
+
+
 	}
 }
 
