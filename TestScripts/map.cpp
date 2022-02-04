@@ -177,7 +177,9 @@ void map_int()
 		std::cout << "map.insert(map2.begin(), map2.end()), no return value\n"; // doesn't override pre-existing keys
 		print_map(map, "After insert, map:\n");
 
-		map.erase(map.begin() + 1);
+		it = map.begin();
+		map.erase((it + 1));
+		print_map(map, "After erase, map:\n");
 	}
 }
 
