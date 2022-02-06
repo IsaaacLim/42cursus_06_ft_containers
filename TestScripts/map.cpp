@@ -203,6 +203,42 @@ void map_int()
 	// Lookup
 	{
 		print_subtitle("Lookup");
+
+		ft::map<int, int>::iterator it;
+		ft::map<int, int>::const_iterator const_it;
+		std::pair<ft::map<int, int>::iterator, ft::map<int, int>::iterator> pair;
+
+		std::cout << "map.count(2), 1 or 0\t\t\t: " << map.count(2) << '\n';
+		std::cout << "map.count(-1), 1 or 0\t\t\t: " << map.count(-1) << '\n';
+
+		it = map.find(5);
+		const_it = map.find(8);
+		if (it != map.end())
+			std::cout << "map.find()\t\t\t\t: Found, " << it->first << " => " << (*it).second << '\n';
+		else
+			std::cout << "map.find()\t\t\t\t: Not Found\n";
+		if (const_it != map.end())
+			std::cout << "map.find()\t\t\t\t: Found, " << const_it->first << " => " << const_it->second << '\n';
+		else
+			std::cout << "map.find()\t\t\t\t: Not Found\n";
+
+		pair = map.equal_range(2);
+		for (it = pair.first; it != pair.second; ++it)
+			std::cout << "map[" << it->first << "] = " << it->second << '\n';
+		if (pair.second == map.find(3))
+			std::cout << "end of equal_range (pair.second) is one-past pair.first\n";
+		else
+			std::cout << "unexpected, pair.second expecte to be one-past pair.first\n";
+		map.erase(4);
+		pair = map.equal_range(4);
+		if (pair.first == map.find(5))
+			std::cout << "pair.first is iterator to first not-less than 4\n";
+		else
+			std::cout << "unexpected pair.first\n";
+		if (pair.second == map.find(5))
+			std::cout << "pair.second is iterator to first element greater-than 5\n";
+		else
+			std::cout << "unexpected pair.second\n";
 	}
 }
 
