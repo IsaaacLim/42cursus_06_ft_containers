@@ -38,6 +38,7 @@ fclean :
 	rm -f test_vector
 	rm -f test_stack
 	rm -f test_map
+	rm -rf *.dSYM
 
 re : fclean all
 
