@@ -37,6 +37,12 @@ void printInsertionStatus(It it, bool success, std::string str) // method from c
 	std::cout << "Insertion of " << it->first << (success ? " succeeded\n" : " failed\n");
 }
 
+// WORKING HERE
+template <typename T, typename U>
+void comparison_operator(const T &lhs, const T &rhs, std::string cont1, std::string cont2)
+{
+
+}
 // Example module 97 key compare function from cppreference.com's key_comp
 struct ModCmp {
 	bool operator()(const int lhs, const int rhs) const{
@@ -306,6 +312,19 @@ void map_int()
 				assert(0); // Cannot happen
 		}
 
+	}
+
+	{ // Non-member functions
+		print_subtitle("Non-member Functions");
+
+		ft::map<int, int> map2, map3, map4;
+
+		map2 = map3 = map4 = map;
+		print_map(map, "map1:\n", 0);
+		print_map(map2, "map2:\n", 0);
+		print_map(map3, "map3:\n", 0);
+		print_map(map4, "map4:\n", 1);
+		std::cout <<
 	}
 }
 
