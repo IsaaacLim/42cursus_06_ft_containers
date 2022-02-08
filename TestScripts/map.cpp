@@ -36,14 +36,12 @@ void printInsertionStatus(It it, bool success, std::string str) // method from c
 	std::cout << "Insertion of " << it->first << (success ? " succeeded\n" : " failed\n");
 }
 
-template <typename T, typename U> // not used
-ft::map<T, U> comparator(ft::map<T, U> map1, ft::map<T, U> map2)
-{
-	if (map1 < map2)
-		return (map1);
-	else
-		return (map2);
-}
+// Example module 97 key compare function from cppreference.com's key_comp
+struct ModCmp {
+	bool operator()(const int lhs, const int rhs) const{
+		return (lhs % 97) < (rhs %97);
+	}
+};
 
 void map_int()
 {
@@ -66,8 +64,9 @@ void map_int()
 		ft::map<int, int> map3(map);					// (3)
 		ft::map<int, int, std::less<int> > map4 = map;	// (3)
 		ft::map<char, int, std::greater<char> > map5;	// (1)
-		// ft::map<int, int> map6(std::greater<int>); // can compile but can't modify
-		// ft::map<int, int> map7(map.begin(), map.end(), comparator, alloc); // doesn't work
+		ft::map<char, int, ModCmp> map6;
+		// ft::map<int, int> map7(std::greater<int>); // can compile but can't modify
+		// ft::map<int, int> map8(map.begin(), map.end(), ModCmp, alloc); // doesn't work
 
 		map5['a'] = 1;
 		map5['B'] = 10;
@@ -79,6 +78,7 @@ void map_int()
 		print_map(map3, "map3:\n", 1);
 		print_map(map4, "map4:\n", 1);
 		print_map(map5, "map5:\n", 1);
+		print_map(map6, "map6:\n", 1);
 
 		std::allocator<std::pair<const int, int> > Allocator;
 		std::pair<const int, int> *ptr = NULL;
@@ -250,6 +250,10 @@ void map_int()
 		std::cout << "map.upper_bound(3)\t\t\t: " << it->first << " => " << it->second << '\n';
 		std::cout << "map.upper_bound(5)\t\t\t: " << const_it->first << " => " << const_it->second << '\n';
 
+	}
+
+	{ // Observers
+		print_subtitle("Observers");
 	}
 }
 
