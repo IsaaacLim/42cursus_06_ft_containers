@@ -2,6 +2,9 @@
 #include <string>
 #include <iomanip>
 
+#define YELLOW "\033[3;33m"
+#define RESET "\033[0m"
+
 #if 1
 #include <map>
 namespace ft = std;
@@ -46,8 +49,7 @@ void map_int()
 {
 	print_title("Map");
 
-	// Member Functions
-	{
+	{ // Member Functions
 		print_subtitle("Member Functions");
 
 		ft::map<int, int> map; // (1)
@@ -58,12 +60,12 @@ void map_int()
 		map['a'] = -3;
 		map[2] = -4;
 
-		const std::allocator<std::pair<const int, int>> alloc;
+		const std::allocator<std::pair<const int, int> > alloc;
 		// ft::map<int, int> map2(map.begin(), map.end(), alloc); //(2, c++14)
 		ft::map<int, int> map2(map.begin(), map.end()); //(2)
 		ft::map<int, int> map3(map);					// (3)
-		ft::map<int, int, std::less<int>> map4 = map;	// (3)
-		ft::map<char, int, std::greater<char>> map5;	// (1)
+		ft::map<int, int, std::less<int> > map4 = map;	// (3)
+		ft::map<char, int, std::greater<char> > map5;	// (1)
 		// ft::map<int, int> map6(std::greater<int>); // can compile but can't modify
 		// ft::map<int, int> map7(map.begin(), map.end(), comparator, alloc); // doesn't work
 
@@ -78,7 +80,7 @@ void map_int()
 		print_map(map4, "map4:\n", 1);
 		print_map(map5, "map5:\n", 1);
 
-		std::allocator<std::pair<const int, int>> Allocator;
+		std::allocator<std::pair<const int, int> > Allocator;
 		std::pair<const int, int> *ptr = NULL;
 		Allocator = map.get_allocator();
 		ptr = Allocator.allocate(10);
@@ -97,8 +99,7 @@ void map_int()
 	map[4] = 40;
 	print_map(map, "Initial map:\n", 1);
 
-	// Element Access
-	{
+	{ // Element Access
 		print_subtitle("Element Access");
 		num = map.at(3);
 		std::cout << "map.at(3)\t\t\t\t: " << num << "\n";
@@ -115,8 +116,7 @@ void map_int()
 		std::cout << "map[5]\t\t\t\t\t: " << map[-10] << '\n'; // performs an insertion
 	}
 
-	// Iterators
-	{
+	{ // Iterators
 		print_subtitle("Iterators");
 
 		ft::map<int, int>::iterator it;
@@ -132,8 +132,7 @@ void map_int()
 		// Notes: no += or -= operator
 	}
 
-	// Capacity
-	{
+	{ // Capacity
 		print_subtitle("Capacity");
 
 		ft::map<size_t, int> map2;
@@ -150,8 +149,7 @@ void map_int()
 		std::cout << "map4.max_size()\t\t\t\t: " << map4.max_size() << '\n';
 	}
 
-	// Modifiers
-	{
+	{ // Modifiers
 		print_subtitle("Modifiers");
 
 		ft::map<int, int> map2;
@@ -200,13 +198,13 @@ void map_int()
 		print_map(map2, "map2:\n", 1);
 	}
 
-	// Lookup
-	{
+	{ // Lookup
 		print_subtitle("Lookup");
 
 		ft::map<int, int>::iterator it;
 		ft::map<int, int>::const_iterator const_it;
 		std::pair<ft::map<int, int>::iterator, ft::map<int, int>::iterator> pair;
+		std::pair<ft::map<int, int>::const_iterator, ft::map<int, int>::const_iterator> const_pair;
 
 		std::cout << "map.count(2), 1 or 0\t\t\t: " << map.count(2) << '\n';
 		std::cout << "map.count(-1), 1 or 0\t\t\t: " << map.count(-1) << '\n';
@@ -214,31 +212,44 @@ void map_int()
 		it = map.find(5);
 		const_it = map.find(8);
 		if (it != map.end())
-			std::cout << "map.find()\t\t\t\t: Found, " << it->first << " => " << (*it).second << '\n';
+			std::cout << "map.find(5)\t\t\t\t: Found, " << it->first << " => " << (*it).second << '\n';
 		else
-			std::cout << "map.find()\t\t\t\t: Not Found\n";
+			std::cout << "map.find(5)\t\t\t\t: Not Found\n";
 		if (const_it != map.end())
-			std::cout << "map.find()\t\t\t\t: Found, " << const_it->first << " => " << const_it->second << '\n';
+			std::cout << "map.find(8)\t\t\t\t: Found, " << const_it->first << " => " << const_it->second << '\n';
 		else
-			std::cout << "map.find()\t\t\t\t: Not Found\n";
+			std::cout << "map.find(8)\t\t\t\t: Not Found\n";
 
+		std::cout << "map.equal_range():\n";
 		pair = map.equal_range(2);
 		for (it = pair.first; it != pair.second; ++it)
-			std::cout << "map[" << it->first << "] = " << it->second << '\n';
+			std::cout << "\tmap[" << it->first << "] = " << it->second << '\n';
 		if (pair.second == map.find(3))
-			std::cout << "end of equal_range (pair.second) is one-past pair.first\n";
+			std::cout << "\tend of equal_range (pair.second) is one-past pair.first\n";
 		else
-			std::cout << "unexpected, pair.second expecte to be one-past pair.first\n";
-		map.erase(4);
-		pair = map.equal_range(4);
-		if (pair.first == map.find(5))
-			std::cout << "pair.first is iterator to first not-less than 4\n";
+			std::cout << "\tunexpected, pair.second expected to be one-past pair.first\n";
+		map.erase(4); // erased key = 4
+		std::cout << YELLOW"\t*map.erase(4)*\n"RESET;
+		const_pair = map.equal_range(4); // this key is not present anymore
+		if (const_pair.first == map.find(5))
+			std::cout << "\tpair.first is iterator to first not-less than 4\n";
 		else
-			std::cout << "unexpected pair.first\n";
-		if (pair.second == map.find(5))
-			std::cout << "pair.second is iterator to first element greater-than 5\n";
+			std::cout << "\tunexpected pair.first\n";
+		if (const_pair.second == map.find(5))
+			std::cout << "\tpair.second is iterator to first element greater-than 5\n";
 		else
-			std::cout << "unexpected pair.second\n";
+			std::cout << "\tunexpected pair.second\n";
+
+		it = map.lower_bound(3);
+		const_it = map.lower_bound(4); // this key is not present anymore
+		std::cout << "map.lower_bound(3)\t\t\t: " << it->first << " => " << it->second << '\n';
+		std::cout << "map.lower_bound(4)\t\t\t: " << const_it->first << " => " << const_it->second << '\n';
+
+		it = map.upper_bound(3);
+		const_it = map.upper_bound(5); // this key is not present anymore
+		std::cout << "map.upper_bound(3)\t\t\t: " << it->first << " => " << it->second << '\n';
+		std::cout << "map.upper_bound(5)\t\t\t: " << const_it->first << " => " << const_it->second << '\n';
+
 	}
 }
 
