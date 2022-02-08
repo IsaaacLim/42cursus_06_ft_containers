@@ -254,6 +254,9 @@ void map_int()
 
 	{ // Observers
 		print_subtitle("Observers");
+
+		ft::map<int, char, ModCmp> map2;
+
 	}
 }
 
