@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <cassert> // for assert()
 
 #define YELLOW "\033[3;33m"
 #define RESET "\033[0m"
@@ -255,7 +256,55 @@ void map_int()
 	{ // Observers
 		print_subtitle("Observers");
 
-		ft::map<int, char, ModCmp> map2;
+		ft::map<int, char, ModCmp> map_cmp;
+		ft::map<int, char, ModCmp>::key_compare key_comp_func;
+		ft::map<int, char, ModCmp>::value_compare val_comp_func = map_cmp.value_comp();
+		ft::map<int, char, ModCmp>::iterator it;
+		std::pair<int, char> val;
+		bool before;
+		bool after;
+
+		key_comp_func = map_cmp.key_comp();
+		map_cmp[1] = 'a';
+		map_cmp[2] = 'b';
+		map_cmp[3] = 'c';
+		map_cmp[4] = 'd';
+		map_cmp[5] = 'e';
+		print_map(map_cmp, "map_cmp:\n", 1);
+
+		std::cout << "using map_cmp.key_comp():\n";
+		for (it = map_cmp.begin(); it != map_cmp.end(); it++)
+		{
+			before = key_comp_func(it->first, 100);
+			after = key_comp_func(100, it->first);
+			std::cout << "\t(" << it->first << "," << it->second;
+			if (!before && !after)
+				std::cout << ") equivalent to key 100\n";
+			else if (before)
+				std::cout << ") goes before key 100\n";
+			else if (after)
+				std::cout << ") goes after key 100\n";
+			else
+				assert(0); // Cannot happen
+		}
+
+		std::cout << "using map_cmp.value_comp():\n";
+		val.first = 100;
+		val.second = 'a';
+		for (it = map_cmp.begin(); it != map_cmp.end(); it++)
+		{
+			before = val_comp_func(*it, val);
+			after = val_comp_func(val, *it);
+			std::cout << "\t(" << it->first << "," << it->second;
+			if (!before && !after)
+				std::cout << ") equivalent to key " << val.first << '\n';
+			else if (before)
+				std::cout << ") goes before key " << val.first << '\n';
+			else if (after)
+				std::cout << ") goes after key " << val.first << '\n';
+			else
+				assert(0); // Cannot happen
+		}
 
 	}
 }
