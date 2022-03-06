@@ -37,12 +37,19 @@ void printInsertionStatus(It it, bool success, std::string str) // method from c
 	std::cout << "Insertion of " << it->first << (success ? " succeeded\n" : " failed\n");
 }
 
-// WORKING HERE
 template <typename T, typename U>
-void comparison_operator(const T &lhs, const T &rhs, std::string cont1, std::string cont2)
+void comparison_operator(const ft::map<T, U> &lhs, const ft::map<T, U> &rhs, std::string cont1, std::string cont2)
 {
-
+	std::cout << std::boolalpha << "\n";
+	std::cout << cont1 << " == " << cont2 << "\t?\t: " << (lhs == rhs) << "\n";
+	std::cout << cont1 << " != " << cont2 << "\t?\t: " << (lhs != rhs) << "\n";
+	std::cout << cont1 << " < " << cont2 << "\t?\t: " << (lhs < rhs) << "\n";
+	std::cout << cont1 << " <= " << cont2 << "\t?\t: " << (lhs <= rhs) << "\n";
+	std::cout << cont1 << " > " << cont2 << "\t?\t: " << (lhs > rhs) << "\n";
+	std::cout << cont1 << " >= " << cont2 << "\t?\t: " << (lhs >= rhs) << "\n";
+	std::cout << std::noboolalpha;
 }
+
 // Example module 97 key compare function from cppreference.com's key_comp
 struct ModCmp {
 	bool operator()(const int lhs, const int rhs) const{
@@ -236,7 +243,7 @@ void map_int()
 		else
 			std::cout << "\tunexpected, pair.second expected to be one-past pair.first\n";
 		map.erase(4); // erased key = 4
-		std::cout << YELLOW"\t*map.erase(4)*\n"RESET;
+		std::cout << YELLOW "\t*map.erase(4)*\n" RESET;
 		const_pair = map.equal_range(4); // this key is not present anymore
 		if (const_pair.first == map.find(5))
 			std::cout << "\tpair.first is iterator to first not-less than 4\n";
@@ -314,6 +321,8 @@ void map_int()
 
 	}
 
+
+// WORKING HERE
 	{ // Non-member functions
 		print_subtitle("Non-member Functions");
 
@@ -323,8 +332,15 @@ void map_int()
 		print_map(map, "map1:\n", 0);
 		print_map(map2, "map2:\n", 0);
 		print_map(map3, "map3:\n", 0);
-		print_map(map4, "map4:\n", 1);
-		std::cout <<
+		print_map(map4, "map4:\n", 0);
+
+		//edit maps to make them different
+
+
+
+		comparison_operator(map, map2, "map1", "map2");
+		comparison_operator(map, map3, "map1", "map3");
+		comparison_operator(map, map4, "map1", "map4");
 	}
 }
 
