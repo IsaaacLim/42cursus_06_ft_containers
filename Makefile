@@ -9,7 +9,7 @@ HDRS		=	$(addprefix $(HDRS_DIR), $(HDRS_LST))
 INCLUDES	=	-I $(HDRS_DIR)
 
 CXX			=	clang++
-CXXFLAGS	=	-std=c++98 -pedantic-errors -Wall -Wextra -Werror -g
+CXXFLAGS	=	-std=c++11 -pedantic-errors -Wall -Wextra -Werror -g
 
 all : $(NAME)
 

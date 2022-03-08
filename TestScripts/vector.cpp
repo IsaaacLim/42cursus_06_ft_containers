@@ -413,7 +413,7 @@ void vector_data_types()
 		ft::vector<std::string> vec_str;
 		ft::vector<std::string>::iterator it;
 
-		vec_str.push_back("First"); // segfault at vector.hpp > push_back() > _arr[_current] = input;
+		vec_str.push_back("First");
 		vec_str.push_back("S e c o n d");
 		vec_str.push_back("1234567890");
 		vec_str.push_back("!@#$%^&*()_+=");

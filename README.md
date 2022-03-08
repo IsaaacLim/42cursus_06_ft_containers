@@ -98,16 +98,35 @@ int main() {
 
 #### std::allocator
 
-Usage examples (here)[https://www.geeksforgeeks.org/stdallocator-in-cpp-with-examples/]
+- Usage examples [here](https://www.geeksforgeeks.org/stdallocator-in-cpp-with-examples/)
+- for `std::string` values on a `std::string` container, segfault will occur without using a feature called [_placement new_](https://en.cppreference.com/w/cpp/language/new#Placement_new).
+
+  - This will call constructor on a given pointer address
+  - sample code
+
+  ```
+  this->_ptr = _alloc.allocate((this->_cap * sizeof(value_type)));
+  for (size_type i = 0; i < this->_cap; i++)
+     new (this->_ptr + i) value_type;
+
+  ...
+
+  for (size_type i = 0; i < this->cap; i++)
+     (this->_ptr + i)->~value_type();
+  _alloc.deallocate(this->ptr, this->_curr_len);
+  ```
+
+  - Without _placement new_, the segfault occurs when accessing `this->ptr[0]` after `_alloc.allocate` without doing the initialization
+  - [stackoverflow ref](https://stackoverflow.com/questions/68239801/stdto-string-return-empty-string-when-using-stdallocator)
 
 #### Iterator usage for vector
 
-- To prevent invalidation (how to reassign)[https://thispointer.com//stdvector-and-iterator-invalidation/]
+- To prevent invalidation [how to reassign](https://thispointer.com//stdvector-and-iterator-invalidation/)
 
 #### map comparator
 
 - default comparator is `less`
-- other ways to go about it (here)[https://linuxhint.com/map-comparator-c/]
+- other ways to go about it [here](https://linuxhint.com/map-comparator-c/)
 
 ### Notes
 
