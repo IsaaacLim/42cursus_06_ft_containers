@@ -10,7 +10,7 @@ void print_title(std::string str);
 void print_subtitle(std::string str);
 
 template <typename T>
-void print_vector(ft::vector<T> &vec, std::string str) //make for const &vec
+void print_vector(ft::vector<T> &vec, std::string str) // make for const &vec
 {
 	typename ft::vector<T>::iterator it;
 
@@ -289,10 +289,10 @@ void vector_int()
 		print_vector(vec, "pop_back()\t\t\t\t: ");
 		vec.insert(vec.begin(), 100);
 		print_vector(vec, "insert(.begin(), 100)\t\t\t: ");
-		it = vec.insert(vec.begin() + 2, 200); //insert at the end is OK too
+		it = vec.insert(vec.begin() + 2, 200); // insert at the end is OK too
 		print_vector(vec, "insert(.begin() + 2, 200)\t\t: ");
 		std::cout << "*it returned from insert()\t\t: " << *it << '\n';
-		vec.insert(vec.begin() + 4, 2, 300); //over limit, lib will seg fault, mine just returns
+		vec.insert(vec.begin() + 4, 2, 300); // over limit, lib will seg fault, mine just returns
 		print_vector(vec, "insert(.begin() + 4, 2, 300)\t\t: ");
 		vec.insert(vec.begin() + 3, 2, 300);
 		print_vector(vec, "insert(.begin() + 3, 2, 300)\t\t: ");
@@ -469,8 +469,8 @@ void vector_data_types()
 
 int main()
 {
-	vector_iterator();
-	vector_int();
+	// vector_iterator();
+	// vector_int();
 	vector_data_types();
 
 	/* Testing for ft::vector<std::string>

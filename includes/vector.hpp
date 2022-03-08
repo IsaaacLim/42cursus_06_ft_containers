@@ -418,17 +418,8 @@ typename ft::vector<T, A>::iterator ft::vector<T, A>::erase(iterator first, iter
 template <typename T, typename A>
 void ft::vector<T, A>::push_back(const_reference input)
 {
-	pointer tmp;
-
 	if (_current == _capacity)
-	{
-		tmp = _alloc.allocate(2 * _capacity);	  // double capacity
-		for (size_type i = 0; i < _capacity; i++) // copy data to new array
-			tmp[i] = _arr[i];
-		_alloc.deallocate(_arr, _capacity); // delete prev array
-		_capacity *= 2;
-		_arr = tmp;
-	}
+		reserve(2 * _capacity);
 	_arr[_current++] = input;
 }
 
