@@ -1,5 +1,6 @@
 #include <iostream>
-#if 0 // CREATE A REAL STL EXAMPLE
+#include <stdio.h> // system leaks
+#if 0			   // CREATE A REAL STL EXAMPLE
 #include <vector>
 namespace ft = std;
 #else
@@ -485,4 +486,6 @@ int main()
 	std::cout << arr[0] << '\n';
 	alloc.deallocate(arr, 1);
 	*/
+
+	system("leaks ../test_vector");
 }
