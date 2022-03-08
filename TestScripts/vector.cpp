@@ -487,5 +487,5 @@ int main()
 	alloc.deallocate(arr, 1);
 	*/
 
-	system("leaks ../test_vector");
+	system("leaks test_vector");
 }
