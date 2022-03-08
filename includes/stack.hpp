@@ -6,7 +6,7 @@
 
 namespace ft
 {
-	template <class T, class Container = ft::MyList<T>>
+	template <class T, class Container = ft::MyList<T> >
 	class stack
 	{
 	public:

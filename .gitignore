@@ -5,3 +5,4 @@ test_stack
 test_vector
 *.o
 .vscode
+*.dSYM
