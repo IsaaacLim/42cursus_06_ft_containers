@@ -29,6 +29,10 @@ test_map : TestScripts/map.cpp TestScripts/utils.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@ && ./$@
 	@echo "!!!!!Change =std=c++11 & typedef<<>>!!!!!"
 
+# TEMP
+test_list : TestScripts/MyList.cpp TestScripts/utils.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@ && ./$@
+
 
 clean :
 	@echo no object files to clean
@@ -38,8 +42,9 @@ fclean :
 	rm -f test_vector
 	rm -f test_stack
 	rm -f test_map
+	rm -f test_list
 	rm -rf *.dSYM
 
 re : fclean all
 
-.PHONY : all clean fclean re test_vector test_stack
+.PHONY : all clean fclean re test_vector test_stack test_map test_list

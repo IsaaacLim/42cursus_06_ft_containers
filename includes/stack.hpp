@@ -1,7 +1,6 @@
 #ifndef STACK_HPP
 #define STACK_HPP
 
-#include "MyList.hpp"
 #include "vector.hpp"
 #include <iostream>
 
