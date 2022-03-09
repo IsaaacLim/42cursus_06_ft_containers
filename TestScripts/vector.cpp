@@ -356,26 +356,34 @@ void vector_data_types()
 			std::cout << *it << '\n';
 			it++;
 		}
+
+		vec.erase(vec.begin());
 	}
 
 	// String
 	{
 		print_subtitle("String");
-		ft::vector<std::string> vec_str;
+		ft::vector<std::string> vec;
 		ft::vector<std::string>::iterator it;
 
-		vec_str.push_back("First");
-		vec_str.push_back("S e c o n d");
-		vec_str.push_back("1234567890");
-		vec_str.push_back("!@#$%^&*()_+=");
-		vec_str.push_back("END");
+		vec.push_back("First");
+		vec.push_back("S e c o n d");
+		vec.push_back("1234567890");
+		vec.push_back("!@#$%^&*()_+=");
+		vec.push_back("END");
 
-		it = vec_str.begin();
-		while (it != vec_str.end())
+		vec.erase(vec.begin()); // WORKING HERE
+		it = vec.begin();
+		while (it != vec.end())
 		{
 			std::cout << *it << '\n';
 			it++;
 		}
+
+		// erase (1st overload)
+		// insert (1st overload)
+		// resize(should be ok)
+		// swap(s)
 	}
 
 	// Float
@@ -396,6 +404,8 @@ void vector_data_types()
 			std::cout << *it << '\n';
 			it++;
 		}
+
+		vec.erase(vec.begin());
 	}
 
 	// Double
@@ -416,6 +426,8 @@ void vector_data_types()
 			std::cout << *it << '\n';
 			it++;
 		}
+
+		vec.erase(vec.begin());
 	}
 }
 
@@ -423,7 +435,7 @@ int main()
 {
 	// vector_iterator();
 	vector_int();
-	// vector_data_types();
+	vector_data_types();
 
 	// system("leaks test_vector");
 }
