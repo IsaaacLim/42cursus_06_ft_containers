@@ -134,3 +134,7 @@ int main() {
 
 - `ft::vector<T>::insert(iterator pos, size_type count, const T &value)` had to be modified to `ft::vector<T>::insert(iterator pos, T count, const T &value)` to avoid function call being caught by `ft::vector<T>::insert(iterator pos, InputIt first, InputIt last)`
   - also, `explicit vector(T count, const T &value = T(), const Allocator &alloc = Allocator());`, which is supposed to be `size_type count`
+
+### Evaluation notes
+
+- use std::strings to create test cases. It'll catch function errors and leaks
