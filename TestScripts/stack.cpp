@@ -178,7 +178,7 @@ void stack_other_types()
 		ft::stack<char> stack_char;
 		ft::stack<float> stack_float;
 		ft::stack<bool> stack_bool;
-		// ft::stack<std::string> stack_str;
+		ft::stack<std::string> stack_str;
 
 		stack_char.push('a');
 		stack_char.push(0);
@@ -196,10 +196,10 @@ void stack_other_types()
 		print_stack(stack_bool, "stack<bool>\t\t\t\t: ");
 
 		/* fix this */
-		// stack_str.push("stringszzz");
-		// stack_str.push("1234567890");
-		// stack_str.push("~!@#$%^&*()_+=-}{][:/,."); // one more character will cause leak
-		// print_stack(stack_str, "stack<std::string>\t\t\t: ");
+		stack_str.push("stringszzz");
+		stack_str.push("1234567890");
+		stack_str.push("~!@#$%^&*()_+=-}{][:/,."); // one more character will cause leak
+												   // print_stack(stack_str, "stack<std::string>\t\t\t: ");
 	}
 }
 

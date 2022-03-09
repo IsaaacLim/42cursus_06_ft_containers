@@ -214,7 +214,11 @@ template <typename T, typename A>
 ft::vector<T, A>::vector(const vector &other) : _capacity(0) { *this = other; }
 
 template <typename T, typename A>
-ft::vector<T, A>::~vector(void) { _alloc.deallocate(_arr, _capacity); }
+ft::vector<T, A>::~vector(void)
+{
+	clear();
+	_alloc.deallocate(_arr, _capacity);
+}
 
 template <typename T, typename A>
 ft::vector<T, A> &ft::vector<T, A>::operator=(const vector &other)
@@ -341,8 +345,8 @@ void ft::vector<T, A>::clear(void)
 	if (_current <= 0)
 		return;
 	while (--_current > 0)
-		_arr[_current] = 0;
-	_arr[_current] = 0;
+		(_arr + _current)->~value_type();
+	_arr->~value_type();
 }
 
 template <typename T, typename A>
@@ -429,7 +433,10 @@ template <typename T, typename A>
 void ft::vector<T, A>::pop_back(void)
 {
 	if (_current > 0)
-		_arr[--_current] = 0;
+	{
+		(_arr + --_current)->~value_type();
+	}
+	// _arr[--_current] = 0;
 }
 
 template <typename T, typename A>
