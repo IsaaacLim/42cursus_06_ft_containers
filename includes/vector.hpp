@@ -320,20 +320,21 @@ template <typename T, typename A>
 void ft::vector<T, A>::reserve(size_type new_cap)
 {
 	pointer tmp;
+	size_type i;
 
-	if (new_cap > _capacity)
+	if (new_cap <= _capacity)
+		return;
+	tmp = _alloc.allocate(new_cap * sizeof(value_type));
+	for (i = 0; i < _current; i++)
 	{
-		tmp = _alloc.allocate(new_cap * sizeof(value_type));
-		for (size_type i = 0; i < _current; i++)
-		{
-			new (tmp + i) value_type; // placement new
-			tmp[i] = _arr[i];
-		}
-		clear();
-		_alloc.deallocate(_arr, _capacity);
-		_arr = tmp;
-		_capacity = new_cap;
+		new (tmp + i) value_type; // placement new
+		tmp[i] = _arr[i];
 	}
+	clear();
+	_alloc.deallocate(_arr, _capacity);
+	_arr = tmp;
+	_current = i;
+	_capacity = new_cap;
 }
 
 template <typename T, typename A>
@@ -347,6 +348,7 @@ void ft::vector<T, A>::clear(void)
 		return;
 	for (size_type i = 0; i < _current; i++)
 		(_arr + i)->~value_type();
+	_current = 0;
 }
 
 template <typename T, typename A>
@@ -433,10 +435,7 @@ template <typename T, typename A>
 void ft::vector<T, A>::pop_back(void)
 {
 	if (_current > 0)
-	{
 		(_arr + --_current)->~value_type();
-	}
-	// _arr[--_current] = 0;
 }
 
 template <typename T, typename A>

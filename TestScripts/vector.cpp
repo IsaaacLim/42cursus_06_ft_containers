@@ -26,6 +26,19 @@ void print_vector(ft::vector<T> &vec, std::string str) // make for const &vec
 	std::cout << '\n';
 }
 
+template <typename T>
+void comparison_operator(const T &lhs, const T &rhs, std::string cont1, std::string cont2)
+{
+	std::cout << std::boolalpha << '\n';
+	std::cout << cont1 << " == " << cont2 << "\t?\t: " << (lhs == rhs) << '\n';
+	std::cout << cont1 << " != " << cont2 << "\t?\t: " << (lhs != rhs) << '\n';
+	std::cout << cont1 << " < " << cont2 << "\t?\t: " << (lhs < rhs) << '\n';
+	std::cout << cont1 << " <= " << cont2 << "\t?\t: " << (lhs <= rhs) << '\n';
+	std::cout << cont1 << " > " << cont2 << "\t?\t: " << (lhs > rhs) << '\n';
+	std::cout << cont1 << " >= " << cont2 << "\t?\t: " << (lhs >= rhs) << '\n';
+	std::cout << std::noboolalpha;
+}
+
 void vector_iterator()
 {
 	print_title("Iterator");
@@ -76,34 +89,12 @@ void vector_iterator()
 		std::cout << "i[-1]\t\t: " << i[-1] << "\n\n";
 
 		j = i;
-		std::cout << "j = i\n";
-		std::cout << "i == j\t?\t: ";
-		i == j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i != j\t?\t: ";
-		i != j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i > j\t?\t: ";
-		i > j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i >= j\t?\t: ";
-		i >= j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i < j\t?\t: ";
-		i < j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i <= j\t?\t: ";
-		i <= j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "j = i";
+		comparison_operator(j, i, "j", "i");
 
 		j++;
-		std::cout << "j++\n";
-		std::cout << "i == j\t?\t: ";
-		i == j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i != j\t?\t: ";
-		i != j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i > j\t?\t: ";
-		i > j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i >= j\t?\t: ";
-		i >= j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i < j\t?\t: ";
-		i < j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i <= j\t?\t: ";
-		i <= j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "j++";
+		comparison_operator(j, i, "j", "i");
 	}
 
 	// Reverse Vector Iterator
@@ -152,34 +143,12 @@ void vector_iterator()
 		std::cout << "i[-1]\t\t: " << i[-1] << "\n\n";
 
 		j = i;
-		std::cout << "j = i\n";
-		std::cout << "i == j\t?\t: ";
-		i == j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i != j\t?\t: ";
-		i != j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i > j\t?\t: ";
-		i > j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i >= j\t?\t: ";
-		i >= j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i < j\t?\t: ";
-		i < j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i <= j\t?\t: ";
-		i <= j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "j = i";
+		comparison_operator(j, i, "j", "i");
 
 		j++;
-		std::cout << "j++\n";
-		std::cout << "i == j\t?\t: ";
-		i == j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i != j\t?\t: ";
-		i != j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i > j\t?\t: ";
-		i > j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i >= j\t?\t: ";
-		i >= j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i < j\t?\t: ";
-		i < j ? std::cout << "True\n" : std::cout << "False\n";
-		std::cout << "i <= j\t?\t: ";
-		i <= j ? std::cout << "True\n" : std::cout << "False\n";
+		std::cout << "j++";
+		comparison_operator(j, i, "j", "i");
 	}
 	std::cout << '\n';
 }
@@ -196,7 +165,7 @@ void vector_int()
 	vec.push_back(40);
 	vec.push_back(50);
 
-	print_vector(vec, "Main Vector: ");
+	print_vector(vec, "vec: ");
 
 	// Member Functions
 	{
@@ -218,11 +187,11 @@ void vector_int()
 		print_vector(vec6, "ft::vector<int> vec6(v.begin(), v.end()): ");
 		print_vector(vec7, "ft::vector<int> vec7(v)\t\t\t: ");
 		vec2.assign(8, 'a');
-		print_vector(vec2, "assign(8, 'a')\t\t\t\t: ");
+		print_vector(vec2, "vec2.assign(8, 'a')\t\t\t: ");
 		vec2.assign(3, 'A');
-		print_vector(vec2, "assign(3, 'A')\t\t\t\t: ");
+		print_vector(vec2, "vec2.assign(3, 'A')\t\t\t: ");
 		vec2.assign(vec.begin(), vec.end());
-		print_vector(vec2, "assign(a.begin(), a.end())\t\t: ");
+		print_vector(vec2, "vec2.assign(vec.begin(), vec.end())\t: ");
 		std::cout << "ptr address\t\t\t\t: " << (size_t *)ptr << '\n';
 		ptr = vec2.get_allocator().allocate(10);
 		std::cout << "ptr address\t\t\t\t: " << (size_t *)ptr << '\n';
@@ -470,9 +439,9 @@ void vector_data_types()
 
 int main()
 {
-	vector_iterator();
+	// vector_iterator();
 	vector_int();
-	vector_data_types();
+	// vector_data_types();
 
 	// system("leaks test_vector");
 }

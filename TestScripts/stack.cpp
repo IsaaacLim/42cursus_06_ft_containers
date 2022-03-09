@@ -195,7 +195,6 @@ void stack_other_types()
 		stack_bool.push('a');
 		print_stack(stack_bool, "stack<bool>\t\t\t\t: ");
 
-		/* fix this */
 		stack_str.push("stringszzz");
 		stack_str.push("1234567890");
 		stack_str.push("~!@#$%^&*()_+=-}{][:/,.");
