@@ -2,11 +2,11 @@
 #include <deque>
 #include <vector>
 #include <list>
-#include <limits>
+#include <limits.h>
 #include <string>
-#include "vector.hpp"
+#include "vector.hpp" // temp
 #include <stdlib.h>
-
+#include <stack> //temp
 #define RED "\033[3;31m"
 #define RESET "\033[0m"
 
@@ -15,7 +15,7 @@
 namespace ft = std;
 #else
 #include "stack.hpp"
-#include "MyList.hpp"
+// #include "MyList.hpp"
 #endif
 
 void print_title(std::string str);
@@ -131,7 +131,7 @@ void my_list(void)
 		lst5.push_back(0);
 		lst5.push_back(0);
 		lst5.push_back(0);
-		lst5.push_back(0); //extra
+		lst5.push_back(0); // extra
 
 		print_list(lst, "List1: ");
 		print_list(lst2, "List2: ");
@@ -207,13 +207,13 @@ void stack_int()
 		stack2 = stack;
 
 		stack3.push(10);
-		stack3.push(19); // smaller
+		stack3.push(19); // SMALLER
 		stack3.push(30);
 		stack3.push(40);
 		stack3.push(60); // larger
 
 		stack4.push(10);
-		stack4.push(21); // larger
+		stack4.push(21); // LARGER
 		stack4.push(30);
 		stack4.push(40);
 		stack4.push(40); // smaller
@@ -223,7 +223,7 @@ void stack_int()
 		stack5.push(0);
 		stack5.push(0);
 		stack5.push(0);
-		stack5.push(0); //extra
+		stack5.push(0); // extra (LARGER)
 
 		print_stack(stack, "Stack1: ");
 		print_stack(stack2, "Stack2: ");
@@ -268,17 +268,17 @@ void stack_other_types()
 		print_stack(stack_list, "stack<int, std::list<int>>\t\t: ");
 		std::cout << std::endl;
 
-		// // stack<int, ft::vector<int>>
-		// {
-		// 	print_subtitle("stack<int, ft::vector<int>>");
-		// 	ft::stack<int, ft::vector<int>> stack;
+		// stack<int, ft::vector<int>>
+		{
+			print_subtitle("stack<int, ft::vector<int>>");
+			ft::stack<int, ft::vector<int>> stack_ftVector;
 
-		// 	stack.push(INT_MIN);
-		// 	stack.push(0);
-		// 	stack.push(INT_MAX);
-		// 	print_stack(stack, "");
-		// 	std::cout << std::endl;
-		// }
+			stack_ftVector.push(INT_MIN);
+			stack_ftVector.push(0);
+			stack_ftVector.push(INT_MAX);
+			print_stack(stack_ftVector, "stack<int, ft::vector<int>>\t\t: ");
+			std::cout << std::endl;
+		}
 	}
 
 	// Other data types
@@ -288,7 +288,7 @@ void stack_other_types()
 		ft::stack<char> stack_char;
 		ft::stack<float> stack_float;
 		ft::stack<bool> stack_bool;
-		ft::stack<std::string, ft::MyList<std::string>> stack_str;
+		// ft::stack<std::string> stack_str;
 
 		stack_char.push('a');
 		stack_char.push(0);
@@ -305,17 +305,18 @@ void stack_other_types()
 		stack_bool.push('a');
 		print_stack(stack_bool, "stack<bool>\t\t\t\t: ");
 
-		stack_str.push("stringszzz");
-		stack_str.push("1234567890");
-		stack_str.push("~!@#$%^&*()_+=-}{][:/,."); // one more character will cause leak
-		print_stack(stack_str, "stack<std::string>\t\t\t: ");
+		/* fix this */
+		// stack_str.push("stringszzz");
+		// stack_str.push("1234567890");
+		// stack_str.push("~!@#$%^&*()_+=-}{][:/,."); // one more character will cause leak
+		// print_stack(stack_str, "stack<std::string>\t\t\t: ");
 	}
 }
 
 int main()
 {
-	// my_list();
-	// stack_int();
+	my_list();
+	stack_int();
 	stack_other_types();
-	system("leaks test_stack");
+	// system("leaks test_stack");
 }

@@ -38,9 +38,9 @@ namespace ft
 		explicit vector(T count, const T &value = T(), const Allocator &alloc = Allocator()); // (3) & (4)
 		template <class InputIt>															  //
 		vector(InputIt first, InputIt last, const Allocator &alloc = Allocator());			  // (5)
-		vector(vector &other);																  // (6)
+		vector(const vector &other);														  // (6)
 		~vector(void);
-		vector &operator=(vector &other);
+		vector &operator=(const vector &other);
 		void assign(size_type count, const T &value);
 		template <class InputIt>
 		void assign(InputIt first, InputIt last);
@@ -211,16 +211,16 @@ ft::vector<T, A>::vector(InputIt first, InputIt last, const allocator_type &allo
 }
 
 template <typename T, typename A>
-ft::vector<T, A>::vector(vector &other) : _capacity(0) { *this = other; }
+ft::vector<T, A>::vector(const vector &other) : _capacity(0) { *this = other; }
 
 template <typename T, typename A>
 ft::vector<T, A>::~vector(void) { _alloc.deallocate(_arr, _capacity); }
 
 template <typename T, typename A>
-ft::vector<T, A> &ft::vector<T, A>::operator=(vector &other)
+ft::vector<T, A> &ft::vector<T, A>::operator=(const vector &other)
 {
 	iterator thisIt;
-	iterator otherIt;
+	const_iterator otherIt;
 
 	if (_capacity != 0)
 		_alloc.deallocate(_arr, _capacity);

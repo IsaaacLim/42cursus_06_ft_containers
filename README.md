@@ -43,9 +43,11 @@
 
 ### Resources
 
-#### Stack structure reference
+#### Stack
 
-[GeeksforGeeks](https://www.geeksforgeeks.org/stack-data-structure-introduction-program/)
+- [Structur reference](https://www.geeksforgeeks.org/stack-data-structure-introduction-program/)
+- Relational operator compares the value in the stack **lexicographically**, hence, they will compare from the **first** element, NOT the top element.
+- Was having issues using ft_vector as it's underlying container because the copy constructor (& operator = overload) wasn't declared with `const vector other`
 
 #### Vector structure reference
 

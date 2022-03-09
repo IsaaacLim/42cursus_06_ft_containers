@@ -2,11 +2,12 @@
 #define STACK_HPP
 
 #include "MyList.hpp"
+#include "vector.hpp"
 #include <iostream>
 
 namespace ft
 {
-	template <class T, class Container = ft::MyList<T> >
+	template <class T, class Container = ft::vector<T>>
 	class stack
 	{
 	public:
@@ -23,7 +24,7 @@ namespace ft
 
 	public:
 		// MEMBER FUNCTIONS ----------------------------------------------------
-		explicit stack(const Container &cont = Container()) : c(cont) {}
+		explicit stack(const container_type &ctnr = container_type()) : c(ctnr) {}
 		stack(const stack &other) { *this = other; }
 		~stack(void) {}
 		stack &operator=(const stack &other)

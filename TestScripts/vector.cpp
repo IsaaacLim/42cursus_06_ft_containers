@@ -474,18 +474,5 @@ int main()
 	vector_int();
 	vector_data_types();
 
-	/* Testing for ft::vector<std::string>
-	std::allocator<std::string> alloc;
-	std::string *arr;
-	std::string str = "random";
-	std::string &ref = str;
-
-	arr = alloc.allocate(1);
-	arr[0] = ref;
-
-	std::cout << arr[0] << '\n';
-	alloc.deallocate(arr, 1);
-	*/
-
 	// system("leaks test_vector");
 }
