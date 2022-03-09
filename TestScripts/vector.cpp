@@ -201,22 +201,23 @@ void vector_int()
 	// Element Access
 	{
 		print_subtitle("Element Access");
-		std::cout << "at(4)\t\t\t\t\t: " << vec.at(4) << '\n';
+
+		std::cout << "vec.at(4)\t\t\t\t: " << vec.at(4) << '\n';
 		try
 		{
-			std::cout << "at(5)\t\t\t\t\t: " << vec.at(5) << '\n';
+			std::cout << "vec.at(5)\t\t\t\t: " << vec.at(5) << '\n';
 		}
 		catch (const std::exception &e)
 		{
 			std::cerr << e.what() << '\n';
 		}
-		std::cout << "vector[0]\t\t\t\t: " << vec[0] << '\n';
-		// std::cout << "vector[5]\t\t\t\t: " << vec[5] << '\n';   //OK but conditional jumps/ use of uninitialised values
-		// std::cout << "vector[-1]\t\t\t\t: " << vec[-1] << '\n'; //OK but conditional jumps/ use of uninitialised values
-		std::cout << "front()\t\t\t\t\t: " << vec.front() << '\n';
-		std::cout << "back()\t\t\t\t\t: " << vec.back() << '\n';
+		std::cout << "vec[0]\t\t\t\t\t: " << vec[0] << '\n';
+		// std::cout << "vec[5]\t\t\t\t\t: " << vec[5] << '\n';   //OK but conditional jumps/ use of uninitialised values
+		// std::cout << "vec[-1]\t\t\t\t\t: " << vec[-1] << '\n'; //OK but conditional jumps/ use of uninitialised values
+		std::cout << "vec.front()\t\t\t\t: " << vec.front() << '\n';
+		std::cout << "vec.back()\t\t\t\t: " << vec.back() << '\n';
 		int *arr = vec.data();
-		std::cout << "int *arr = .data(), arr[i]\t\t: ";
+		std::cout << "int *arr = vec.data(), arr[i]\t\t: ";
 		for (int i = 0; i < 5; i++)
 			std::cout << arr[i] << ' ';
 		std::cout << '\n';
@@ -224,20 +225,20 @@ void vector_int()
 
 	// Capacity
 	{
-		ft::vector<int> vec2;
-
 		print_subtitle("Capacity");
 
+		ft::vector<int> vec2;
+
 		std::cout << std::boolalpha;
-		std::cout << "a.empty()?\t\t\t\t: " << vec.empty() << "\n";
-		std::cout << "b.empty()?\t\t\t\t: " << vec2.empty() << "\n";
+		std::cout << "vec.empty()?\t\t\t\t: " << vec.empty() << "\n";
+		std::cout << "vec2.empty()?\t\t\t\t: " << vec2.empty() << "\n";
 		std::cout << std::noboolalpha;
-		std::cout << "a.size()\t\t\t\t: " << vec.size() << '\n';
-		std::cout << "b.max_size()\t\t\t\t: " << vec2.max_size() << '\n';
-		std::cout << "b.capacity()\t\t\t\t: " << vec2.capacity() << '\n';
+		std::cout << "vec.size()\t\t\t\t: " << vec.size() << '\n';
+		std::cout << "vec2.max_size()\t\t\t\t: " << vec2.max_size() << '\n';
+		std::cout << "vec2.capacity()\t\t\t\t: " << vec2.capacity() << '\n';
 		vec2.reserve(10);
-		std::cout << "b.reserve(10)\n";
-		std::cout << "b.capacity()\t\t\t\t: " << vec2.capacity() << '\n';
+		std::cout << "vec2.reserve(10)\n";
+		std::cout << "vec2.capacity()\t\t\t\t: " << vec2.capacity() << '\n';
 	}
 
 	// Modifiers
@@ -249,34 +250,35 @@ void vector_int()
 		vec2.push_back(-2);
 		vec2.push_back(-3);
 
+		print_vector(vec2, "vec2: ");
 		vec.push_back(60);
-		print_vector(vec, "push_back(60)\t\t\t\t: ");
+		print_vector(vec, "\nvec.push_back(60)\t\t\t\t\t: ");
 		vec.erase(vec.begin());
-		print_vector(vec, "erase(.begin())\t\t\t\t: ");
+		print_vector(vec, "vec.erase(.begin())\t\t\t\t\t: ");
 		vec.erase(vec.begin() + 1, vec.begin() + 4);
-		print_vector(vec, "erase(.begin() + 1, begin() + 4)\t: ");
+		print_vector(vec, "vec.erase(vec.begin() + 1, vec.begin() + 4)\t\t: ");
 		vec.pop_back();
-		print_vector(vec, "pop_back()\t\t\t\t: ");
+		print_vector(vec, "vec.pop_back()\t\t\t\t\t\t: ");
 		vec.insert(vec.begin(), 100);
-		print_vector(vec, "insert(.begin(), 100)\t\t\t: ");
+		print_vector(vec, "vec.insert(vec.begin(), 100)\t\t\t\t: ");
 		it = vec.insert(vec.begin() + 2, 200); // insert at the end is OK too
-		print_vector(vec, "insert(.begin() + 2, 200)\t\t: ");
-		std::cout << "*it returned from insert()\t\t: " << *it << '\n';
-		vec.insert(vec.begin() + 4, 2, 300); // over limit, lib will seg fault, mine just returns
-		print_vector(vec, "insert(.begin() + 4, 2, 300)\t\t: ");
+		print_vector(vec, "vec.insert(vec.begin() + 2, 200)\t\t\t: ");
+		std::cout << "*it returned from insert()\t\t\t\t: " << *it << '\n';
+		// vec.insert(vec.begin() + 4, 2, 300); // over limit, lib will seg fault, mine just returns
+		// print_vector(vec, "vec.insert(vec.begin() + 4, 2, 300)\t\t\t: ");
 		vec.insert(vec.begin() + 3, 2, 300);
-		print_vector(vec, "insert(.begin() + 3, 2, 300)\t\t: ");
+		print_vector(vec, "vec.insert(vec.begin() + 3, 2, 300)\t\t\t: ");
 		vec.insert(vec.begin() + 4, vec2.begin(), vec2.end());
-		print_vector(vec, "insert(.begin() + 4, b.begin(), b.end()): ");
+		print_vector(vec, "vec.insert(vec.begin() + 4, vec2.begin(), vec2.end())\t: ");
 		vec.resize(3);
-		print_vector(vec, "resize(3)\t\t\t\t: ");
+		print_vector(vec, "vec.resize(3)\t\t\t\t\t\t: ");
 		vec.resize(6);
-		print_vector(vec, "resize(6)\t\t\t\t: ");
+		print_vector(vec, "vec.resize(6)\t\t\t\t\t\t: ");
 		vec.clear();
-		print_vector(vec, "clear()\t\t\t\t\t: ");
+		print_vector(vec, "vec.clear()\t\t\t\t\t\t: ");
 		vec.swap(vec2);
-		print_vector(vec, "a.swap(b) - a\t\t\t\t: ");
-		print_vector(vec2, "a.swap(b) - b\t\t\t\t:");
+		print_vector(vec, "vec.swap(vec2) - vec\t\t\t\t\t: ");
+		print_vector(vec2, "vec.swap(vec2) - vec2\t\t\t\t\t:");
 	}
 
 	// Iterators (simple version)
