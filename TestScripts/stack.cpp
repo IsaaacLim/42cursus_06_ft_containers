@@ -4,9 +4,7 @@
 #include <list>
 #include <limits.h>
 #include <string>
-#include "vector.hpp" // temp
 #include <stdlib.h>
-#include <stack> //temp
 #define RED "\033[3;31m"
 #define RESET "\033[0m"
 
@@ -21,18 +19,27 @@ void print_title(std::string str);
 void print_subtitle(std::string str);
 void print_disclaimer()
 {
-	std::cout << RED "*List array is displayed as LIFO*\n" RESET;
+	std::cout << RED "*Stack is displayed as FIFO, not LIFO*\n" RESET;
 }
 
 template <typename T>
-void print_stack(T stack, std::string str)
+void print_stack(T &stack, std::string str)
 {
+	// Print as FIFO, rather than LIFO
+	T tmp_stack;
+
 	if (!str.empty())
 		std::cout << str;
 	while (!stack.empty())
 	{
-		std::cout << stack.top() << ' ';
+		tmp_stack.push(stack.top());
 		stack.pop();
+	}
+	while (!tmp_stack.empty())
+	{
+		std::cout << tmp_stack.top() << ' ';
+		stack.push(tmp_stack.top());
+		tmp_stack.pop();
 	}
 	std::cout << std::endl;
 }
@@ -82,6 +89,7 @@ void stack_int()
 		std::cout << "*pop until empty*, stack.empty() ?\t: " << stack.empty() << '\n';
 		std::cout << std::noboolalpha;
 	}
+
 	// Non-member Functions
 	{
 		print_subtitle("Non-member Functions");
@@ -135,12 +143,12 @@ void stack_int()
 
 void stack_other_types()
 {
-	print_title("Stack, other data types (simple test)");
+	print_title("Other data structures (simple test)");
 	print_disclaimer();
 
 	// Other container types
 	{
-		print_subtitle("Stack with diff containers");
+		print_subtitle("Underlying STL containers");
 
 		ft::stack<int, std::deque<int>> stack_deque;
 		ft::stack<int, std::vector<int>> stack_vec;
@@ -161,23 +169,11 @@ void stack_other_types()
 		stack_list.push(std::numeric_limits<int>::max());
 		print_stack(stack_list, "stack<int, std::list<int>>\t\t: ");
 		std::cout << std::endl;
-
-		// stack<int, ft::vector<int>>
-		{
-			print_subtitle("stack<int, ft::vector<int>>");
-			ft::stack<int, ft::vector<int>> stack_ftVector;
-
-			stack_ftVector.push(INT_MIN);
-			stack_ftVector.push(0);
-			stack_ftVector.push(INT_MAX);
-			print_stack(stack_ftVector, "stack<int, ft::vector<int>>\t\t: ");
-			std::cout << std::endl;
-		}
 	}
 
 	// Other data types
 	{
-		print_subtitle("Stack with diff data types");
+		print_subtitle("Diff data types");
 
 		ft::stack<char> stack_char;
 		ft::stack<float> stack_float;

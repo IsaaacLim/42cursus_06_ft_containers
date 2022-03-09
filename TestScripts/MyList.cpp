@@ -87,13 +87,13 @@ int main(void)
 		lst2 = lst;
 
 		lst3.push_back(10);
-		lst3.push_back(19); // smaller
+		lst3.push_back(19); // SMALLER
 		lst3.push_back(30);
 		lst3.push_back(40);
 		lst3.push_back(60); // larger
 
 		lst4.push_back(10);
-		lst4.push_back(21); // larger
+		lst4.push_back(21); // LARGER
 		lst4.push_back(30);
 		lst4.push_back(40);
 		lst4.push_back(40); // smaller
@@ -103,7 +103,7 @@ int main(void)
 		lst5.push_back(0);
 		lst5.push_back(0);
 		lst5.push_back(0);
-		lst5.push_back(0); // extra
+		lst5.push_back(0); // extra (LARGER)
 
 		print_list(lst, "List1: ");
 		print_list(lst2, "List2: ");
