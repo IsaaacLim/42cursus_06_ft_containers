@@ -320,29 +320,14 @@ void vector_int()
 		print_vector(vec2, "vec2: ");
 		print_vector(vec3, "vec3: ");
 		print_vector(vec4, "vec4: ");
-		std::cout << '\n';
 
-		std::cout << std::boolalpha;
 		comparison_operator(vec, vec2, "vec", "vec2");
-		std::cout << '\n';
-		std::cout << "vec1 == vec3\t\t\t\t: " << (vec == vec3) << '\n';
-		std::cout << "vec1 != vec3\t\t\t\t: " << (vec != vec3) << '\n';
-		std::cout << "vec1 <  vec3\t\t\t\t: " << (vec < vec3) << '\n';
-		std::cout << "vec1 <= vec3\t\t\t\t: " << (vec <= vec3) << '\n';
-		std::cout << "vec1 >  vec3\t\t\t\t: " << (vec > vec3) << '\n';
-		std::cout << "vec1 >= vec3\t\t\t\t: " << (vec >= vec3) << '\n';
-		std::cout << '\n';
-		std::cout << "vec1 == vec4\t\t\t\t: " << (vec == vec4) << '\n';
-		std::cout << "vec1 != vec4\t\t\t\t: " << (vec != vec4) << '\n';
-		std::cout << "vec1 <  vec4\t\t\t\t: " << (vec < vec4) << '\n';
-		std::cout << "vec1 <= vec4\t\t\t\t: " << (vec <= vec4) << '\n';
-		std::cout << "vec1 >  vec4\t\t\t\t: " << (vec > vec4) << '\n';
-		std::cout << "vec1 >= vec4\t\t\t\t: " << (vec >= vec4) << '\n';
-		std::cout << std::noboolalpha;
+		comparison_operator(vec, vec3, "vec", "vec3");
+		comparison_operator(vec, vec4, "vec", "vec4");
 
 		ft::swap(vec2, vec4);
 		std::cout << "\nft::swap(vec2, vec4)\n";
-		print_vector(vec, "vec1: ");
+		print_vector(vec, "vec : ");
 		print_vector(vec2, "vec2: ");
 		print_vector(vec3, "vec3: ");
 		print_vector(vec4, "vec4: ");
