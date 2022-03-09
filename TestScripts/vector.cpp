@@ -323,12 +323,7 @@ void vector_int()
 		std::cout << '\n';
 
 		std::cout << std::boolalpha;
-		std::cout << "vec1 == vec2\t\t\t\t: " << (vec == vec2) << '\n';
-		std::cout << "vec1 != vec2\t\t\t\t: " << (vec != vec2) << '\n';
-		std::cout << "vec1 <  vec2\t\t\t\t: " << (vec < vec2) << '\n';
-		std::cout << "vec1 <= vec2\t\t\t\t: " << (vec <= vec2) << '\n';
-		std::cout << "vec1 >  vec2\t\t\t\t: " << (vec > vec2) << '\n';
-		std::cout << "vec1 >= vec2\t\t\t\t: " << (vec >= vec2) << '\n';
+		comparison_operator(vec, vec2, "vec", "vec2");
 		std::cout << '\n';
 		std::cout << "vec1 == vec3\t\t\t\t: " << (vec == vec3) << '\n';
 		std::cout << "vec1 != vec3\t\t\t\t: " << (vec != vec3) << '\n';
