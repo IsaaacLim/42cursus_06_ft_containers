@@ -350,14 +350,8 @@ void vector_data_types()
 		vec.push_back('d');
 		vec.push_back(101);
 
-		it = vec.begin();
-		while (it != vec.end())
-		{
+		for (it = vec.begin(); it != vec.end(); it++)
 			std::cout << *it << '\n';
-			it++;
-		}
-
-		vec.erase(vec.begin());
 	}
 
 	// String
@@ -372,18 +366,22 @@ void vector_data_types()
 		vec.push_back("!@#$%^&*()_+=");
 		vec.push_back("END");
 
-		it = vec.begin();
-		while (it != vec.end())
-		{
-			std::cout << *it << '\n';
-			it++;
-		}
-
-		vec.erase(vec.begin() + 1, vec.begin() + 6); // removes all elements. Until vec.begin() + 7 will seg fault (like lib)
-													 // erase (1st overload)
-													 // insert (1st overload)
-													 // resize(should be ok)
-													 // swap(s)
+		std::cout << "Stack (ori):\n";
+		for (it = vec.begin(); it != vec.end(); it++)
+			std::cout << "\t" << *it << '\n';
+		vec.erase(vec.begin() + 1, vec.begin() + 6); // removes all elements. erase till `vec.begin() + 7` will seg fault (like lib)
+		std::cout << "Stack (erased all):\n";
+		for (it = vec.begin(); it != vec.end(); it++)
+			std::cout << "\t" << *it << '\n';
+		vec.insert(vec.begin(), 5, "This is inserted");
+		vec.insert(vec.end(), "This might cause 'valgrind conditional jump'");
+		vec.insert(vec.end(), vec.begin(), vec.begin() + 2);
+		std::cout << "Stack (insert):\n";
+		for (it = vec.begin(); it != vec.end(); it++)
+			std::cout << "\t" << *it << '\n';
+		// resize(should be ok)
+		// swap(s)
+		// vector constructor #3
 	}
 
 	// Float
@@ -398,14 +396,8 @@ void vector_data_types()
 		vec.push_back(42e-3f);
 		vec.push_back(-111e-6f);
 
-		it = vec.begin();
-		while (it != vec.end())
-		{
+		for (it = vec.begin(); it != vec.end(); it++)
 			std::cout << *it << '\n';
-			it++;
-		}
-
-		vec.erase(vec.begin());
 	}
 
 	// Double
@@ -420,14 +412,8 @@ void vector_data_types()
 		vec.push_back(42e-30);
 		vec.push_back(-111e-60);
 
-		it = vec.begin();
-		while (it != vec.end())
-		{
+		for (it = vec.begin(); it != vec.end(); it++)
 			std::cout << *it << '\n';
-			it++;
-		}
-
-		vec.erase(vec.begin());
 	}
 }
 

@@ -180,7 +180,7 @@ namespace ft
 template <typename T, typename A>
 ft::vector<T, A>::vector(void)
 {
-	_arr = _alloc.allocate(1); // initial capacity of 1 element
+	_arr = _alloc.allocate(1 * sizeof(value_type)); // initial capacity of 1 element
 	_capacity = 1;
 	_current = 0;
 }
@@ -188,7 +188,7 @@ ft::vector<T, A>::vector(void)
 template <typename T, typename A>
 ft::vector<T, A>::vector(const allocator_type &alloc) : _alloc(alloc)
 {
-	_arr = _alloc.allocate(1);
+	_arr = _alloc.allocate(1 * sizeof(value_type));
 	_capacity = 1;
 	_current = 0;
 }
@@ -197,7 +197,7 @@ ft::vector<T, A>::vector(const allocator_type &alloc) : _alloc(alloc)
 template <typename T, typename A>
 ft::vector<T, A>::vector(T count, const_reference value, const allocator_type &alloc) : _current(0), _alloc(alloc)
 {
-	_arr = _alloc.allocate(count);
+	_arr = _alloc.allocate(count * sizeof(value_type));
 	while (_current < (size_type)count)
 		_arr[_current++] = value;
 	_capacity = count;
@@ -205,9 +205,9 @@ ft::vector<T, A>::vector(T count, const_reference value, const allocator_type &a
 
 template <typename T, typename A>
 template <typename InputIt>
-ft::vector<T, A>::vector(InputIt first, InputIt last, const allocator_type &alloc) : _capacity(0), _current(0), _alloc(alloc)
+ft::vector<T, A>::vector(InputIt first, InputIt last, const allocator_type &alloc) : _capacity(1), _current(0), _alloc(alloc)
 {
-	_arr = _alloc.allocate(0);
+	_arr = _alloc.allocate(1 * sizeof(value_type));
 	assign(first, last);
 }
 
@@ -229,7 +229,7 @@ ft::vector<T, A> &ft::vector<T, A>::operator=(const vector &other)
 
 	if (_capacity != 0)
 		_alloc.deallocate(_arr, _capacity);
-	_arr = _alloc.allocate(1);
+	_arr = _alloc.allocate(1 * sizeof(value_type));
 	_capacity = 1;
 	_current = 0;
 	thisIt = this->begin();
@@ -357,18 +357,23 @@ typename ft::vector<T, A>::iterator ft::vector<T, A>::insert(iterator pos, const
 {
 	iterator it;
 	size_type i;
+	value_type lst;
 
 	i = 0;
 	for (it = begin(); it < pos && i <= _current; it++)
 		i++;
 	if (i > _current) // allow insert at the last index
 		return (NULL);
-	if (_current + 1 > _capacity)
-		reserve(_current + 1);
-	for (size_type j = _current; j > i; j--)
-		_arr[j] = _arr[j - 1];
-	_arr[i] = value;
-	_current++;
+	if (_current == 0)
+		push_back(value); // create 1st element
+	else
+	{
+		lst = _arr[_current - 1]; // valgrind complains invalid read if `push_back(_arr[_current -1])`
+		push_back(lst);			  // duplicate last element;
+		for (size_type j = _current - 2; j > i; j--)
+			_arr[j] = _arr[j - 1];
+		_arr[i] = value;
+	}
 	return (&_arr[i]);
 }
 
