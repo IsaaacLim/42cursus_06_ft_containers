@@ -76,7 +76,7 @@ namespace ft
 		// MODIFIERS ------------------------------------------------------ done
 		void clear(void);
 		iterator insert(iterator pos, const T &value);
-		void insert(iterator pos, T count, const T &value);
+		void insert(iterator pos, int count, const T &value);
 		template <typename InputIt>
 		void insert(iterator pos, InputIt first, InputIt last);
 		iterator erase(iterator pos);
@@ -373,7 +373,7 @@ typename ft::vector<T, A>::iterator ft::vector<T, A>::insert(iterator pos, const
 }
 
 template <typename T, typename A>
-void ft::vector<T, A>::insert(iterator pos, T count, const_reference value)
+void ft::vector<T, A>::insert(iterator pos, int count, const_reference value)
 {
 	if (pos > end())
 		return;
