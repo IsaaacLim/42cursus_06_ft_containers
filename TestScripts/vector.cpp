@@ -254,7 +254,7 @@ void vector_int()
 		vec.push_back(60);
 		print_vector(vec, "\nvec.push_back(60)\t\t\t\t\t: ");
 		vec.erase(vec.begin());
-		print_vector(vec, "vec.erase(.begin())\t\t\t\t\t: ");
+		print_vector(vec, "vec.erase(vec.begin())\t\t\t\t\t: ");
 		vec.erase(vec.begin() + 1, vec.begin() + 4);
 		print_vector(vec, "vec.erase(vec.begin() + 1, vec.begin() + 4)\t\t: ");
 		vec.pop_back();
@@ -372,7 +372,6 @@ void vector_data_types()
 		vec.push_back("!@#$%^&*()_+=");
 		vec.push_back("END");
 
-		vec.erase(vec.begin()); // WORKING HERE
 		it = vec.begin();
 		while (it != vec.end())
 		{
@@ -380,10 +379,11 @@ void vector_data_types()
 			it++;
 		}
 
-		// erase (1st overload)
-		// insert (1st overload)
-		// resize(should be ok)
-		// swap(s)
+		vec.erase(vec.begin() + 1, vec.begin() + 6); // removes all elements. Until vec.begin() + 7 will seg fault (like lib)
+													 // erase (1st overload)
+													 // insert (1st overload)
+													 // resize(should be ok)
+													 // swap(s)
 	}
 
 	// Float

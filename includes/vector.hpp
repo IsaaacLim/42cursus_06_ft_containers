@@ -397,21 +397,18 @@ void ft::vector<T, A>::insert(iterator pos, InputIt first, InputIt last)
 	}
 }
 
-template <typename T, typename A> // WORKING HERE
+template <typename T, typename A>
 typename ft::vector<T, A>::iterator ft::vector<T, A>::erase(iterator pos)
 {
 	iterator tmp;
 
 	tmp = pos;
-	while (tmp != end())
+	while (tmp != end() && (tmp + 1) != end())
 	{
-		// tmp->~value_type();
-		// new (tmp) value_type;
 		*tmp = *(tmp + 1);
 		tmp++;
 	}
-	_current--;
-	// pop_back(); // testing
+	pop_back();
 	return (pos);
 }
 
