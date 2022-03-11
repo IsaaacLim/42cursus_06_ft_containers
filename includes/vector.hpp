@@ -194,6 +194,7 @@ ft::vector<T, A>::vector(const allocator_type &alloc) : _alloc(alloc)
 }
 
 // test with std::string (directly use push_back)
+// change `count` data type
 template <typename T, typename A>
 ft::vector<T, A>::vector(T count, const_reference value, const allocator_type &alloc) : _current(0), _alloc(alloc)
 {

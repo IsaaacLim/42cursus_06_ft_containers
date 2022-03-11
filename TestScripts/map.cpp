@@ -113,7 +113,8 @@ void map_int()
 	map[4] = 40;
 	print_map(map, "Initial map:\n", 1);
 
-	{ // Element Access
+	// Element Access
+	{
 		print_subtitle("Element Access");
 		num = map.at(3);
 		std::cout << "map.at(3)\t\t\t\t: " << num << "\n";
@@ -130,7 +131,8 @@ void map_int()
 		std::cout << "map[5]\t\t\t\t\t: " << map[-10] << '\n'; // performs an insertion
 	}
 
-	{ // Iterators
+	// Iterators
+	{
 		print_subtitle("Iterators");
 
 		ft::map<int, int>::iterator it;
@@ -146,12 +148,15 @@ void map_int()
 		// Notes: no += or -= operator
 	}
 
-	{ // Capacity
+	// Capacity
+	{
 		print_subtitle("Capacity");
 
 		ft::map<size_t, int> map2;
 		ft::map<int, size_t> map3;
 		ft::map<size_t, size_t> map4;
+		ft::map<char, std::string> map5;
+		ft::map<std::string, std::string> map6;
 
 		std::cout << std::boolalpha;
 		std::cout << "map.empty() ?\t\t\t\t: " << map.empty() << '\n';
@@ -161,9 +166,12 @@ void map_int()
 		std::cout << "map2.max_size()\t\t\t\t: " << map2.max_size() << '\n';
 		std::cout << "map3.max_size()\t\t\t\t: " << map3.max_size() << '\n';
 		std::cout << "map4.max_size()\t\t\t\t: " << map4.max_size() << '\n';
+		std::cout << "map5.max_size()\t\t\t\t: " << map5.max_size() << '\n';
+		std::cout << "map6.max_size()\t\t\t\t: " << map6.max_size() << '\n';
 	}
 
-	{ // Modifiers
+	// Modifiers
+	{
 		print_subtitle("Modifiers");
 
 		ft::map<int, int> map2;
@@ -172,13 +180,13 @@ void map_int()
 
 		map2[1] = 'a';
 		map2[2] = 'b';
-		map2[3] = 'c';
-		map2[4] = 'd';
-		map2[5] = 42;
-		map2[5] = 24;
-		map2[6] = 'f';
-		map2[7] = 'g';
-		map2[8] = 'h';
+		map2[3] = 42;
+		map2[3] = 24;
+		map2[4] = 'c';
+		map2[5] = 'd';
+		map2[6] = 'e';
+		map2[7] = 'f';
+		map2[8] = 'g';
 
 		print_map(map2, "map2:\n", 1);
 
@@ -212,7 +220,8 @@ void map_int()
 		print_map(map2, "map2:\n", 1);
 	}
 
-	{ // Lookup
+	// Lookup
+	{
 		print_subtitle("Lookup");
 
 		ft::map<int, int>::iterator it;
@@ -266,7 +275,8 @@ void map_int()
 
 	}
 
-	{ // Observers
+	// Observers
+	{
 		print_subtitle("Observers");
 
 		ft::map<int, char, ModCmp> map_cmp;
@@ -321,30 +331,37 @@ void map_int()
 
 	}
 
-
-// WORKING HERE
-	{ // Non-member functions
+	// Non-member functions
+	{
 		print_subtitle("Non-member Functions");
 
 		ft::map<int, int> map2, map3, map4;
+		ft::map<int, int>::iterator it;
 
 		map2 = map3 = map4 = map;
+		map3.insert(std::pair<int, int>(9, 999));
+		map3.insert(std::pair<int, int>(4, 999));
+		it = map4.find(3);
+		map4.erase(it);
+
 		print_map(map, "map1:\n", 0);
 		print_map(map2, "map2:\n", 0);
 		print_map(map3, "map3:\n", 0);
 		print_map(map4, "map4:\n", 0);
 
-		//edit maps to make them different
-
-
-
 		comparison_operator(map, map2, "map1", "map2");
-		comparison_operator(map, map3, "map1", "map3");
-		comparison_operator(map, map4, "map1", "map4");
+		comparison_operator(map, map3, "map1", "map3"); // map3 smaller ????
+		comparison_operator(map, map4, "map1", "map4"); // map4 is bigger ????
+
+		std::swap(map3, map4);
+		std::cout << "\nstd::swap(map3, map4):\n";
+		print_map(map3, "map3:\n", 0);
+		print_map(map4, "map4:\n", 1);
 	}
 }
 
 int main()
 {
 	map_int();
+	// map_data_types();
 }
